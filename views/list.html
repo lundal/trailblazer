@@ -1,0 +1,12 @@
+<div ng-controller="ListController">
+    <h1> Character List </h1>
+    <div ng-repeat="character in characters">
+        <a ng-href="#/character/{{ character.guid }}">{{ character.guid }}</a>
+    </div>
+    <button type="button" class="btn btn-success button" ng-click="create()">
+        <i class="glyphicon glyphicon-plus"></i> Create New
+    </button>
+    <button type="button" class="btn btn-danger button" ng-click="deleteAll()">
+        <i class="glyphicon glyphicon-remove"></i> Delete All
+    </button>
+</div>

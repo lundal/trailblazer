@@ -1,0 +1,96 @@
+<div ng-controller="SheetController">
+    <div id="abilities" class="two-column section" ng-controller="AbilitiesController">
+        <header> Abilities </header>
+        <table>
+            <tr>
+                <th class="expand"> &nbsp;Ability </th>
+                <th> Score </th>
+                <th> Mod. </th>
+                <th> Temp<br>Score </th>
+                <th> Temp<br>Mod. </th>
+            </tr>
+            <tr ng-repeat="ability in character.abilities">
+                <td>
+                    <input type="text" class="input textbox expand bottom-border-only" ng-model="ability.name" readonly>
+                </td>
+                <td>
+                    <input type="text" class="input numberbox editable" value="{{ abilityScoreBase(ability) }}" readonly
+                           tooltip="{{ abilityScoreBaseTooltip(ability) }}" tooltip-popup-delay="300"
+                           ng-focus="abilityScoreBaseEdit(ability)">
+                </td>
+                <td>
+                    <input type="number" class="input numberbox highlight" value="{{ abilityModifierBase(ability) }}" readonly>
+                </td>
+                <td>
+                    <input type="text" class="input numberbox editable" value="{{ abilityScoreTemp(ability) }}" readonly
+                           tooltip="{{ abilityScoreTempTooltip(ability) }}" tooltip-popup-delay="300"
+                           ng-focus="abilityScoreTempEdit(ability)">
+                </td>
+                <td>
+                    <input type="number" class="input numberbox highlight" value="{{ abilityModifierTemp(ability) }}" readonly>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="skills" class="three-column section" ng-controller="SkillsController">
+        <header> Skills </header>
+        <table>
+            <tr>
+                <th tooltip="Class Skill" tooltip-popup-delay="300" tooltip-append-to-body="true"> CS </th>
+                <th class="expand"> &nbsp;Skill </th>
+                <th tooltip="Untrained" tooltip-popup-delay="300" tooltip-append-to-body="true"> UT </th>
+                <th> Ability </th>
+                <th> Total </th>
+                <th> Ranks </th>
+                <th> Misc </th>
+                <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+            </tr>
+            <tr ng-repeat="skill in character.skills">
+                <td>
+                    <input type="checkbox" ng-model="skill.clas">
+                </td>
+                <td>
+                    <input type="text" class="input textbox expand bottom-border-only" ng-model="skill.name" ng-blur="skillSort()">
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="skill.untrained">
+                </td>
+                <td>
+                    <select class="input selectbox" ng-model="skill.ability">
+                        <option value="Str">Str</option>
+                        <option value="Dex">Dex</option>
+                        <option value="Con">Con</option>
+                        <option value="Int">Int</option>
+                        <option value="Wis">Wis</option>
+                        <option value="Cha">Cha</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="input numberbox highlight" value="{{ skillTotal(skill) }}" readonly
+                           tooltip="{{ skillTotalTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                </td>
+                <td>
+                    <input type="number" class="input numberbox" ng-model="skill.ranks" required
+                           min="0" max="999" pattern="-?[0-9]+">
+                </td>
+                <td>
+                    <input type="text" class="input numberbox editable" value="{{ skillMisc(skill) }}" readonly
+                           tooltip="{{ skillMiscTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true"
+                           ng-focus="skillMiscEdit(skill)">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger button-delete" ng-click="skillRemove($index)">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="42">
+                    <button type="button" class="btn btn-success button" ng-click="skillAdd()">
+                        <i class="glyphicon glyphicon-plus"></i> Add skill
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

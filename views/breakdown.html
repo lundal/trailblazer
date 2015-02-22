@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ title }}</h3>
+</div>
+<div class="modal-body">
+    <table>
+        <tr>
+            <th class="expand"> &nbsp;Description </th>
+            <th> Bonus </th>
+            <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td> <input type="text" class="input textbox expand" ng-model="item.desc"> </td>
+            <td> <input type="number" class="input numberbox" ng-model="item.bonus" required
+                        min="-99" max="999" pattern="-?[0-9]+"> </td>
+            <td> <button type="button" class="btn btn-danger button-delete" ng-click="remove($index)">
+                     <i class="glyphicon glyphicon-remove"></i>
+                 </button> </td>
+        </tr>
+        <tr>
+            <td colspan="42">
+                <button type="button" class="btn btn-success button" ng-click="add()">
+                    <i class="glyphicon glyphicon-plus"></i> Add bonus
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
