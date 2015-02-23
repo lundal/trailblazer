@@ -1,0 +1,121 @@
+/* Dialogs */
+
+.modal {
+    background: rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    white-space: nowrap;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    padding: 10px;
+}
+
+/* Disable up and down buttons in number boxes */
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    margin: 0;
+}
+
+/* Input boxes */
+
+.input {
+    background: #FFF;
+    display: block;
+    height: 28px;
+    padding: 2px 6px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #333;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.editable {
+    cursor: text;
+}
+
+.button {
+    padding: 2px 6px;
+    height: 28px;
+    text-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+.button-delete {
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    margin: 2px;
+    text-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+input:invalid,
+input:invalid:focus {
+    background: #fee;
+    border: 1px solid #F33
+}
+
+.textbox {
+
+}
+
+.selectbox {
+    /* Move text 1px up so it looks more proportional */
+    padding: 1px 6px 3px;
+}
+
+.numberbox {
+    width: 48px;
+    text-align: center;
+}
+
+.expand {
+    width: 100%;
+    text-align: left;
+}
+
+.highlight {
+    border-width: 2px;
+    padding: 1px 5px;
+    border-color: #666;
+}
+
+.bottom-border-only {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+}
+
+/* Tables */
+
+table {
+    margin: 2px;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 3px;
+}
+
+th {
+    vertical-align: bottom;
+    line-height: 1;
+}
+

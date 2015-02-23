@@ -1,189 +1,69 @@
-@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+/* Column widths
+ * One:   160px
+ * Two:   330px
+ * Three: 500px
+ * Four:  670px
+ * Five:  840px
+ * Six:  1010px
+ */
 
-/* Main layout */
-
-body {
-    background: #EEE;
-    /* background: #e8e4e0; */
-    font-family: 'Bree Serif', serif;
+.block {
+    width: 1010px;
+    display: flex;
+    justify-content: space-between;
 }
 
-#container {
-    background: #FFF;
-    /* background: #fefdfc; */
-    width: 1030px;
-    margin: 0px auto;
-    padding: 0;
-    overflow: hidden; /* To fix margins */
-    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.50);
+.subblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.section {
+.piece {
     background: #FFF;
-    /* background: #fefdfc; */
     border: 1px solid #333;
-    margin: 10px;
     border-radius: 4px;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+    margin-bottom: 10px;
 }
 
-.section header {
+.piece header {
     color: #FFF;
     font-size: 22px;
     text-align: center;
     background: #C21;
+    background: hsl(5, 80%, 40%);
     border-bottom: 1px solid #333;
     text-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 
-/* Columns */
-
-.one-column {
-    width: 160px;
+#basics {
+    width: 1010px;
+    height: 160px;
 }
 
-.two-column {
+#abilities {
     width: 330px;
 }
 
-.three-column {
+#skills {
     width: 500px;
 }
 
-.four-column {
-    width: 670px;
+#saves {
+    width: 330px;
 }
 
-.five-column {
-    width: 840px;
+#test0 {
+    width: 330px;
 }
 
-.six-column {
-    width: 1010px;
+#feats {
+    width: 500px;
+    flex-grow: 1;
 }
 
-/* Tables */
-
-table {
-    margin: 2px;
-}
-
-th,
-td {
-    text-align: center;
-    padding: 3px;
-}
-
-th {
-    vertical-align: bottom;
-    line-height: 1;
-}
-
-/* Dialogs */
-
-.modal {
-    background: rgba(0,0,0,0.2);
-}
-
-.modal-header {
-    white-space: nowrap;
-    overflow: hidden;
-    padding-bottom: 10px;
-}
-
-.modal-body {
-    padding: 10px;
-}
-
-/* Disable up and down buttons */
-
-input[type='number']::-webkit-inner-spin-button, 
-input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    display: none;
-    margin: 0;
-}
-
-/* Input boxes */
-
-.input {
-    background: #FFF;
-    /* background: #fefdfc; */
-    display: block;
-    height: 28px;
-    padding: 2px 6px;
-    font-size: 16px;
-    line-height: 1.42857143;
-    color: #333;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-
-.input:focus {
-    border-color: #66afe9;
-    outline: 0;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-}
-
-.editable {
-    cursor: text;
-}
-
-.button {
-    padding: 2px 6px;
-    height: 28px;
-    text-shadow: 0 0 1px rgba(0,0,0,0.5);
-}
-
-.button-delete {
-    padding: 4px;
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    margin: 2px;
-    text-shadow: 0 0 1px rgba(0,0,0,0.5);
-}
-
-input:invalid,
-input:invalid:focus {
-    background: #fee;
-    border: 1px solid #F33
-}
-
-.textbox {
-
-}
-
-.selectbox {
-    /* Move text 1px up so it looks more proportional */
-    padding: 1px 6px 3px;
-}
-
-.numberbox {
-    width: 48px;
-    text-align: center;
-}
-
-.expand {
-    width: 100%;
-    text-align: left;
-}
-
-.highlight {
-    border-width: 2px;
-    padding: 1px 5px;
-    border-color: #666;
-}
-
-.highlight-text {
-    color: #000;
-}
-
-.bottom-border-only {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    box-shadow: none;
+#features {
+    width: 500px;
+    flex-grow: 1;
 }

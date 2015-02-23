@@ -8,7 +8,7 @@ function($scope, breakdownService) {
     /* Private */
 
     $scope.saveTotal = function(save) {
-        var total = '';
+        var total = 0;
 
         total += abilityModifierByName(save.ability);
         total += breakdownService.total(save.base);
@@ -17,7 +17,7 @@ function($scope, breakdownService) {
         return total;
     };
 
-    $scope.saveTooltip = function(save) {
+    $scope.saveTotalTooltip = function(save) {
         var tooltip = '';
 
         tooltip += save.ability + ': ' + abilityModifierByName(save.ability) + ', ';
@@ -25,6 +25,30 @@ function($scope, breakdownService) {
         tooltip += 'Misc: ' + breakdownService.total(save.misc);
 
         return tooltip;
+    };
+
+    $scope.saveBase = function(save) {
+        return breakdownService.total(save.base);
+    };
+
+    $scope.saveBaseTooltip = function(save) {
+        breakdownService.tooltip(save.base);
+    };
+
+    $scope.saveBaseEdit = function(save) {
+        breakdownService.open(save.base, save.name + ' Misc');
+    };
+
+    $scope.saveMisc = function(save) {
+        return breakdownService.total(save.misc);
+    };
+
+    $scope.saveMiscTooltip = function(save) {
+        breakdownService.tooltip(save.misc);
+    };
+
+    $scope.saveMiscEdit = function(save) {
+        breakdownService.open(save.misc, save.name + ' Misc');
     };
 
 }]);
