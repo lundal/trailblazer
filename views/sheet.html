@@ -2,14 +2,14 @@
     <div class="block">
         <div id="basics" class="piece">
             <header> Basic Information </header>
-        </div> <!-- end test0 -->
+        </div> <!-- end basics -->
     </div> <!-- end block -->
     <div class="block">
         <div id="abilities" class="piece" ng-controller="AbilitiesController">
             <header> Abilities </header>
             <table>
                 <tr>
-                    <th class="expand"> &nbsp;Ability </th>
+                    <th class="expand"> Ability </th>
                     <th> Score </th>
                     <th> Mod. </th>
                     <th> Temp<br>Score </th>
@@ -38,11 +38,19 @@
                 </tr>
             </table>
         </div> <!-- end abilities -->
+        <div id="movement" class="piece">
+            <header> Movement </header>
+        </div> <!-- end ac -->
+        <div id="todo1" class="piece">
+            <header> Todo 1 </header>
+        </div> <!-- end todo1 -->
+    </div> <!-- end block -->
+    <div class="block">
         <div id="saves" class="piece" ng-controller="SavesController">
             <header> Saves </header>
             <table>
                 <tr>
-                    <th class="expand"> &nbsp;Save </th>
+                    <th class="expand"> Save </th>
                     <th> Total </th>
                     <th> Base </th>
                     <th> Misc </th>
@@ -68,9 +76,81 @@
                 </tr>
             </table>
         </div> <!-- end saves -->
-        <div id="test0" class="piece">
-            <header> Test 0 </header>
-        </div> <!-- end test0 -->
+        <div id="ac" class="piece">
+            <header> Armor Class </header>
+            <table style="float: right; margin: 9px">
+                <tr>
+                    <th> Natural </th>
+                    <th> Deflect </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+                <tr>
+                    <th> Dodge </th>
+                    <th> Misc </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th class="expand"> Situation </th>
+                    <th> AC </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Normal" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Flat-Footed" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Touch Attack" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{  }}" readonly
+                               tooltip="{{  }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+            </table>
+        </div> <!-- end ac -->
+        <div id="todo2" class="piece">
+            <header> Todo 2 </header>
+        </div> <!-- end todo2 -->
+    </div> <!-- end block -->
+    <h1> Offense </h1>
+    <div class="block">
+        <div id="attacks" class="piece">
+            <header> Attacks </header>
+        </div> <!-- end attacks -->
     </div> <!-- end block -->
     <div class="block">
         <div id="skills" class="piece" ng-controller="SkillsController">
@@ -78,7 +158,7 @@
             <table>
                 <tr>
                     <th tooltip="Class Skill" tooltip-popup-delay="300" tooltip-append-to-body="true"> CS </th>
-                    <th class="expand"> &nbsp;Skill </th>
+                    <th class="expand"> Skill </th>
                     <th tooltip="Untrained" tooltip-popup-delay="300" tooltip-append-to-body="true"> UT </th>
                     <th> Ability </th>
                     <th> Total </th>

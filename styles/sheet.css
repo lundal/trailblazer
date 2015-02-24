@@ -25,6 +25,7 @@
     border-radius: 4px;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .piece header {
@@ -46,16 +47,33 @@
     width: 330px;
 }
 
-#skills {
-    width: 500px;
+#movement {
+    width: 330px;
+}
+
+#todo1 {
+    width: 330px;
 }
 
 #saves {
     width: 330px;
 }
 
-#test0 {
+#ac {
     width: 330px;
+}
+
+#todo2 {
+    width: 330px;
+}
+
+#attacks {
+    width: 1010px;
+    height: 160px;
+}
+
+#skills {
+    width: 500px;
 }
 
 #feats {
