@@ -89,3 +89,67 @@ h1 {
     width: 500px;
     flex-grow: 1;
 }
+
+/* Mobile */
+
+@media all and (max-width: 1029px) {
+
+h1 {
+    width: 500px;
+}
+
+.block {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#basics {
+    width: 500px;
+    height: 300px;
+}
+
+#abilities {
+    width: 500px;
+}
+
+#movement {
+    width: 500px;
+}
+
+#todo1 {
+    width: 500px;
+}
+
+#saves {
+    width: 500px;
+}
+
+#ac {
+    width: 500px;
+}
+
+#todo2 {
+    width: 500px;
+}
+
+#attacks {
+    width: 500px;
+    height: 300px;
+}
+
+#skills {
+    width: 500px;
+}
+
+#feats {
+    width: 500px;
+    height: 300px;
+}
+
+#features {
+    width: 500px;
+    height: 300px;
+}
+
+}
