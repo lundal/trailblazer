@@ -38,6 +38,10 @@
     text-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 
+h1 {
+    text-align: center;
+}
+
 #basics {
     width: 1010px;
     height: 160px;
