@@ -36,7 +36,7 @@ function($scope, breakdownService) {
     };
 
     $scope.saveBaseEdit = function(save) {
-        breakdownService.open(save.base, save.name + ' Misc');
+        breakdownService.open(save.base, save.name + ' Base');
     };
 
     $scope.saveMisc = function(save) {
