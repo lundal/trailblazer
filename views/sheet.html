@@ -1,8 +1,67 @@
 <div ng-controller="SheetController">
     <h1> General </h1>
     <div class="block">
-        <div id="basics" class="piece">
+        <div id="basic" class="piece">
             <header> Basic Information </header>
+            <!-- TODO: Replace hardcoding with fancy styles -->
+            <table style="table-layout:fixed; width:1004px">
+                <tr>
+                    <th colspan="2"> Character Name </th>
+                    <th colspan="2"> Campaign Name </th>
+                    <th colspan="2"> Player Name </th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" class="input textbox expand" ng-model="character.basic.characterName">
+                    </td>
+                    <td colspan="2">
+                        <input type="text" class="input textbox expand" ng-model="character.basic.campaignName">
+                    </td>
+                    <td colspan="2">
+                        <input type="text" class="input textbox expand" ng-model="character.basic.playerName">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2"> Class </th>
+                    <th> Race </th>
+                    <th> Size </th>
+                    <th> Alignment </th>
+                    <th> Deity </th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" class="input textbox expand" ng-model="character.basic.class">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand" ng-model="character.basic.race">
+                    </td>
+                    <td>
+                        <select class="input selectbox expand" ng-model="character.basic.size">
+                            <option value="T">Tiny</option>
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Large</option>
+                            <option value="H">Huge</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="input selectbox expand" ng-model="character.basic.alignment">
+                            <option value="LG">Lawful Good</option>
+                            <option value="NG">Neutral Good</option>
+                            <option value="CG">Chaotic Good</option>
+                            <option value="LN">Lawful Neutral</option>
+                            <option value="N">Neutral</option>
+                            <option value="CN">Chaotic Neutral</option>
+                            <option value="LE">Lawful Evil</option>
+                            <option value="NE">Neutral Evil</option>
+                            <option value="CE">Chaotic Evil</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand" ng-model="character.basic.deity">
+                    </td>
+                </tr>
+            </table>
         </div> <!-- end basics -->
     </div> <!-- end block -->
     <div class="block">

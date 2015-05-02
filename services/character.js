@@ -17,6 +17,11 @@ app.service('CharacterService', [function() {
 
         character.guid = guid || service.generateGUID();
 
+        character.basic = {
+            characterName:'', campaignName:'', playerName:'',
+            class:'', race:'', size:'M', alignment:'N', deity:'',
+        };
+
         character.abilities = [
             {name:'Strength',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
             {name:'Dexterity',    base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
