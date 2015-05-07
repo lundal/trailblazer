@@ -66,6 +66,8 @@ app.service('CharacterService', [function() {
             {name:'Use Magical Device', clas:false, untrained:false, ability:'Cha', ranks:0, misc:[{bonus:0, desc:''}]}
         ];
 
+        character.feats = [];
+
         character.armorclass = {
             natural:[{bonus:0, desc:''}], deflection:[{bonus:0, desc:''}], dodge:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]
         };

@@ -281,8 +281,34 @@
             </table>
         </div> <!-- end skills -->
         <div class="subblock">
-            <div id="feats" class="piece">
+            <div id="feats" class="piece" ng-controller="FeatsController">
                 <header> Feats </header>
+                <table>
+                    <tr>
+                        <th class="expand"> Feat </th>
+                        <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                    </tr>
+                    <tr ng-repeat="feat in character.feats">
+                        <td>
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="feat.name" ng-blur="featSort()"
+                                   typeahead="name for name in featNames | filter:$viewValue | limitTo:10"
+                                   typeahead-on-select="featSelected($item, $index)"
+                                   tooltip="{{ featTooltip(feat) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger button-delete" ng-click="featRemove($index)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="42">
+                            <button type="button" class="btn btn-success button" ng-click="featAdd()">
+                                <i class="glyphicon glyphicon-plus"></i> Add feat
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </div> <!-- end feats -->
             <div id="features" class="piece">
                 <header> Race/Class Features </header>
