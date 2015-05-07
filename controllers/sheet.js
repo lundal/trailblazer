@@ -1,9 +1,11 @@
-app.controller('SheetController', ['$scope', '$routeParams', '$interval', 'CharacterService',
-function($scope, $routeParams, $interval, characterService) {
+app.controller('SheetController', ['$scope', '$routeParams', '$interval', 'CharacterService', 'FeatService',
+function($scope, $routeParams, $interval, characterService, featService) {
 
     $scope.shared = {};
 
     $scope.character = characterService.load($routeParams.guid);
+
+    featService.load();
 
     /* Save periodicly */
 
