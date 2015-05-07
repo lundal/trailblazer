@@ -5,6 +5,13 @@ function($scope, $routeParams, $interval, characterService, featService) {
 
     $scope.character = characterService.load($routeParams.guid);
 
+    $scope.scrollTo = function(id, event) {
+        event.preventDefault();
+        window.scrollTo(0, document.getElementById(id).offsetTop);
+    };
+
+    /* Initialize */
+
     featService.load();
 
     /* Save periodicly */

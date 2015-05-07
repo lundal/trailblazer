@@ -1,5 +1,5 @@
 <div ng-controller="SheetController">
-    <h1> General </h1>
+    <h1 id="general"> General </h1>
     <div class="block">
         <div id="basic" class="piece">
             <header> Basic Information </header>
@@ -105,7 +105,7 @@
             <header> Todo 1 </header>
         </div> <!-- end todo1 -->
     </div> <!-- end block -->
-    <h1> Defense </h1>
+    <h1 id="defense"> Defense </h1>
     <div class="block">
         <div id="saves" class="piece" ng-controller="SavesController">
             <header> Saves </header>
@@ -211,13 +211,13 @@
             <header> Todo 2 </header>
         </div> <!-- end todo2 -->
     </div> <!-- end block -->
-    <h1> Offense </h1>
+    <h1 id="offense"> Offense </h1>
     <div class="block">
         <div id="attacks" class="piece">
             <header> Attacks </header>
         </div> <!-- end attacks -->
     </div> <!-- end block -->
-    <h1> Training </h1>
+    <h1 id="training"> Training </h1>
     <div class="block">
         <div id="skills" class="piece" ng-controller="SkillsController">
             <header> Skills </header>
@@ -266,15 +266,15 @@
                                ng-focus="skillMiscEdit(skill)">
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger button-delete" ng-click="skillRemove($index)">
-                            <i class="glyphicon glyphicon-remove"></i>
+                        <button type="button" class="btn btn-default button-square" ng-click="skillRemove($index)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="42">
-                        <button type="button" class="btn btn-success button" ng-click="skillAdd()">
-                            <i class="glyphicon glyphicon-plus"></i> Add skill
+                        <button type="button" class="btn btn-default button-square" ng-click="skillAdd()">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
                         </button>
                     </td>
                 </tr>
@@ -286,6 +286,7 @@
                 <table>
                     <tr>
                         <th class="expand"> Feat </th>
+                        <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
                         <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
                     </tr>
                     <tr ng-repeat="feat in character.feats">
@@ -296,15 +297,20 @@
                                    tooltip="{{ featTooltip(feat) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger button-delete" ng-click="featRemove($index)">
-                                <i class="glyphicon glyphicon-remove"></i>
+                            <button type="button" class="btn btn-default button-square" ng-click="openDetails(feat)">
+                                <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="featRemove($index)">
+                                <i class="glyphicon glyphicon-remove icon-bad"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="42">
-                            <button type="button" class="btn btn-success button" ng-click="featAdd()">
-                                <i class="glyphicon glyphicon-plus"></i> Add feat
+                            <button type="button" class="btn btn-default button-square" ng-click="featAdd()">
+                                <i class="glyphicon glyphicon-plus icon-good"></i>
                             </button>
                         </td>
                     </tr>

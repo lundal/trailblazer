@@ -14,6 +14,12 @@
     padding: 10px;
 }
 
+.modal-body h4 {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 2px;
+}
+
 /* Disable up and down buttons in number boxes */
 
 input[type='number']::-webkit-inner-spin-button, 
@@ -49,19 +55,23 @@ input[type='number']::-webkit-outer-spin-button {
     cursor: text;
 }
 
-.button {
-    padding: 2px 6px;
+.button-square {
+    padding: 4px 5px 6px 5px;
+    width: 28px;
     height: 28px;
-    text-shadow: 0 0 1px rgba(0,0,0,0.5);
+    font-size: 14px;
 }
 
-.button-delete {
-    padding: 4px;
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    margin: 2px;
-    text-shadow: 0 0 1px rgba(0,0,0,0.5);
+.icon-good {
+    color: #0A0;
+}
+
+.icon-bad {
+    color: #D44;
+}
+
+.icon-info {
+    color: #49E;
 }
 
 input:invalid,
