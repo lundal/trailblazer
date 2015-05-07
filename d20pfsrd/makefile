@@ -1,10 +1,9 @@
-.PHONY: clean
+.PHONY: all clean
 
-db.json: feats.txt spells.txt
-	echo "{" > db.json
-	./feats.py >> db.json
-	./spells.py >> db.json
-	echo "}" >> db.json
+all: feats.txt spells.txt
+	mkdir -p feats spells
+	python feats.py
+	python spells.py
 
 feats.txt:
 	wget -O feats.txt "https://docs.google.com/spreadsheet/pub?key=0Ak-IxjmMq9NMdHhobmxRSzBJQ2JjVXJaYkFwZjM0MlE&output=txt"
@@ -15,5 +14,5 @@ spells.txt:
 #	wget -O spells.txt "https://spreadsheets.google.com/pub?key=0AhwDI9kFz9SddG5GNlY5bGNoS2VKVC11YXhMLTlDLUE&output=txt"
 
 clean:
+	rm -r feats spells
 	rm *.txt
-	rm *.json
