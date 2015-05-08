@@ -39,7 +39,7 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
     };
 
     $scope.skillMiscTooltip = function(skill) {
-        breakdownService.tooltip(skill.misc);
+        return breakdownService.tooltip(skill.misc);
     };
 
     $scope.skillMiscEdit = function(skill) {
