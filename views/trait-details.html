@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ trait.name }}</h3>
+</div>
+<div class="modal-body">
+
+    <h4> Category </h4>
+    <textarea class="input textbox expand" ng-model="trait.category" id="trait-category"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+    <h4> Requirements </h4>
+    <textarea class="input textbox expand" ng-model="trait.requirements" id="trait-requirements"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+    <h4> Description </h4>
+    <textarea class="input textbox expand" ng-model="trait.description" id="trait-description"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+</div>

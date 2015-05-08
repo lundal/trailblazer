@@ -84,6 +84,11 @@ h1 {
     flex-grow: 1;
 }
 
+#traits {
+    width: 500px;
+    flex-grow: 1;
+}
+
 #features {
     width: 500px;
     flex-grow: 1;
@@ -143,12 +148,14 @@ h1 {
 
 #feats {
     width: 500px;
-    height: 300px;
+}
+
+#traits {
+    width: 500px;
 }
 
 #features {
     width: 500px;
-    height: 300px;
 }
 
 }

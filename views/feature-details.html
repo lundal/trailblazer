@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ feature.name }}</h3>
+</div>
+<div class="modal-body">
+
+    <h4> Description </h4>
+    <textarea class="input textbox expand" ng-model="feature.description" id="feature-description"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+</div>

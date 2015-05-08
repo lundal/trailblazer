@@ -291,10 +291,10 @@
                     </tr>
                     <tr ng-repeat="feat in character.feats">
                         <td>
-                            <input type="text" class="input textbox expand bottom-border-only" ng-model="feat.name" ng-blur="featSort()"
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="feat.name" ng-blur="sort()"
                                    typeahead="name for name in featNames | filter:$viewValue | limitTo:10"
-                                   typeahead-on-select="featSelected($item, $index)"
-                                   tooltip="{{ featTooltip(feat) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                                   typeahead-on-select="onSelected($item, $index)"
+                                   tooltip="{{ tooltip(feat) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
                         </td>
                         <td>
                             <button type="button" class="btn btn-default button-square" ng-click="openDetails(feat)">
@@ -302,22 +302,87 @@
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default button-square" ng-click="featRemove($index)">
+                            <button type="button" class="btn btn-default button-square" ng-click="remove($index)">
                                 <i class="glyphicon glyphicon-remove icon-bad"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="42">
-                            <button type="button" class="btn btn-default button-square" ng-click="featAdd()">
+                            <button type="button" class="btn btn-default button-square" ng-click="add()">
                                 <i class="glyphicon glyphicon-plus icon-good"></i>
                             </button>
                         </td>
                     </tr>
                 </table>
             </div> <!-- end feats -->
-            <div id="features" class="piece">
+            <div id="traits" class="piece" ng-controller="TraitsController">
+                <header> Traits </header>
+                <table>
+                    <tr>
+                        <th class="expand"> Trait </th>
+                        <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                        <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                    </tr>
+                    <tr ng-repeat="trait in character.traits">
+                        <td>
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="trait.name" ng-blur="sort()"
+                                   typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                                   typeahead-on-select="onSelected($item, $index)"
+                                   tooltip="{{ tooltip(trait) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="openDetails(trait)">
+                                <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="remove($index)">
+                                <i class="glyphicon glyphicon-remove icon-bad"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="42">
+                            <button type="button" class="btn btn-default button-square" ng-click="add()">
+                                <i class="glyphicon glyphicon-plus icon-good"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div> <!-- end traits -->
+            <div id="features" class="piece" ng-controller="FeaturesController">
                 <header> Race/Class Features </header>
+                <table>
+                    <tr>
+                        <th class="expand"> Feature </th>
+                        <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                        <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                    </tr>
+                    <tr ng-repeat="feature in character.features">
+                        <td>
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="feature.name" ng-blur="sort()"
+                                   tooltip="{{ tooltip(feature) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="openDetails(feature)">
+                                <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="remove($index)">
+                                <i class="glyphicon glyphicon-remove icon-bad"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="42">
+                            <button type="button" class="btn btn-default button-square" ng-click="add()">
+                                <i class="glyphicon glyphicon-plus icon-good"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </div> <!-- end features -->
         </div> <!-- end subblock -->
     </div> <!-- end block -->
