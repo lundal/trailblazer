@@ -44,6 +44,26 @@ h1 {
 
 #basic {
     width: 1010px;
+    padding-bottom: 6px;
+}
+
+#basic div {
+    width: 334px;
+    padding-left: 6px;
+    padding-top: 6px;
+    float: left;
+}
+
+#basic div.small {
+    width: 167px;
+}
+
+#basic h2 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px;
+    margin: 0;
 }
 
 #abilities {
@@ -72,7 +92,6 @@ h1 {
 
 #attacks {
     width: 1010px;
-    height: 160px;
 }
 
 #skills {
@@ -108,9 +127,16 @@ h1 {
     flex-direction: column;
 }
 
-#basics {
+#basic {
     width: 500px;
-    height: 300px;
+}
+
+#basic div {
+    width: 492px;
+}
+
+#basic div.small {
+    width: 246px;
 }
 
 #abilities {
@@ -139,7 +165,6 @@ h1 {
 
 #attacks {
     width: 500px;
-    height: 300px;
 }
 
 #skills {
