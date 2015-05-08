@@ -1,5 +1,7 @@
 #!/bin/python
 
+import entry
+
 index = []
 
 def processEntry(line):
@@ -7,24 +9,24 @@ def processEntry(line):
     path = "spells/{:0>4d}.json".format(len(index))
     with open(path, 'w') as outfile:
         index.append(data[0]);
-        outfile.write("{\n")
-        outfile.write("\"name\":\"" + data[0] + "\",\n")
-        outfile.write("\"school\":\"" + data[1] + "\",\n")
-        outfile.write("\"subschool\":\"" + data[2] + "\",\n")
-        #outfile.write("\"domain\":\"" + data[43] + "\",\n")
-        outfile.write("\"castingtime\":\"" + data[5] + "\",\n")
-        outfile.write("\"components\":\"" + data[6] + "\",\n")
-        outfile.write("\"range\":\"" + data[8] + "\",\n")
-        outfile.write("\"area\":\"" + data[9] + "\",\n")
-        outfile.write("\"effect\":\"" + data[10] + "\",\n")
-        outfile.write("\"target\":\"" + data[11] + "\",\n")
-        outfile.write("\"duration\":\"" + data[12] + "\",\n")
-        outfile.write("\"savingthrow\":\"" + data[15] + "\",\n")
-        outfile.write("\"spellresistance\":\"" + data[16] + "\",\n")
-        outfile.write("\"description\":\"" + data[17] + "\",\n")
-        #outfile.write("\"descriptionformatted\":\"" + data[18] + "\",\n")
-        outfile.write("\"descriptionshort\":\"" + data[44] + "\"\n") # No comma
-        outfile.write("}\n")
+        entry.begin(outfile)
+        entry.add("name", data[0], outfile)
+        entry.add("school", data[1], outfile)
+        entry.add("subschool", data[2], outfile)
+        entry.add("domain", data[43], outfile)
+        entry.add("castingtime", data[5], outfile)
+        entry.add("components", data[6], outfile)
+        entry.add("range", data[8], outfile)
+        entry.add("area", data[9], outfile)
+        entry.add("effect", data[10], outfile)
+        entry.add("target", data[11], outfile)
+        entry.add("duration", data[12], outfile)
+        entry.add("savingthrow", data[15], outfile)
+        entry.add("spellresistance", data[16], outfile)
+        entry.add("description", data[17], outfile)
+        #entry.add("descriptionformatted", data[18], outfile)
+        entry.add("descriptionshort", data[44], outfile)
+        entry.end(outfile)
 
 def writeIndex():
     path = "spells/index.json"
