@@ -48,7 +48,7 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
 
     $scope.skillAdd = function() {
         /* Tilde is used to make the new skill appear last after sorting */
-        $scope.character.skills.push({name:'~', clas:false, ability:'Str', ranks:0, misc:[{bonus:0, desc:''}]});
+        $scope.character.skills.push({name:'~', clas:false, ability:'Int', ranks:0, misc:[{bonus:0, desc:''}]});
     };
 
     $scope.skillRemove = function(index) {
