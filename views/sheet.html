@@ -1,7 +1,7 @@
 <div ng-controller="SheetController">
     <h1 id="general"> General </h1>
-    <div class="block">
-        <div id="basic" class="piece">
+    <div class="align-h">
+        <section id="basic">
             <header> Basic Information </header>
             <div>
                 <h2> Character Name </h2>
@@ -47,10 +47,10 @@
                     <option value="CE">Chaotic Evil</option>
                 </select>
             </div>
-        </div> <!-- end basics -->
-    </div> <!-- end block -->
-    <div class="block">
-        <div id="abilities" class="piece" ng-controller="AbilitiesController">
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="abilities" ng-controller="AbilitiesController">
             <header> Abilities </header>
             <table>
                 <tr>
@@ -82,17 +82,17 @@
                     </td>
                 </tr>
             </table>
-        </div> <!-- end abilities -->
-        <div id="movement" class="piece">
+        </section>
+        <section id="movement">
             <header> Movement </header>
-        </div> <!-- end ac -->
-        <div id="todo1" class="piece">
+        </section>
+        <section id="todo1">
             <header> Todo 1 </header>
-        </div> <!-- end todo1 -->
-    </div> <!-- end block -->
+        </section>
+    </div>
     <h1 id="defense"> Defense </h1>
-    <div class="block">
-        <div id="saves" class="piece" ng-controller="SavesController">
+    <div class="align-h">
+        <section id="saves" ng-controller="SavesController">
             <header> Saves </header>
             <table>
                 <tr>
@@ -121,8 +121,8 @@
                     </td>
                 </tr>
             </table>
-        </div> <!-- end saves -->
-        <div id="ac" class="piece" ng-controller="ArmorClassController">
+        </section>
+        <section id="ac" ng-controller="ArmorClassController">
             <header> Armor Class </header>
             <table style="float: right; margin: 9px">
                 <tr>
@@ -191,20 +191,20 @@
                     </td>
                 </tr>
             </table>
-        </div> <!-- end ac -->
-        <div id="todo2" class="piece">
+        </section>
+        <section id="todo2">
             <header> Todo 2 </header>
-        </div> <!-- end todo2 -->
-    </div> <!-- end block -->
+        </section>
+    </div>
     <h1 id="offense"> Offense </h1>
-    <div class="block">
-        <div id="attacks" class="piece">
+    <div class="align-h">
+        <section id="attacks">
             <header> Attacks </header>
-        </div> <!-- end attacks -->
-    </div> <!-- end block -->
+        </section>
+    </div>
     <h1 id="training"> Training </h1>
-    <div class="block">
-        <div id="skills" class="piece" ng-controller="SkillsController">
+    <div class="align-h">
+        <section id="skills" ng-controller="SkillsController">
             <header> Skills </header>
             <table>
                 <tr>
@@ -264,9 +264,9 @@
                     </td>
                 </tr>
             </table>
-        </div> <!-- end skills -->
-        <div class="subblock">
-            <div id="feats" class="piece" ng-controller="FeatsController">
+        </section>
+        <div class="align-v">
+            <section id="feats" ng-controller="FeatsController">
                 <header> Feats </header>
                 <table>
                     <tr>
@@ -300,8 +300,8 @@
                         </td>
                     </tr>
                 </table>
-            </div> <!-- end feats -->
-            <div id="traits" class="piece" ng-controller="TraitsController">
+            </section>
+            <section id="traits" ng-controller="TraitsController">
                 <header> Traits </header>
                 <table>
                     <tr>
@@ -335,8 +335,8 @@
                         </td>
                     </tr>
                 </table>
-            </div> <!-- end traits -->
-            <div id="features" class="piece" ng-controller="FeaturesController">
+            </section>
+            <section id="features" ng-controller="FeaturesController">
                 <header> Race/Class Features </header>
                 <table>
                     <tr>
@@ -368,7 +368,7 @@
                         </td>
                     </tr>
                 </table>
-            </div> <!-- end features -->
-        </div> <!-- end subblock -->
-    </div> <!-- end block -->
+            </section>
+        </div>
+    </div>
 </div>

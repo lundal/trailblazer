@@ -7,28 +7,51 @@
  * Six:  1010px
  */
 
-.block {
-    width: 1010px;
+/* Generic layout */
+
+.align-h {
     display: flex;
+    flex-flow: row;
     justify-content: space-between;
 }
 
-.subblock {
+.align-h > * {
+    flex: 1 100%;
+}
+
+.align-v {
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     justify-content: space-between;
 }
 
-.piece {
+.align-v > * {
+    flex-grow: 1;
+}
+
+/* Spacing tweaks */
+
+.align-h {
+    margin: -5px;
+}
+
+.align-h + .align-h {
+    margin-top: 5px;
+}
+
+/* Styling */
+
+section {
     background: #FFF;
     border: 1px solid #333;
     border-radius: 4px;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
     margin-bottom: 10px;
     overflow: hidden;
+    margin: 5px;
 }
 
-.piece header {
+section header {
     color: #FFF;
     font-size: 22px;
     text-align: center;
@@ -42,8 +65,17 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px;
+    margin: 0;
+}
+
+/* Spesific layout */
+
 #basic {
-    width: 1010px;
     padding-bottom: 6px;
 }
 
@@ -58,77 +90,12 @@ h1 {
     width: 167px;
 }
 
-#basic h2 {
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    padding: 6px;
-    margin: 0;
-}
-
-#abilities {
-    width: 330px;
-}
-
-#movement {
-    width: 330px;
-}
-
-#todo1 {
-    width: 330px;
-}
-
-#saves {
-    width: 330px;
-}
-
-#ac {
-    width: 330px;
-}
-
-#todo2 {
-    width: 330px;
-}
-
-#attacks {
-    width: 1010px;
-}
-
-#skills {
-    width: 500px;
-}
-
-#feats {
-    width: 500px;
-    flex-grow: 1;
-}
-
-#traits {
-    width: 500px;
-    flex-grow: 1;
-}
-
-#features {
-    width: 500px;
-    flex-grow: 1;
-}
-
 /* Mobile */
 
 @media all and (max-width: 1029px) {
 
-h1 {
-    width: 500px;
-}
-
-.block {
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-}
-
-#basic {
-    width: 500px;
+.align-h {
+    flex-flow: row wrap;
 }
 
 #basic div {
@@ -137,50 +104,6 @@ h1 {
 
 #basic div.small {
     width: 246px;
-}
-
-#abilities {
-    width: 500px;
-}
-
-#movement {
-    width: 500px;
-}
-
-#todo1 {
-    width: 500px;
-}
-
-#saves {
-    width: 500px;
-}
-
-#ac {
-    width: 500px;
-}
-
-#todo2 {
-    width: 500px;
-}
-
-#attacks {
-    width: 500px;
-}
-
-#skills {
-    width: 500px;
-}
-
-#feats {
-    width: 500px;
-}
-
-#traits {
-    width: 500px;
-}
-
-#features {
-    width: 500px;
 }
 
 }
