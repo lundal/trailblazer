@@ -90,6 +90,13 @@ h2 {
     width: 167px;
 }
 
+#appearance textarea,
+#personality textarea,
+#background textarea,
+#notes textarea {
+    height: 270px; /* 22*lines + 6 */
+}
+
 /* Mobile */
 
 @media all and (max-width: 1029px) {
