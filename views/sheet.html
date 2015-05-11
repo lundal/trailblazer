@@ -277,7 +277,7 @@
                     <tr ng-repeat="feat in character.feats">
                         <td>
                             <input type="text" class="input textbox expand bottom-border-only" ng-model="feat.name" ng-blur="sort()"
-                                   typeahead="name for name in featNames | filter:$viewValue | limitTo:10"
+                                   typeahead="name for name in names | filter:$viewValue | limitTo:10"
                                    typeahead-on-select="onSelected($item, $index)"
                                    tooltip="{{ tooltip(feat) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
                         </td>
