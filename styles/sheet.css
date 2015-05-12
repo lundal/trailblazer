@@ -73,6 +73,47 @@ h2 {
     margin: 0;
 }
 
+/* Navigation */
+
+#quicknav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#quicknav nav {
+    display: inline-block;
+    background: #EEE;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.5);
+}
+
+#quicknav a {
+    border-radius: 8px;
+    display: inline-block;
+    width: 80px;
+    padding: 6px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+}
+
+#quicknav a .glyphicon {
+    font-size: 22px;
+}
+
+#quicknav a:hover {
+    text-decoration: none;
+    background: #FFF;
+}
+
+#sheet {
+    padding-bottom: 61px;
+}
+
 /* Spesific layout */
 
 #portrait {

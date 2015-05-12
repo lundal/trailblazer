@@ -1,4 +1,4 @@
-<div ng-controller="SheetController">
+<div id="sheet" ng-controller="SheetController">
     <h1 id="general"> General </h1>
     <div class="align-h">
         <section id="basics">
@@ -153,7 +153,7 @@
             <header> TODO </header>
         </section>
     </div>
-    <h1 id="defense"> Defense </h1>
+    <h1 id="combat"> Combat </h1>
     <div class="align-h">
         <section id="saves" ng-controller="SavesController">
             <header> Saves </header>
@@ -259,13 +259,12 @@
             <header> Hit Points </header>
         </section>
     </div>
-    <h1 id="offense"> Offense </h1>
     <div class="align-h">
         <section id="attacks">
             <header> Attacks </header>
         </section>
     </div>
-    <h1 id="competence"> Competence </h1>
+    <h1 id="talents"> Talents </h1>
     <div class="align-h">
         <section id="skills" ng-controller="SkillsController">
             <header> Skills </header>
@@ -434,13 +433,13 @@
             </section>
         </div>
     </div>
-    <h1 id="equipment"> Posessions </h1>
+    <h1 id="items"> Items </h1>
     <div class="align-h">
         <section id="equipment">
             <header> Equipment </header>
         </section>
-        <section id="items">
-            <header> Items </header>
+        <section id="posessions">
+            <header> Posessions </header>
         </section>
     </div>
     <h1 id="magic"> Magic </h1>
@@ -473,5 +472,39 @@
             <textarea class="input textbox expand" placeholder="Write here..." ng-model="character.notes">
             </textarea>
         </section>
+    </div>
+    <div id="quicknav">
+        <nav>
+            <a ng-click="scrollTo('general', $event)">
+                <i class="glyphicon glyphicon-th"></i>
+                <br>
+                General
+            </a>
+            <a ng-click="scrollTo('combat', $event)">
+                <i class="glyphicon glyphicon-screenshot"></i>
+                <br>
+                Combat
+            </a>
+            <a ng-click="scrollTo('talents', $event)">
+                <i class="glyphicon glyphicon-education"></i>
+                <br>
+                Talents
+            </a>
+            <a ng-click="scrollTo('items', $event)">
+                <i class="glyphicon glyphicon-briefcase"></i>
+                <br>
+                Items
+            </a>
+            <a ng-click="scrollTo('magic', $event)">
+                <i class="glyphicon glyphicon-fire"></i>
+                <br>
+                Magic
+            </a>
+            <a ng-click="scrollTo('fluff', $event)">
+                <i class="glyphicon glyphicon-heart"></i>
+                <br>
+                Fluff
+            </a>
+        </nav>
     </div>
 </div>
