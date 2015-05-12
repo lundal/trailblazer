@@ -86,7 +86,8 @@ input:invalid:focus {
 
 .selectbox {
     /* Move text 1px up so it looks more proportional */
-    padding: 1px 6px 3px;
+    /* Also reduce side margins to equal textbox */
+    padding: 1px 2px 3px;
 }
 
 .numberbox {

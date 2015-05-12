@@ -18,9 +18,19 @@ app.service('CharacterService', [function() {
         character.guid = guid || service.generateGUID();
 
         character.basic = {
-            characterName:'', campaignName:'', playerName:'',
-            class:'', race:'', size:'M', alignment:'N',
+            name:'',
+            race:'',
+            size:'M',
+            alignment:'N',
+            player:'',
+            campaign:'',
         };
+
+        character.classes = [
+            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+        ];
 
         character.abilities = [
             {name:'Strength',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
@@ -28,7 +38,7 @@ app.service('CharacterService', [function() {
             {name:'Constitution', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
             {name:'Intelligence', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
             {name:'Wisdom',       base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Charisma',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]}
+            {name:'Charisma',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
         ];
 
         character.saves = [

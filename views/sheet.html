@@ -1,51 +1,114 @@
 <div ng-controller="SheetController">
     <h1 id="general"> General </h1>
     <div class="align-h">
-        <section id="basic">
-            <header> Basic Information </header>
-            <div>
-                <h2> Character Name </h2>
-                <input type="text" class="input textbox expand" ng-model="character.basic.characterName">
+        <section id="basics">
+            <header> Basics </header>
+            <div id="portrait">
+                Click to set portrait...
+                <div class="image" style="background-image:url('http://vignette4.wikia.nocookie.net/warhammer40k/images/d/d0/Emperor_of_Mankind_by_genzoman.jpg')"
+                     onclick="alert('TODO')">
+                </div>
             </div>
-            <div>
-                <h2> Campaign Name </h2>
-                <input type="text" class="input textbox expand" ng-model="character.basic.campaignName">
-            </div>
-            <div>
-                <h2> Player Name </h2>
-                <input type="text" class="input textbox expand" ng-model="character.basic.playerName">
-            </div>
-            <div>
-                <h2> Class </h2>
-                <input type="text" class="input textbox expand" ng-model="character.basic.class">
-            </div>
-            <div>
-                <h2> Race </h2>
-                <input type="text" class="input textbox expand" ng-model="character.basic.race">
-            </div>
-            <div class="small">
-                <h2> Size </h2>
-                <select class="input selectbox expand" ng-model="character.basic.size">
-                    <option value="T">Tiny</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="H">Huge</option>
-                </select>
-            </div>
-            <div class="small">
-                <h2> Alignment </h2>
-                <select class="input selectbox expand" ng-model="character.basic.alignment">
-                    <option value="LG">Lawful Good</option>
-                    <option value="NG">Neutral Good</option>
-                    <option value="CG">Chaotic Good</option>
-                    <option value="LN">Lawful Neutral</option>
-                    <option value="N">Neutral</option>
-                    <option value="CN">Chaotic Neutral</option>
-                    <option value="LE">Lawful Evil</option>
-                    <option value="NE">Neutral Evil</option>
-                    <option value="CE">Chaotic Evil</option>
-                </select>
+            <table>
+                <tr>
+                    <td>
+                        <h2> Name </h2>
+                    </td>
+                    <td class="expand">
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="character.basic.name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Race </h2>
+                    </td>
+                    <td class="expand">
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="character.basic.race">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Size </h2>
+                    </td>
+                    <td class="expand">
+                        <select class="input selectbox expand bottom-border-only" ng-model="character.basic.size">
+                            <option value="T">Tiny</option>
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Large</option>
+                            <option value="H">Huge</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Alignment </h2>
+                    </td>
+                    <td class="expand">
+                        <select class="input selectbox expand bottom-border-only" ng-model="character.basic.alignment">
+                            <option value="LG">Lawful Good</option>
+                            <option value="NG">Neutral Good</option>
+                            <option value="CG">Chaotic Good</option>
+                            <option value="LN">Lawful Neutral</option>
+                            <option value="N">Neutral</option>
+                            <option value="CN">Chaotic Neutral</option>
+                            <option value="LE">Lawful Evil</option>
+                            <option value="NE">Neutral Evil</option>
+                            <option value="CE">Chaotic Evil</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Player </h2>
+                    </td>
+                    <td class="expand">
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="character.basic.player">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Campaign </h2>
+                    </td>
+                    <td class="expand">
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="character.basic.campaign">
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section id="classes">
+            <header> Classes </header>
+            <table>
+                <tr>
+                    <th tooltip="Favored Class" tooltip-popup-delay="300" tooltip-append-to-body="true"> FC </th>
+                    <th class="expand"> Class </th>
+                    <th> Skill<br>Ranks </th>
+                    <th> Hit Die </th>
+                    <th> Level </th>
+                </tr>
+                <tr ng-repeat="class in character.classes">
+                    <td>
+                        <input type="checkbox" ng-model="class.favored">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="class.name">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="class.skillranks" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="class.hitdie" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox highlight" ng-model="class.level" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                </tr>
+            </table>
+            <div style="padding: 6px">
+                <h2> TODO: XP, CharLevel </h2>
             </div>
         </section>
     </div>
@@ -86,8 +149,8 @@
         <section id="movement">
             <header> Movement </header>
         </section>
-        <section id="todo1">
-            <header> Todo 1 </header>
+        <section id="todo">
+            <header> TODO </header>
         </section>
     </div>
     <h1 id="defense"> Defense </h1>

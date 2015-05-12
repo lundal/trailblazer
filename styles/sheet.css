@@ -75,26 +75,43 @@ h2 {
 
 /* Spesific layout */
 
-#basic {
-    padding-bottom: 6px;
-}
-
-#basic div {
-    width: 334px;
-    padding-left: 6px;
-    padding-top: 6px;
+#portrait {
+    background-size: cover;
+    border-radius: 8px;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+    width: 198px;
+    height: 198px;
+    margin: 6px;
     float: left;
+    text-align: center;
+    line-height: 198px;
+    font-size: 16px;
+    color: #AAA;
+    position: relative;
 }
 
-#basic div.small {
-    width: 167px;
+#portrait .image {
+    background-size: cover;
+    border-radius: 8px;
+    width: 198px;
+    height: 198px;
+    position: absolute;
+    top: 0;
 }
+
+/*
+#basics td ,
+#basics h2 {
+    text-align: left;
+}
+*/
 
 #appearance textarea,
 #personality textarea,
 #background textarea,
 #notes textarea {
     height: 270px; /* 22*lines + 6 */
+    border-radius: 0;
 }
 
 /* Mobile */
