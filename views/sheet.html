@@ -255,8 +255,8 @@
                 </tr>
             </table>
         </section>
-        <section id="todo2">
-            <header> Todo 2 </header>
+        <section id="hit-points">
+            <header> Hit Points </header>
         </section>
     </div>
     <h1 id="offense"> Offense </h1>
@@ -265,7 +265,7 @@
             <header> Attacks </header>
         </section>
     </div>
-    <h1 id="training"> Training </h1>
+    <h1 id="competence"> Competence </h1>
     <div class="align-h">
         <section id="skills" ng-controller="SkillsController">
             <header> Skills </header>
@@ -434,28 +434,43 @@
             </section>
         </div>
     </div>
+    <h1 id="equipment"> Posessions </h1>
+    <div class="align-h">
+        <section id="equipment">
+            <header> Equipment </header>
+        </section>
+        <section id="items">
+            <header> Items </header>
+        </section>
+    </div>
+    <h1 id="magic"> Magic </h1>
+    <div class="align-h">
+        <section id="spells">
+            <header> Spells </header>
+        </section>
+    </div>
     <h1 id="fluff"> Fluff </h1>
     <div class="align-h">
         <section id="appearance">
             <header> Appearance </header>
-            <textarea class="input textbox expand" ng-model="character.appearance">
+            <textarea class="input textbox expand" placeholder="Write here..." ng-model="character.appearance">
             </textarea>
         </section>
         <section id="personality">
             <header> Personality </header>
-            <textarea class="input textbox expand" ng-model="character.personality">
+            <textarea class="input textbox expand" placeholder="Write here..." ng-model="character.personality">
             </textarea>
         </section>
     </div>
     <div class="align-h">
         <section id="background">
             <header> Background </header>
-            <textarea class="input textbox expand" ng-model="character.background">
+            <textarea class="input textbox expand" placeholder="Write here..." ng-model="character.background">
             </textarea>
         </section>
         <section id="notes">
             <header> Notes </header>
-            <textarea class="input textbox expand" ng-model="character.notes">
+            <textarea class="input textbox expand" placeholder="Write here..." ng-model="character.notes">
             </textarea>
         </section>
     </div>
