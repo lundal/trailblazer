@@ -3,10 +3,10 @@
     <div class="align-h">
         <section id="basics">
             <header> Basics </header>
-            <div id="portrait">
+            <div id="portrait" ng-controller="PortraitController">
                 Click to set portrait...
-                <div class="image" style="background-image:url('http://vignette4.wikia.nocookie.net/warhammer40k/images/d/d0/Emperor_of_Mankind_by_genzoman.jpg')"
-                     onclick="alert('TODO')">
+                <div class="image" style="background-image:url('{{character.portrait}}')"
+                     ng-click="selectPortrait(character)">
                 </div>
             </div>
             <table>
