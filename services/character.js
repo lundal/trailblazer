@@ -54,6 +54,13 @@ app.service('CharacterService', [function() {
             {name:'Will',      ability:'Wis', base:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]},
         ];
 
+        character.armorclass = {
+            natural:[{bonus:0, desc:''}],
+            deflection:[{bonus:0, desc:''}],
+            dodge:[{bonus:0, desc:''}],
+            misc:[{bonus:0, desc:''}],
+        };
+
         character.skills = [
             {name:'Acrobatics',         clas:false, untrained:true,  ability:'Dex', ranks:0, misc:[{bonus:0, desc:''}]},
             {name:'Appraise',           clas:false, untrained:true,  ability:'Int', ranks:0, misc:[{bonus:0, desc:''}]},
@@ -87,9 +94,26 @@ app.service('CharacterService', [function() {
         character.traits = [{name:'~'}];
         character.features = [{name:'~'}];
 
-        character.armorclass = {
-            natural:[{bonus:0, desc:''}], deflection:[{bonus:0, desc:''}], dodge:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]
+        character.equipment = {
+            armor: {
+                name:'',
+                type:'Light',
+                equipped:'No',
+                armorclass:0,
+                maxdex:0,
+                checkpenalty:0,
+                spellfailure:0,
+            },
+            shield: {
+                name:'',
+                type:'Light',
+                equipped:'No',
+                armorclass:0,
+                checkpenalty:0,
+                spellfailure:0,
+            },
         };
+
 
         return character;
     };

@@ -1,9 +1,5 @@
 app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($scope, breakdownService) {
 
-    /* Imported */
-
-    var abilityModifierByName = $scope.shared.abilityModifierByName;
-
     /* Private */
 
     $scope.armorclassNatural = function(armorclass) {
@@ -54,12 +50,11 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
         breakdownService.open(armorclass.misc, 'Misc');
     };
 
-    /* TODO: Armor, Shield */
-
     $scope.armorclassNormal = function(armorclass) {
         return 10
-             + $scope.armorclassSizeModifier()
-             + abilityModifierByName('dex')
+             + armorclassSizeModifier()
+             + equipmentDexBonus()
+             + equipmentArmorClass()
              + $scope.armorclassNatural(armorclass)
              + $scope.armorclassDeflection(armorclass)
              + $scope.armorclassDodge(armorclass)
@@ -68,8 +63,9 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassNormalTooltip = function(armorclass) {
         return 'Base: 10, '
-             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
-             + 'Dex: ' + abilityModifierByName('dex') + ', '
+             + 'Size: ' + armorclassSizeModifier() + ', '
+             + 'Dex: ' + equipmentDexBonus() + ', '
+             + 'Armor/Shield: ' + equipmentArmorClass() + ', '
              + 'Natural: ' + $scope.armorclassNatural(armorclass) + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
              + 'Dodge: ' + $scope.armorclassDodge(armorclass) + ', '
@@ -78,7 +74,8 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassFlatFooted = function(armorclass) {
         return 10
-             + $scope.armorclassSizeModifier()
+             + armorclassSizeModifier()
+             + equipmentArmorClass()
              + $scope.armorclassNatural(armorclass)
              + $scope.armorclassDeflection(armorclass)
              + $scope.armorclassMisc(armorclass);
@@ -86,7 +83,8 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassFlatFootedTooltip = function(armorclass) {
         return 'Base: 10, '
-             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
+             + 'Size: ' + armorclassSizeModifier() + ', '
+             + 'Armor/Shield: ' + equipmentArmorClass() + ', '
              + 'Natural: ' + $scope.armorclassNatural(armorclass) + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
              + 'Misc: ' + $scope.armorclassMisc(armorclass);
@@ -94,8 +92,8 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassTouchAttack = function(armorclass) {
         return 10
-             + $scope.armorclassSizeModifier()
-             + abilityModifierByName('dex')
+             + armorclassSizeModifier()
+             + equipmentDexBonus()
              + $scope.armorclassDeflection(armorclass)
              + $scope.armorclassDodge(armorclass)
              + $scope.armorclassMisc(armorclass);
@@ -103,26 +101,35 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassTouchAttackTooltip = function(armorclass) {
         return 'Base: 10, '
-             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
-             + 'Dex: ' + abilityModifierByName('dex') + ', '
+             + 'Size: ' + armorclassSizeModifier() + ', '
+             + 'Dex: ' + equipmentDexBonus() + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
              + 'Dodge: ' + $scope.armorclassDodge(armorclass) + ', '
              + 'Misc: ' + $scope.armorclassMisc(armorclass);
     };
 
-    $scope.armorclassSizeModifier = function() {
+    var armorclassSizeModifier = function() {
         switch ($scope.character.basic.size) {
-            case 'C': return -8;
-            case 'G': return -4;
-            case 'H': return -2;
-            case 'L': return -1;
-            case 'M': return 0;
-            case 'S': return 1;
-            case 'T': return 2;
-            case 'D': return 4;
-            case 'F': return 8;
+            case 'Colossal': return -8;
+            case 'Gargantuan': return -4;
+            case 'Huge': return -2;
+            case 'Large': return -1;
+            case 'Medium': return 0;
+            case 'Small': return 1;
+            case 'Tiny': return 2;
+            case 'Diminutive': return 4;
+            case 'Fine': return 8;
             default: return 0;
         }
-    }
+    };
+
+    /* Imports used */
+    var equipmentArmorClass = function() {
+        return $scope.shared.equipmentArmorClass();
+    };
+
+    var equipmentDexBonus = function() {
+        return Math.min($scope.shared.abilityModifierByName('dex'), $scope.shared.equipmentMaxDex());
+    };
 
 }]);
