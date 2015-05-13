@@ -54,10 +54,11 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
         breakdownService.open(armorclass.misc, 'Misc');
     };
 
-    /* TODO: Armor, Shield, Size */
+    /* TODO: Armor, Shield */
 
     $scope.armorclassNormal = function(armorclass) {
         return 10
+             + $scope.armorclassSizeModifier()
              + abilityModifierByName('dex')
              + $scope.armorclassNatural(armorclass)
              + $scope.armorclassDeflection(armorclass)
@@ -67,6 +68,7 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassNormalTooltip = function(armorclass) {
         return 'Base: 10, '
+             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
              + 'Dex: ' + abilityModifierByName('dex') + ', '
              + 'Natural: ' + $scope.armorclassNatural(armorclass) + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
@@ -76,6 +78,7 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassFlatFooted = function(armorclass) {
         return 10
+             + $scope.armorclassSizeModifier()
              + $scope.armorclassNatural(armorclass)
              + $scope.armorclassDeflection(armorclass)
              + $scope.armorclassMisc(armorclass);
@@ -83,6 +86,7 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassFlatFootedTooltip = function(armorclass) {
         return 'Base: 10, '
+             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
              + 'Natural: ' + $scope.armorclassNatural(armorclass) + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
              + 'Misc: ' + $scope.armorclassMisc(armorclass);
@@ -90,6 +94,7 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassTouchAttack = function(armorclass) {
         return 10
+             + $scope.armorclassSizeModifier()
              + abilityModifierByName('dex')
              + $scope.armorclassDeflection(armorclass)
              + $scope.armorclassDodge(armorclass)
@@ -98,10 +103,26 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     $scope.armorclassTouchAttackTooltip = function(armorclass) {
         return 'Base: 10, '
+             + 'Size: ' + $scope.armorclassSizeModifier() + ', '
              + 'Dex: ' + abilityModifierByName('dex') + ', '
              + 'Deflection: ' + $scope.armorclassDeflection(armorclass) + ', '
              + 'Dodge: ' + $scope.armorclassDodge(armorclass) + ', '
              + 'Misc: ' + $scope.armorclassMisc(armorclass);
     };
+
+    $scope.armorclassSizeModifier = function() {
+        switch ($scope.character.basic.size) {
+            case 'C': return -8;
+            case 'G': return -4;
+            case 'H': return -2;
+            case 'L': return -1;
+            case 'M': return 0;
+            case 'S': return 1;
+            case 'T': return 2;
+            case 'D': return 4;
+            case 'F': return 8;
+            default: return 0;
+        }
+    }
 
 }]);
