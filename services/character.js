@@ -20,7 +20,7 @@ app.service('CharacterService', [function() {
         character.basic = {
             name:'',
             race:'',
-            size:'M',
+            size:'Medium',
             alignment:'N',
             player:'',
             campaign:'',
@@ -36,7 +36,7 @@ app.service('CharacterService', [function() {
 
         character.experience = {
             points:0,
-            track:'M',
+            track:'Medium',
         };
 
         character.abilities = [

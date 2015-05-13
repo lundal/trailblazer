@@ -20,11 +20,11 @@ app.controller('AdvancementController', ['$scope', function($scope) {
             return 999999999;
         }
         switch ($scope.character.experience.track) {
-            case 'S':
+            case 'Slow':
                 return trackSlow[level];
-            case 'M':
+            case 'Medium':
                 return trackMedium[level];
-            case 'F':
+            case 'Fast':
                 return trackFast[level];
             default:
                 return 0;
