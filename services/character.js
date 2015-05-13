@@ -30,7 +30,14 @@ app.service('CharacterService', [function() {
             {name:'', favored:false, skillranks:0, hitdie:0, level:0},
             {name:'', favored:false, skillranks:0, hitdie:0, level:0},
             {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
         ];
+
+        character.experience = {
+            points:0,
+            track:'M',
+        };
 
         character.abilities = [
             {name:'Strength',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},

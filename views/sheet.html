@@ -76,8 +76,43 @@
                 </tr>
             </table>
         </section>
-        <section id="classes">
-            <header> Classes </header>
+        <section id="advancement" ng-controller="AdvancementController">
+            <header> Advancement </header>
+            <table style="float: right">
+                <tr>
+                    <th> <br>Character Level </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{ characterLevel() }}" readonly
+                               style="display:inline-block">
+                    </td>
+                </tr>
+                <tr>
+                    <th> <br>Experience </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="character.experience.points" required
+                               min="0" max="999999999" pattern="-?[0-9]+"
+                               tooltip="{{ experienceTooltip() }}" tooltip-popup-delay="300" tooltip-append-to-body="true"
+                               style="width: 100px">
+                    </td>
+                </tr>
+                <tr>
+                    <th> <br>Track </th>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="input selectbox" ng-model="character.experience.track"
+                                style="width: 100px">
+                            <option value="S">Slow</option>
+                            <option value="M">Medium</option>
+                            <option value="F">Fast</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
             <table>
                 <tr>
                     <th tooltip="Favored Class" tooltip-popup-delay="300" tooltip-append-to-body="true"> FC </th>
@@ -102,14 +137,11 @@
                                min="0" max="999" pattern="-?[0-9]+">
                     </td>
                     <td>
-                        <input type="number" class="input numberbox highlight" ng-model="class.level" required
+                        <input type="number" class="input numberbox" ng-model="class.level" required
                                min="0" max="999" pattern="-?[0-9]+">
                     </td>
                 </tr>
             </table>
-            <div style="padding: 6px">
-                <h2> TODO: XP, CharLevel </h2>
-            </div>
         </section>
     </div>
     <div class="align-h">
