@@ -175,7 +175,7 @@ h2 {
     font-size: 12px;
     padding-top: 0;
 }
-#equipment table input[type='number'] {
+#equipment table .numberbox {
     width: 51px;
 }
 
@@ -195,7 +195,7 @@ h2 {
 #personality textarea,
 #background textarea,
 #notes textarea {
-    height: 270px; /* 22*lines + 6 */
+    height: 358px; /* 22*lines + 6 */
     border: 0;
 }
 
