@@ -2,7 +2,23 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
 
     /* Imported */
 
-    var abilityModifierByName = $scope.shared.abilityModifierByName;
+    var abilityModifierByName = function(abilityName) {
+        if ($scope.shared.abilityModifierByName) {
+            return $scope.shared.abilityModifierByName(abilityName);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    var checkPenalty = function() {
+        if ($scope.shared.equipmentCheckPenalty) {
+            return $scope.shared.equipmentCheckPenalty();
+        }
+        else {
+            return 0;
+        }
+    }
 
     /* Private */
 
@@ -17,6 +33,10 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
         total += skill.ranks;
         total += breakdownService.total(skill.misc);
 
+        if (skill.ability == 'Str' || skill.ability == 'Dex') {
+            total -= checkPenalty();
+        }
+
         return total;
     };
 
@@ -30,6 +50,10 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
         tooltip += skill.ability + ': ' + abilityModifierByName(skill.ability) + ', ';
         tooltip += 'Ranks: ' + skill.ranks + ', ';
         tooltip += 'Misc: ' + breakdownService.total(skill.misc);
+
+        if (skill.ability == 'Str' || skill.ability == 'Dex') {
+            tooltip += ', Check Penalty: ' + checkPenalty();
+        }
 
         return tooltip;
     };
