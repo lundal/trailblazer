@@ -35,4 +35,34 @@ app.controller('AdvancementController', ['$scope', function($scope) {
         return 'Next level: ' + $scope.nextLevel();
     }
 
+    /* Shared */
+
+    $scope.shared.characterLevel = $scope.characterLevel;
+
+    $scope.shared.baseAttackBonus = function() {
+        var classes = $scope.character.classes;
+        var bab = 0;
+        for (var i = 0; i < classes.length; i++) {
+            var quarts = parseInt(classes[i].baseattackbonus); // Parses only the first number
+            bab += classes[i].level * quarts / 4;
+        }
+        return bab;
+    };
+
+    $scope.shared.classHitPoints = function() {
+        var classes = $scope.character.classes;
+        var hp = 0;
+        // Average hit die for each level
+        for (var i = 0; i < classes.length; i++) {
+            var die = parseInt(classes[i].hitdie.substring(1)); // Parses the number
+            hp += classes[i].level * (die / 2 + 1);
+        }
+        // Full hit die for first level
+        if (classes[0].level > 0) {
+            var die = parseInt(classes[0].hitdie.substring(1)); // Parses the number
+            hp += classes[i].level * (die / 2 - 1);
+        }
+        return hp;
+    };
+
 }]);

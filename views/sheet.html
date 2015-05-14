@@ -120,10 +120,10 @@
             <table>
                 <tr>
                     <th tooltip="Favored Class" tooltip-popup-delay="300" tooltip-append-to-body="true"> FC </th>
-                    <th class="expand"> Class </th>
-                    <th> Skill<br>Ranks </th>
-                    <th> Hit Die </th>
+                    <th class="expand"> <br>Class </th>
                     <th> Level </th>
+                    <th tooltip="Base Attack Bonus" tooltip-popup-delay="300" tooltip-append-to-body="true"> BAB </th>
+                    <th> Hit Die </th>
                 </tr>
                 <tr ng-repeat="class in character.classes">
                     <td>
@@ -133,16 +133,23 @@
                         <input type="text" class="input textbox expand bottom-border-only" ng-model="class.name">
                     </td>
                     <td>
-                        <input type="number" class="input numberbox" ng-model="class.skillranks" required
-                               min="0" max="999" pattern="-?[0-9]+">
-                    </td>
-                    <td>
-                        <input type="number" class="input numberbox" ng-model="class.hitdie" required
-                               min="0" max="999" pattern="-?[0-9]+">
-                    </td>
-                    <td>
                         <input type="number" class="input numberbox" ng-model="class.level" required
                                min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <select class="input selectbox" ng-model="class.baseattackbonus">
+                            <option value="2/4">2/4</option>
+                            <option value="3/4">3/4</option>
+                            <option value="4/4">4/4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="input selectbox" ng-model="class.hitdie">
+                            <option value="d6">D6</option>
+                            <option value="d8">D8</option>
+                            <option value="d10">D10</option>
+                            <option value="d12">D12</option>
+                        </select>
                     </td>
                 </tr>
             </table>

@@ -27,11 +27,11 @@ app.service('CharacterService', [function() {
         };
 
         character.classes = [
-            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
-            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
-            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
-            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
-            {name:'', favored:false, skillranks:0, hitdie:0, level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
         ];
 
         character.experience = {
