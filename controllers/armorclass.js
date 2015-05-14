@@ -124,12 +124,23 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
     };
 
     /* Imports used */
+
     var equipmentArmorClass = function() {
-        return $scope.shared.equipmentArmorClass();
+        if ($scope.shared.equipmentArmorClass) {
+            return $scope.shared.equipmentArmorClass();
+        }
+        else {
+            return 0;
+        }
     };
 
     var equipmentDexBonus = function() {
-        return Math.min($scope.shared.abilityModifierByName('dex'), $scope.shared.equipmentMaxDex());
+        if ($scope.shared.equipmentMaxDex && $scope.shared.abilityModifierByName) {
+            return Math.min($scope.shared.abilityModifierByName('dex'), $scope.shared.equipmentMaxDex());
+        }
+        else {
+            return 0;
+        }
     };
 
 }]);
