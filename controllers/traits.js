@@ -8,7 +8,7 @@ app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService
         $scope.character.traits[$index] = traitService.getByName($item);
         /* Workaround */
         $scope.character.traits[$index].name = $item;
-        $scope.traitSort();
+        $scope.sort();
     };
 
     $scope.tooltip = function(trait) {

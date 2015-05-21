@@ -83,7 +83,7 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
         }
     };
 
-    $scope.skillSort = function() {
+    $scope.sort = function() {
         $scope.character.skills = $filter('orderBy')($scope.character.skills, 'name');
     };
 

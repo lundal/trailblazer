@@ -8,7 +8,7 @@ app.controller('FeatsController', ['$scope', '$filter', '$modal', 'FeatService',
         $scope.character.feats[$index] = featService.getByName($item);
         /* Workaround */
         $scope.character.feats[$index].name = $item;
-        $scope.featSort();
+        $scope.sort();
     };
 
     $scope.tooltip = function(feat) {
