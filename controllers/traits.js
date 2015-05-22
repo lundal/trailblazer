@@ -24,7 +24,7 @@ app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService
         $scope.character.traits.splice(index, 1);
 
         if ($scope.character.traits.length == 0) {
-            $scope.traitAdd();
+            $scope.add();
         }
     };
 

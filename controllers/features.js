@@ -15,7 +15,7 @@ app.controller('FeaturesController', ['$scope', '$filter', '$modal', function($s
         $scope.character.features.splice(index, 1);
 
         if ($scope.character.features.length == 0) {
-            $scope.featureAdd();
+            $scope.add();
         }
     };
 
