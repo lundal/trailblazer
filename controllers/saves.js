@@ -32,7 +32,7 @@ function($scope, breakdownService) {
     };
 
     $scope.saveBaseTooltip = function(save) {
-        breakdownService.tooltip(save.base);
+        return breakdownService.tooltip(save.base);
     };
 
     $scope.saveBaseEdit = function(save) {
@@ -44,7 +44,7 @@ function($scope, breakdownService) {
     };
 
     $scope.saveMiscTooltip = function(save) {
-        breakdownService.tooltip(save.misc);
+        return breakdownService.tooltip(save.misc);
     };
 
     $scope.saveMiscEdit = function(save) {

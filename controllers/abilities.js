@@ -7,7 +7,7 @@ app.controller('AbilitiesController', ['$scope', 'BreakdownService', function($s
     };
 
     $scope.abilityScoreBaseTooltip = function(ability) {
-        breakdownService.tooltip(ability.base);
+        return breakdownService.tooltip(ability.base);
     };
 
     $scope.abilityScoreBaseEdit = function(ability) {
@@ -23,7 +23,7 @@ app.controller('AbilitiesController', ['$scope', 'BreakdownService', function($s
     };
 
     $scope.abilityScoreTempTooltip = function(ability) {
-        breakdownService.tooltip(ability.temp);
+        return breakdownService.tooltip(ability.temp);
     };
 
     $scope.abilityScoreTempEdit = function(ability) {
