@@ -344,7 +344,7 @@
                                ng-focus="skillMiscEdit(skill)">
                     </td>
                     <td>
-                        <button type="button" class="btn btn-default button-square" ng-click="skillRemove($index)">
+                        <button type="button" class="btn btn-default button-square {{ skillRemoveStyle(skill) }}" ng-click="skillRemove(skill)">
                             <i class="glyphicon glyphicon-remove icon-bad"></i>
                         </button>
                     </td>

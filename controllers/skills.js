@@ -75,12 +75,42 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
         $scope.character.skills.push({name:'~', clas:false, ability:'Int', ranks:0, misc:[{bonus:0, desc:''}]});
     };
 
-    $scope.skillRemove = function(index) {
-        $scope.character.skills.splice(index, 1);
+    var recentlyClicked = [];
+
+    var wasRecentlyClicked = function(id) {
+        return (recentlyClicked.indexOf(id) > -1);
+    };
+
+    var clicked = function(id) {
+        recentlyClicked.push(id);
+        setTimeout(function() { removeItem(recentlyClicked, id); }, 1000);
+    };
+
+    var removeItem = function(list, item) {
+        var index = list.indexOf(item);
+        if (index != -1) {
+            list.splice(index, 1);
+        }
+    };
+
+    $scope.skillRemove = function(skill) {
+        if (!wasRecentlyClicked(skill)) {
+            clicked(skill);
+            return;
+        }
+
+        removeItem($scope.character.skills, skill);
 
         if ($scope.character.skills.length == 0) {
             $scope.skillAdd();
         }
+    };
+
+    $scope.skillRemoveStyle = function(skill) {
+        if (!wasRecentlyClicked(skill)) {
+            return '';
+        }
+        return 'button-clicked';
     };
 
     $scope.sort = function() {
