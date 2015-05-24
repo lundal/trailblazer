@@ -2,3 +2,8 @@
 *.swp
 *.swo
 *.swn
+
+# Cache files
+*.txt
+*.json
+__pycache__

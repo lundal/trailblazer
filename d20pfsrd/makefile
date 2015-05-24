@@ -1,22 +1,31 @@
-.PHONY: all clean
+.PHONY: all feats spells traits clean
 
-all: feats.txt spells.txt traits.txt
-	mkdir -p feats spells traits
-	python feats.py
-	python spells.py
-	python traits.py
+all: feats spells traits
 
 feats.txt:
-	wget -O feats.txt "https://docs.google.com/spreadsheet/pub?key=0Ak-IxjmMq9NMdHhobmxRSzBJQ2JjVXJaYkFwZjM0MlE&output=txt"
-#	wget -O feats.txt "https://docs.google.com/spreadsheet/pub?key=0AhwDI9kFz9SddEJPRDVsYVczNVc2TlF6VDNBYTZqbkE&output=txt"
+	wget -O $@ "https://docs.google.com/spreadsheet/pub?key=0Ak-IxjmMq9NMdHhobmxRSzBJQ2JjVXJaYkFwZjM0MlE&output=txt" # OGL
+#	wget -O $@ "https://docs.google.com/spreadsheet/pub?key=0AhwDI9kFz9SddEJPRDVsYVczNVc2TlF6VDNBYTZqbkE&output=txt" # OGL+Paizo
+
+feats: feats.txt
+	mkdir -p feats
+	python feats.py
 
 spells.txt:
-	wget -O spells.txt "https://spreadsheets.google.com/pub?key=0Ak-IxjmMq9NMdHdnME9hZXIzdTBJam1kYkVUWUZKQ1E&output=txt"
-#	wget -O spells.txt "https://spreadsheets.google.com/pub?key=0AhwDI9kFz9SddG5GNlY5bGNoS2VKVC11YXhMLTlDLUE&output=txt"
+	wget -O $@ "https://spreadsheets.google.com/pub?key=0Ak-IxjmMq9NMdHdnME9hZXIzdTBJam1kYkVUWUZKQ1E&output=txt" # OGL
+#	wget -O $@ "https://spreadsheets.google.com/pub?key=0AhwDI9kFz9SddG5GNlY5bGNoS2VKVC11YXhMLTlDLUE&output=txt" # OGL+Paizo
+
+spells: spells.txt
+	mkdir -p spells
+	python spells.py
 
 traits.txt:
-	wget -O traits.txt "https://spreadsheets.google.com/pub?key=0Ak-IxjmMq9NMdHFZTl9mZUhOWUVzT3JxRGJTWU9lMkE&output=txt"
+	wget -O $@ "https://spreadsheets.google.com/pub?key=0Ak-IxjmMq9NMdHFZTl9mZUhOWUVzT3JxRGJTWU9lMkE&output=txt"
+
+traits: traits.txt
+	mkdir -p traits
+	python traits.py
 
 clean:
-	rm -r feats spells
-	rm *.txt
+	rm -f *.txt
+	rm -rf __pycache__
+	rm -rf feats spells traits
