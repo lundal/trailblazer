@@ -143,10 +143,10 @@ app.service('CharacterService', [function() {
 
     service.deleteOne = function(guid) {
         localStorage.removeItem(guid);
-    }
+    };
 
     service.deleteAll = function() {
         localStorage.clear();
-    }
+    };
 
 }]);
