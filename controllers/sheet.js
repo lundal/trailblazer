@@ -5,7 +5,7 @@ function($scope, $routeParams, $interval,
 
     $scope.shared = {};
 
-    $scope.character = characterService.load($routeParams.guid);
+    $scope.character = {};
 
     $scope.scrollTo = function(id, event) {
         event.preventDefault();
@@ -14,6 +14,10 @@ function($scope, $routeParams, $interval,
 
     /* Initialize */
 
+    characterService.load($routeParams.guid, function(character) {
+        $scope.character = character;
+    });
+
     featService.load();
     spellService.load();
     traitService.load();
@@ -21,7 +25,7 @@ function($scope, $routeParams, $interval,
     /* Save periodicly */
 
     var saveTimer = $interval(function() {
-        characterService.save($scope.character);
+        characterService.save($scope.character, function(success) {});
     }, 1000);
 
     $scope.$on('$destroy', function() {

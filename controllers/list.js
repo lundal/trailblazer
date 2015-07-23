@@ -1,7 +1,7 @@
 app.controller('ListController', ['$scope', '$location', 'CharacterService',
 function($scope, $location, characterService) {
 
-    $scope.characters = characterService.loadAll();
+    $scope.characters = [];
 
     $scope.create = function() {
         var guid = characterService.generateGUID();
@@ -12,5 +12,11 @@ function($scope, $location, characterService) {
         characterService.deleteAll();
         $scope.characters = [];
     };
+
+    /* Initialize */
+
+    characterService.loadAll(function(characters) {
+        $scope.characters = characters;
+    });
 
 }]);

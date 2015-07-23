@@ -2,29 +2,34 @@ app.service('LocalStorageService', [function() {
 
     var service = this;
 
-    service.set = function(guid, character) {
+    service.set = function(guid, character, callback) {
         localStorage.setItem(guid, angular.toJson(character));
+        var success = true;
+        callback(success);
     };
 
-    service.get = function(guid) {
+    service.get = function(guid, callback) {
         var data = localStorage.getItem(guid);
         if (!data) {
-            return null;
+            callback(null);
         }
-        return angular.fromJson(data);
+        var character = angular.fromJson(data);
+        callback(character);
     };
 
-    service.list = function() {
-        var characters = [];
+    service.list = function(callback) {
+        var guids = [];
         for (var i = 0; i < localStorage.length; i++){
             var guid = localStorage.key(i);
-            characters.push(guid);
+            guids.push(guid);
         }
-        return characters;
+        callback(guids);
     };
 
-    service.delete = function(guid) {
+    service.delete = function(guid, callback) {
         localStorage.removeItem(guid);
+        var success = true;
+        callback(success);
     };
 
 }]);
