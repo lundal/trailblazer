@@ -1,8 +1,6 @@
-app.service('CharacterService', ['LocalStorageService', function(localStorageService) {
+app.service('CharacterService', [function() {
 
     var service = this;
-
-    var activeStorageService = localStorageService;
 
     service.generateGUID = function() {
         var d = Date.now();
@@ -130,47 +128,55 @@ app.service('CharacterService', ['LocalStorageService', function(localStorageSer
         //console.log(compressed)
     };
 
-    service.save = function(character, callback) {
-        activeStorageService.set(character.guid, character, callback);
+    service.save = function(storage, guid, character, callback) {
+        storage.set(guid, character, callback);
     };
 
-    service.load = function(guid, callback) {
-        console.log('Loading character ' + guid + '...');
-        activeStorageService.get(guid, function(character) {
+    service.load = function(storage, guid, callback) {
+        console.log('Character: Loading ' + guid + '...');
+        storage.get(guid, function(character) {
             if (!character) {
-                console.log('Character not found, creating new!');
-                character =  service.create(guid);
+                console.log('Character: Not found, creating new!');
+                character = service.create(guid);
             }
             callback(character);
         });
     };
 
-    service.loadAll = function(callback) {
-        activeStorageService.list(function(guids) {
+    service.loadAll = function(storage, callback) {
+        console.log('Character: Loading all...');
+        storage.list(function(guids) {
+            console.log('Character: Got list...');
             var characters = [];
             var number = 0;
             for (var i = 0; i < guids.length; i++) {
-                service.load(guids[i], function(character) {
+                service.load(storage, guids[i], function(character) {
                     characters.push(character)
                     number = number + 1;
                     if (number == guids.length) {
+                        console.log('1');
                         callback(characters);
                     }
                 });
             }
+            /* Special case */
+            if (guids.length == 0) {
+                console.log('0');
+                callback([]);
+            }
         });
     };
 
-    service.delete = function(guid, callback) {
-        activeStorageService.delete(guid, callback);
+    service.delete = function(storage, guid, callback) {
+        storage.delete(guid, callback);
     };
 
-    service.deleteAll = function() {
-        activeStorageService.list(function(guids) {
+    service.deleteAll = function(storage, callback) {
+        storage.list(function(guids) {
             var successAll = true;
             var number = 0;
             for (var i = 0; i < guids.length; i++) {
-                service.delete(guids[i], function(success) {
+                service.delete(storage, guids[i], function(success) {
                     successAll = successAll && success;
                     number = number + 1;
                     if (number == guids.length) {

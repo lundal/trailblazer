@@ -2,6 +2,11 @@ app.service('LocalStorageService', [function() {
 
     var service = this;
 
+    service.init = function(callback) {
+        var success = typeof(Storage) !== "undefined";
+        callback(success);
+    };
+
     service.set = function(guid, character, callback) {
         localStorage.setItem(guid, angular.toJson(character));
         var success = true;
@@ -13,8 +18,10 @@ app.service('LocalStorageService', [function() {
         if (!data) {
             callback(null);
         }
-        var character = angular.fromJson(data);
-        callback(character);
+        else {
+            var character = angular.fromJson(data);
+            callback(character);
+        }
     };
 
     service.list = function(callback) {

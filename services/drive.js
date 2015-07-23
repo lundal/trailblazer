@@ -4,42 +4,35 @@ app.service('DriveService', [function() {
 
     var client_id = '<insert client id>';
     var scope = 'https://www.googleapis.com/auth/drive.appfolder';
-    var authenticated = false;
     var app_folder_id = null;
 
-    var authenticationCallback = function(result) {
-        if (result && result.access_token) {
-            console.log('Authentication successful!');
-            authenticated = true;
-            gapi.client.load('drive', 'v2', driveCallback);
+    service.connect = function(immediate, callback) {
+        if (typeof(gapi) === "undefined") {
+            callback(false);
+            return;
         }
-        else {
-            console.log('Authentication failed!');
-        }
+        var driveCallback = function() {
+            var request = gapi.client.drive.files.get({
+                'fileId': 'appfolder'
+            });
+            request.execute(function(response) {
+                app_folder_id = response.id;
+                console.log('Drive: App folder ID: ' + response.id);
+                callback(true);
+            });
+        };
+        var authorizationCallback = function(result) {
+            if (result && result.access_token) {
+                console.log('Drive: Authentication successful!');
+                gapi.client.load('drive', 'v2', driveCallback);
+            }
+            else {
+                console.log('Drive: Authentication failed!');
+                callback(false);
+            }
+        };
+        gapi.auth.authorize({'client_id': client_id, 'scope': scope, 'immediate': immediate}, authorizationCallback);
     };
-
-    var driveCallback = function() {
-        var request = gapi.client.drive.files.get({
-            'fileId': 'appfolder'
-        });
-        request.execute(function(response) {
-            app_folder_id = response.id;
-            console.log('App folder ID: ' + response.id);
-        });
-    };
-
-    service.authenticate = function(immediate) {
-        if (authenticated) return;
-        gapi.auth.authorize({'client_id': client_id, 'scope': scope, 'immediate': immediate}, authenticationCallback);
-    };
-
-    service.isAuthenticated = function() {
-        return authenticated;
-    }
-
-    service.isConnected = function() {
-        return app_folder_id ? true : false;
-    }
 
     service.listFiles = function(callback) {
         var retrievePageOfFiles = function(request, result) {
@@ -156,13 +149,11 @@ app.service('DriveService', [function() {
         }
     };
 
-    service.deleteFile = function(file) {
+    service.deleteFile = function(file, callback) {
         var request = gapi.client.drive.files.delete({
             'fileId': file.id
         });
-        request.execute(function(response) {
-            console.log('File deleted!');
-        });
+        request.execute(callback);
     };
 
 }]);

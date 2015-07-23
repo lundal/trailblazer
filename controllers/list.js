@@ -1,5 +1,7 @@
-app.controller('ListController', ['$scope', '$location', 'CharacterService',
-function($scope, $location, characterService) {
+app.controller('ListController', ['$scope', '$location',
+               'CharacterService', 'LocalStorageService','DriveStorageService',
+function($scope, $location,
+        characterService, localStorageService, driveStorageService) {
 
     $scope.characters = [];
 
@@ -9,14 +11,38 @@ function($scope, $location, characterService) {
     };
 
     $scope.deleteAll = function() {
-        characterService.deleteAll();
+        characterService.deleteAll(localStorageService, function(success) {});
+        characterService.deleteAll(driveStorageService, function(success) {});
         $scope.characters = [];
     };
 
     /* Initialize */
 
-    characterService.loadAll(function(characters) {
-        $scope.characters = characters;
+    localStorageService.init(function(success) {
+        if (!success) {
+            alert('Error: Unable to store characters locally!');
+            return;
+        };
+        characterService.loadAll(localStorageService, function(characters) {
+            $scope.characters = characters;
+
+            /* Force scope update */
+            if (!$scope.$$phase) $scope.$digest($scope);
+        });
+    });
+
+    driveStorageService.init(true, function(success) {
+        return; // Disable
+        if (!success) {
+            alert('Error: Unable to store characters in drive!');
+            return;
+        }
+        characterService.loadAll(driveStorageService, function(characters) {
+            $scope.characters = characters;
+
+            /* Force scope update */
+            if (!$scope.$$phase) $scope.$digest($scope);
+        });
     });
 
 }]);
