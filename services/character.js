@@ -1,6 +1,8 @@
-app.service('CharacterService', [function() {
+app.service('CharacterService', ['LocalStorageService', function(localStorageService) {
 
     var service = this;
+
+    var activeStorageService = localStorageService;
 
     service.generateGUID = function() {
         var d = Date.now();
@@ -119,34 +121,37 @@ app.service('CharacterService', [function() {
     };
 
     service.save = function(character) {
-        localStorage.setItem(character.guid, angular.toJson(character));
+        activeStorageService.set(character.guid, character);
     };
 
     service.load = function(guid) {
         console.log('Loading character: ' + guid);
-        var data = localStorage.getItem(guid);
-        if (!data) {
+        var character = activeStorageService.get(guid);
+        if (!character) {
             console.log('Character not found, creating new!');
             return service.create(guid);
         }
-        return angular.fromJson(data);
+        return character;
     };
 
     service.loadAll = function() {
         var characters = [];
-        for (var i = 0; i < localStorage.length; i++){
-            var guid = localStorage.key(i);
-            characters.push(service.load(guid));
+        var guids = activeStorageService.list();
+        for (var i = 0; i < guids.length; i++) {
+            characters.push(activeStorageService.get(guids[i]));
         }
         return characters;
     };
 
     service.deleteOne = function(guid) {
-        localStorage.removeItem(guid);
+        activeStorageService.delete(guid);
     };
 
     service.deleteAll = function() {
-        localStorage.clear();
+        var guids = activeStorageService.list();
+        for (var i = 0; i < guids.length; i++) {
+            activeStorageService.delete(guids[i]);
+        }
     };
 
 }]);
