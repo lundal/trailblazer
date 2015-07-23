@@ -154,14 +154,12 @@ app.service('CharacterService', [function() {
                     characters.push(character)
                     number = number + 1;
                     if (number == guids.length) {
-                        console.log('1');
                         callback(characters);
                     }
                 });
             }
             /* Special case */
             if (guids.length == 0) {
-                console.log('0');
                 callback([]);
             }
         });
