@@ -3,6 +3,7 @@ app.controller('ListController', ['$scope', '$location',
 function($scope, $location,
         characterService, localStorageService, driveStorageService) {
 
+    $scope.loading = true;
     $scope.characters = [];
 
     $scope.create = function() {
@@ -24,6 +25,7 @@ function($scope, $location,
             return;
         };
         characterService.loadAll(localStorageService, function(characters) {
+            $scope.loading = false;
             $scope.characters = characters;
 
             /* Force scope update */
@@ -38,6 +40,7 @@ function($scope, $location,
             return;
         }
         characterService.loadAll(driveStorageService, function(characters) {
+            $scope.loading = false;
             $scope.characters = characters;
 
             /* Force scope update */
