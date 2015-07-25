@@ -64,8 +64,8 @@ function($scope, $location,
             }
             else {
                 characterService.loadAll(driveStorageService, function(characters) {
-                    $scope.driveLoading = false;
                     $scope.driveCharacters = characters;
+                    $scope.driveLoading = false;
 
                     /* Force scope update */
                     if (!$scope.$$phase) $scope.$digest($scope);

@@ -37,6 +37,22 @@ body {
     }
 }
 
+.fullscreen {
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* Mobile */
 
 @media all and (max-width: 1029px) {

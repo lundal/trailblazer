@@ -5,6 +5,13 @@ function($scope, $routeParams, $interval,
           characterService, featService, spellService, traitService,
           localStorageService, driveStorageService) {
 
+    /* Parameters */
+
+    var guid = $routeParams.guid;
+    var storage = $routeParams.storage;
+
+    /* --- */
+
     $scope.shared = {};
 
     $scope.scrollTo = function(id, event) {
@@ -12,61 +19,80 @@ function($scope, $routeParams, $interval,
         window.scrollTo(0, document.getElementById(id).offsetTop);
     };
 
-    /* Initialize */
+    var localInit = function() {
+        $scope.character = characterService.create(guid);
+        $scope.localError = false;
 
-    var guid = $routeParams.guid;
-    var storage = $routeParams.storage;
-
-    $scope.character = characterService.create(guid);
-
-    if (storage == 'local') {
         localStorageService.init(function(success) {
             if (!success) {
-                alert('Error: Unable to store characters locally!');
-                return;
-            }
-            characterService.load(localStorageService, guid, function(character) {
-                $scope.character = character;
-                $scope.forceUpdate;
+                $scope.localError = true;
 
                 /* Force scope update */
                 if (!$scope.$$phase) $scope.$digest($scope);
+            }
+            else {
+                characterService.load(localStorageService, guid, function(character) {
+                    $scope.character = character;
 
-                /* Save periodicly */
+                    /* Force scope update */
+                    if (!$scope.$$phase) $scope.$digest($scope);
 
-                var saveTimer = $interval(function() {
-                    characterService.save(localStorageService, guid, $scope.character, function(success) {});
-                }, 1000);
+                    /* Save periodicly */
 
-                $scope.$on('$destroy', function() {
-                    $interval.cancel(saveTimer);
+                    var saveTimer = $interval(function() {
+                        characterService.save(localStorageService, guid, $scope.character, function(success) {});
+                    }, 1000);
+
+                    $scope.$on('$destroy', function() {
+                        $interval.cancel(saveTimer);
+                    });
                 });
-            });
+            }
         });
+    };
+
+    var driveInit = function(immediate) {
+        $scope.character = characterService.create(guid);
+        $scope.driveLoading = true;
+        $scope.driveError = false;
+
+        driveStorageService.init(immediate, function(success) {
+            if (!success) {
+                $scope.driveLoading = false;
+                $scope.driveError = true;
+
+                /* Force scope update */
+                if (!$scope.$$phase) $scope.$digest($scope);
+            }
+            else {
+                characterService.load(driveStorageService, guid, function(character) {
+                    $scope.character = character;
+                    $scope.driveLoading = false;
+
+                    /* Force scope update */
+                    if (!$scope.$$phase) $scope.$digest($scope);
+
+                    /* Save periodicly */
+
+                    var saveTimer = $interval(function() {
+                        characterService.save(driveStorageService, guid, $scope.character, function(success) {});
+                    }, 1000);
+
+                    $scope.$on('$destroy', function() {
+                        $interval.cancel(saveTimer);
+                    });
+                });
+            }
+        });
+    };
+
+    /* Initialize */
+
+    if (storage == 'local') {
+        localInit();
     }
     else {
-        driveStorageService.init(true, function(success) {
-            if (!success) {
-                alert('Error: Unable to store characters in drive!');
-                return;
-            }
-            characterService.load(driveStorageService, guid, function(character) {
-                $scope.character = character;
-
-                /* Force scope update */
-                if (!$scope.$$phase) $scope.$digest($scope);
-
-                /* Save periodicly */
-
-                var saveTimer = $interval(function() {
-                    characterService.save(driveStorageService, guid, $scope.character, function(success) {});
-                }, 1000);
-
-                $scope.$on('$destroy', function() {
-                    $interval.cancel(saveTimer);
-                });
-            });
-        });
+        driveInit(true);
     };
 
     featService.load();
