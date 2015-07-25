@@ -11,6 +11,10 @@ app.service('DriveService', [function() {
             callback(false);
             return;
         }
+        if (app_folder_id !== null) {
+            callback(true);
+            return;
+        }
         var driveCallback = function() {
             var request = gapi.client.drive.files.get({
                 'fileId': 'appfolder'
@@ -23,15 +27,25 @@ app.service('DriveService', [function() {
         };
         var authorizationCallback = function(result) {
             if (result && result.access_token) {
-                console.log('Drive: Authentication successful!');
+                console.log('Drive: Authorization successful!');
                 gapi.client.load('drive', 'v2', driveCallback);
             }
             else {
-                console.log('Drive: Authentication failed!');
+                console.log('Drive: Authorization failed!');
                 callback(false);
             }
         };
-        gapi.auth.authorize({'client_id': client_id, 'scope': scope, 'immediate': immediate}, authorizationCallback);
+        var authorize = function() {
+            if (gapi && gapi.auth && gapi.auth.authorize) {
+                console.log('Drive: Authorizing...');
+                gapi.auth.authorize({'client_id': client_id, 'scope': scope, 'immediate': immediate}, authorizationCallback);
+            }
+            else {
+                console.log('Drive: Waiting for gapi...');
+                setTimeout(authorize, 100);
+            }
+        };
+        authorize();
     };
 
     service.listFiles = function(callback) {
