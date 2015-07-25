@@ -3,7 +3,7 @@ var app = angular.module('CharacterSheet', ['ngRoute', 'ui.bootstrap']);
 app.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider
-    .when('/character/:guid', {
+    .when('/character/:storage/:guid', {
         templateUrl: 'views/sheet.html'
     })
     .otherwise({

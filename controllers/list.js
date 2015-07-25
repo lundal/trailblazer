@@ -3,49 +3,80 @@ app.controller('ListController', ['$scope', '$location',
 function($scope, $location,
         characterService, localStorageService, driveStorageService) {
 
-    $scope.loading = true;
-    $scope.characters = [];
-
-    $scope.create = function() {
+    $scope.localCreate = function() {
         var guid = characterService.generateGUID();
-        $location.path('character/' + guid);
+        $location.path('character/local/' + guid);
     };
 
-    $scope.deleteAll = function() {
+    $scope.localDeleteAll = function() {
         characterService.deleteAll(localStorageService, function(success) {});
+        $scope.localCharacters = [];
+    };
+
+    var localInit = function() {
+        $scope.localCharacters = [];
+        $scope.localError = false;
+
+        localStorageService.init(function(success) {
+            if (!success) {
+                $scope.localError = true;
+
+                /* Force scope update */
+                if (!$scope.$$phase) $scope.$digest($scope);
+            }
+            else {
+                characterService.loadAll(localStorageService, function(characters) {
+                    $scope.localCharacters = characters;
+
+                    /* Force scope update */
+                    if (!$scope.$$phase) $scope.$digest($scope);
+                });
+            }
+        });
+    };
+
+    $scope.driveCreate = function() {
+        var guid = characterService.generateGUID();
+        $location.path('character/drive/' + guid);
+    };
+
+    $scope.driveDeleteAll = function() {
         characterService.deleteAll(driveStorageService, function(success) {});
-        $scope.characters = [];
+        $scope.driveCharacters = [];
+    };
+
+    $scope.driveRetry = function() {
+        driveInit(false);
+    };
+
+    var driveInit = function(immediate) {
+        $scope.driveCharacters = [];
+        $scope.driveLoading = true;
+        $scope.driveError = false;
+
+        driveStorageService.init(immediate, function(success) {
+            if (!success) {
+                $scope.driveLoading = false;
+                $scope.driveError = true;
+
+                /* Force scope update */
+                if (!$scope.$$phase) $scope.$digest($scope);
+            }
+            else {
+                characterService.loadAll(driveStorageService, function(characters) {
+                    $scope.driveLoading = false;
+                    $scope.driveCharacters = characters;
+
+                    /* Force scope update */
+                    if (!$scope.$$phase) $scope.$digest($scope);
+                });
+            }
+        });
     };
 
     /* Initialize */
 
-    localStorageService.init(function(success) {
-        if (!success) {
-            alert('Error: Unable to store characters locally!');
-            return;
-        };
-        characterService.loadAll(localStorageService, function(characters) {
-            $scope.loading = false;
-            $scope.characters = characters;
-
-            /* Force scope update */
-            if (!$scope.$$phase) $scope.$digest($scope);
-        });
-    });
-
-    driveStorageService.init(true, function(success) {
-        return; // Disable
-        if (!success) {
-            alert('Error: Unable to store characters in drive!');
-            return;
-        }
-        characterService.loadAll(driveStorageService, function(characters) {
-            $scope.loading = false;
-            $scope.characters = characters;
-
-            /* Force scope update */
-            if (!$scope.$$phase) $scope.$digest($scope);
-        });
-    });
+    localInit();
+    driveInit(true);
 
 }]);

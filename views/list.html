@@ -1,15 +1,39 @@
 <div ng-controller="ListController">
     <h1> Character List </h1>
-    <div id="loading" ng-show="loading">
+    <h2> Stored locally </h2>
+    <div ng-hide="localError">
+        <div ng-repeat="character in localCharacters">
+            <a ng-href="#/character/local/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+        </div>
+        <button type="button" class="btn btn-success button" ng-click="localCreate()">
+            <i class="glyphicon glyphicon-plus"></i> Create New
+        </button>
+        <button type="button" class="btn btn-danger button" ng-click="localDeleteAll()">
+            <i class="glyphicon glyphicon-remove"></i> Delete All
+        </button>
+    </div>
+    <div ng-show="localError">
+        Error: Unable to store characters locally!
+    </div>
+    <h2> Stored in Drive </h2>
+    <div id="loading" ng-show="driveLoading">
         <i class="glyphicon glyphicon-refresh glyphicon-spin"></i>
     </div>
-    <div ng-repeat="character in characters">
-        <a ng-href="#/character/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+    <div ng-hide="driveLoading || driveError">
+        <div ng-repeat="character in driveCharacters">
+            <a ng-href="#/character/drive/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+        </div>
+        <button type="button" class="btn btn-success button" ng-click="driveCreate()">
+            <i class="glyphicon glyphicon-plus"></i> Create New
+        </button>
+        <button type="button" class="btn btn-danger button" ng-click="driveDeleteAll()">
+            <i class="glyphicon glyphicon-remove"></i> Delete All
+        </button>
     </div>
-    <button type="button" class="btn btn-success button" ng-click="create()" ng-hide="loading">
-        <i class="glyphicon glyphicon-plus"></i> Create New
-    </button>
-    <button type="button" class="btn btn-danger button" ng-click="deleteAll()" ng-hide="loading">
-        <i class="glyphicon glyphicon-remove"></i> Delete All
-    </button>
+    <div ng-show="driveError">
+        <p> Error: Unable to store characters in drive! </p>
+        <button type="button" class="btn btn-default button" ng-click="driveRetry()">
+            <i class="glyphicon glyphicon-repeat"></i> Retry
+        </button>
+    </div>
 </div>
