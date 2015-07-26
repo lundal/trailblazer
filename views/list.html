@@ -20,9 +20,14 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <button type="button" class="btn btn-default button-square create" ng-click="localCreate()">
-            <i class="glyphicon glyphicon-plus icon-good"></i>
-        </button>
+        <div class="addbuttons">
+            <button type="button" class="btn btn-default button-square" ng-click="localImport()">
+                <i class="glyphicon glyphicon-import icon-info"></i>
+            </button>
+            <button type="button" class="btn btn-default button-square" ng-click="localCreate()">
+                <i class="glyphicon glyphicon-plus icon-good"></i>
+            </button>
+        </div>
     </div>
     <div ng-show="localError">
         Error: Unable to store characters locally!
@@ -50,9 +55,14 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <button type="button" class="btn btn-default button-square create" ng-click="driveCreate()">
-            <i class="glyphicon glyphicon-plus icon-good"></i>
-        </button>
+        <div class="addbuttons">
+            <button type="button" class="btn btn-default button-square" ng-click="driveImport()">
+                <i class="glyphicon glyphicon-import icon-info"></i>
+            </button>
+            <button type="button" class="btn btn-default button-square" ng-click="driveCreate()">
+                <i class="glyphicon glyphicon-plus icon-good"></i>
+            </button>
+        </div>
     </div>
     <div ng-show="driveError">
         <p> Error: Unable to store characters in drive! </p>

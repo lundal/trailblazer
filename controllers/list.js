@@ -8,6 +8,10 @@ function($scope, $location,
         $location.path('character/local/' + guid);
     };
 
+    $scope.localImport = function() {
+        alert('Todo: Import');
+    };
+
     $scope.localOpen = function(character) {
         var guid = character.guid;
         $location.path('character/local/' + guid);
@@ -47,6 +51,10 @@ function($scope, $location,
     $scope.driveCreate = function() {
         var guid = characterService.generateGUID();
         $location.path('character/drive/' + guid);
+    };
+
+    $scope.driveImport = function() {
+        alert('Todo: Import');
     };
 
     $scope.driveOpen = function(character) {
@@ -92,6 +100,12 @@ function($scope, $location,
         });
     };
 
+    $scope.export = function(character, $event) {
+        $event.stopPropagation();
+
+        alert(characterService.export(character));
+    };
+
     /* Character formatting and actions */
 
     $scope.nameText = function(character) {
@@ -127,12 +141,6 @@ function($scope, $location,
             return '<No Class>';
         }
         return text;
-    };
-
-    $scope.exportCharacter = function(character, $event) {
-        $event.stopPropagation();
-
-        alert('Todo: Export');
     };
 
     $scope.deleteStyle = function(character) {
