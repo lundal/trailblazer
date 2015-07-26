@@ -118,14 +118,16 @@ app.service('CharacterService', [function() {
         return character;
     };
 
+    service.import = function(compressed) {
+        var data = LZString.decompressFromBase64(compressed);
+        var character = angular.fromJson(data);
+        return character;
+    };
+
     service.export = function(character) {
         var data = angular.toJson(character);
         var compressed = LZString.compressToBase64(data);
         return compressed;
-        //console.log(data);
-        //console.log('Size before compression: ' + data.length);
-        //console.log('Size after compression: ' + compressed.length);
-        //console.log(compressed)
     };
 
     service.save = function(storage, guid, character, callback) {
