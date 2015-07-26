@@ -1,9 +1,24 @@
-<div ng-controller="ListController">
+<div id="list" ng-controller="ListController">
     <h1> Character List </h1>
     <h2> Stored locally </h2>
     <div ng-hide="localError">
         <div ng-repeat="character in localCharacters">
-            <a ng-href="#/character/local/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+            <section class="clickable" ng-click="openCharacterLocal(character)">
+                <div class="portrait" ng-controller="PortraitController">
+                    <div class="image" style="background-image:url('{{ character.portrait }}')">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="btn btn-default button-square" ng-click="exportCharacter(character, $event)">
+                        <i class="glyphicon glyphicon-export icon-info"></i>
+                    </button>
+                    <button type="button" class="btn btn-default button-square {{ deleteCharacterStyle(character) }}" ng-click="deleteCharacterLocal(character, $event)">
+                        <i class="glyphicon glyphicon-remove icon-bad"></i>
+                    </button>
+                </div>
+                <div class="title"> {{ nameText(character) }} </div>
+                <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
+            </section>
         </div>
         <button type="button" class="btn btn-success button" ng-click="localCreate()">
             <i class="glyphicon glyphicon-plus"></i> Create New
@@ -21,7 +36,22 @@
     </div>
     <div ng-hide="driveLoading || driveError">
         <div ng-repeat="character in driveCharacters">
-            <a ng-href="#/character/drive/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+            <section class="clickable" ng-click="openCharacterDrive(character)">
+                <div class="portrait" ng-controller="PortraitController">
+                    <div class="image" style="background-image:url('{{ character.portrait }}')">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="btn btn-default button-square" ng-click="exportCharacter(character, $event)">
+                        <i class="glyphicon glyphicon-export icon-info"></i>
+                    </button>
+                    <button type="button" class="btn btn-default button-square {{ deleteCharacterStyle(character) }}" ng-click="deleteCharacterDrive(character, $event)">
+                        <i class="glyphicon glyphicon-remove icon-bad"></i>
+                    </button>
+                </div>
+                <div class="title"> {{ nameText(character) }} </div>
+                <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
+            </section>
         </div>
         <button type="button" class="btn btn-success button" ng-click="driveCreate()">
             <i class="glyphicon glyphicon-plus"></i> Create New
