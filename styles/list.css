@@ -1,4 +1,13 @@
 
+#list {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#list h2:last-of-type {
+    margin-top: 10px;
+}
+
 #list .portrait {
     border-radius: 4px;
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
@@ -63,7 +72,7 @@
     padding-top: 0px;
 }
 
-#list .addbuttons {
+#list .centertext {
     text-align: center;
 }
 

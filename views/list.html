@@ -20,7 +20,7 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <div class="addbuttons">
+        <div class="addbuttons centertext">
             <button type="button" class="btn btn-default button-square" ng-click="localImport()">
                 <i class="glyphicon glyphicon-import icon-info"></i>
             </button>
@@ -29,8 +29,8 @@
             </button>
         </div>
     </div>
-    <div ng-show="localError">
-        Error: Unable to store characters locally!
+    <div class="centertext" ng-show="localError">
+        <p> Error: Unable to store characters locally! </p>
     </div>
     <h2> Stored in Drive </h2>
     <div id="loading" ng-show="driveLoading">
@@ -55,7 +55,7 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <div class="addbuttons">
+        <div class="addbuttons centertext">
             <button type="button" class="btn btn-default button-square" ng-click="driveImport()">
                 <i class="glyphicon glyphicon-import icon-info"></i>
             </button>
@@ -64,7 +64,7 @@
             </button>
         </div>
     </div>
-    <div ng-show="driveError">
+    <div class="centertext" ng-show="driveError">
         <p> Error: Unable to store characters in drive! </p>
         <button type="button" class="btn btn-default button" ng-click="driveRetry()">
             <i class="glyphicon glyphicon-repeat"></i> Retry
