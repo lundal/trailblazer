@@ -139,7 +139,7 @@ h2 {
 #portrait .image {
     background-position: center;
     background-size: cover;
-    border-radius: 8px;
+    border-radius: 4px;
     width: 198px;
     height: 198px;
     position: absolute;
