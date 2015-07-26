@@ -62,13 +62,13 @@ input[type='number']::-webkit-outer-spin-button {
     font-size: 14px;
 }
 
-.button-clicked,
-.button-clicked:focus {
+.button-recently-clicked,
+.button-recently-clicked:focus {
     background: #d44;
 }
 
-.button-clicked .icon-bad,
-.button-clicked:focus .icon-bad {
+.button-recently-clicked .icon-bad,
+.button-recently-clicked:focus .icon-bad {
     color: #fff;
 }
 

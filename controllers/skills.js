@@ -1,4 +1,5 @@
-app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', function($scope, $filter, breakdownService) {
+app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', 'DoubleClickService',
+        function($scope, $filter, breakdownService, doubleClickService) {
 
     /* Imported */
 
@@ -75,17 +76,6 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
         $scope.character.skills.push({name:'~', clas:false, ability:'Int', ranks:0, misc:[{bonus:0, desc:''}]});
     };
 
-    var recentlyClicked = [];
-
-    var wasRecentlyClicked = function(id) {
-        return (recentlyClicked.indexOf(id) > -1);
-    };
-
-    var clicked = function(id) {
-        recentlyClicked.push(id);
-        setTimeout(function() { removeItem(recentlyClicked, id); }, 1000);
-    };
-
     var removeItem = function(list, item) {
         var index = list.indexOf(item);
         if (index != -1) {
@@ -94,23 +84,22 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', fun
     };
 
     $scope.skillRemove = function(skill) {
-        if (!wasRecentlyClicked(skill)) {
-            clicked(skill);
-            return;
-        }
+        if (doubleClickService.click(skill) == doubleClickService.doubleClick) {
+            removeItem($scope.character.skills, skill);
 
-        removeItem($scope.character.skills, skill);
-
-        if ($scope.character.skills.length == 0) {
-            $scope.skillAdd();
+            if ($scope.character.skills.length == 0) {
+                $scope.skillAdd();
+            }
         }
     };
 
     $scope.skillRemoveStyle = function(skill) {
-        if (!wasRecentlyClicked(skill)) {
+        if (doubleClickService.wasRecentlyClicked(skill)) {
+            return 'button-recently-clicked';
+        }
+        else {
             return '';
         }
-        return 'button-clicked';
     };
 
     $scope.sort = function() {
