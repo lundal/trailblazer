@@ -113,7 +113,20 @@ function($scope, $location,
     };
 
     $scope.classesText = function(character) {
-        return 'Dumbass 9001 / Todo 3';
+        var text = '';
+        for (var i = 0; i < character.classes.length; i++) {
+            var clas = character.classes[i];
+            if (clas.name != '') {
+                if (text != '') {
+                    text += ' / ';
+                }
+                text += clas.name + ' ' + clas.level;
+            }
+        }
+        if (text == '') {
+            return '<No Class>';
+        }
+        return text;
     };
 
     $scope.exportCharacter = function(character, $event) {
