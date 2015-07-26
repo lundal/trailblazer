@@ -3,16 +3,16 @@
     <h2> Stored locally </h2>
     <div ng-hide="localError">
         <div ng-repeat="character in localCharacters">
-            <section class="clickable" ng-click="openCharacterLocal(character)">
+            <section class="clickable" ng-click="localOpen(character)">
                 <div class="portrait" ng-controller="PortraitController">
                     <div class="image" style="background-image:url('{{ character.portrait }}')">
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="btn btn-default button-square" ng-click="exportCharacter(character, $event)">
+                    <button type="button" class="btn btn-default button-square" ng-click="export(character, $event)">
                         <i class="glyphicon glyphicon-export icon-info"></i>
                     </button>
-                    <button type="button" class="btn btn-default button-square {{ deleteCharacterStyle(character) }}" ng-click="deleteCharacterLocal(character, $event)">
+                    <button type="button" class="btn btn-default button-square {{ deleteStyle(character) }}" ng-click="localDelete(character, $event)">
                         <i class="glyphicon glyphicon-remove icon-bad"></i>
                     </button>
                 </div>
@@ -20,11 +20,8 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <button type="button" class="btn btn-success button" ng-click="localCreate()">
-            <i class="glyphicon glyphicon-plus"></i> Create New
-        </button>
-        <button type="button" class="btn btn-danger button" ng-click="localDeleteAll()">
-            <i class="glyphicon glyphicon-remove"></i> Delete All
+        <button type="button" class="btn btn-default button-square create" ng-click="localCreate()">
+            <i class="glyphicon glyphicon-plus icon-good"></i>
         </button>
     </div>
     <div ng-show="localError">
@@ -36,16 +33,16 @@
     </div>
     <div ng-hide="driveLoading || driveError">
         <div ng-repeat="character in driveCharacters">
-            <section class="clickable" ng-click="openCharacterDrive(character)">
+            <section class="clickable" ng-click="driveOpen(character)">
                 <div class="portrait" ng-controller="PortraitController">
                     <div class="image" style="background-image:url('{{ character.portrait }}')">
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="btn btn-default button-square" ng-click="exportCharacter(character, $event)">
+                    <button type="button" class="btn btn-default button-square" ng-click="export(character, $event)">
                         <i class="glyphicon glyphicon-export icon-info"></i>
                     </button>
-                    <button type="button" class="btn btn-default button-square {{ deleteCharacterStyle(character) }}" ng-click="deleteCharacterDrive(character, $event)">
+                    <button type="button" class="btn btn-default button-square {{ deleteStyle(character) }}" ng-click="driveDelete(character, $event)">
                         <i class="glyphicon glyphicon-remove icon-bad"></i>
                     </button>
                 </div>
@@ -53,11 +50,8 @@
                 <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
             </section>
         </div>
-        <button type="button" class="btn btn-success button" ng-click="driveCreate()">
-            <i class="glyphicon glyphicon-plus"></i> Create New
-        </button>
-        <button type="button" class="btn btn-danger button" ng-click="driveDeleteAll()">
-            <i class="glyphicon glyphicon-remove"></i> Delete All
+        <button type="button" class="btn btn-default button-square create" ng-click="driveCreate()">
+            <i class="glyphicon glyphicon-plus icon-good"></i>
         </button>
     </div>
     <div ng-show="driveError">
