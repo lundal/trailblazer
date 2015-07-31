@@ -1,11 +1,16 @@
 <div id="sheet" ng-controller="SheetController">
+    <div id="loading" class="fullscreen" ng-show="driveLoading">
+        <div class="center">
+            <i class="glyphicon glyphicon-refresh glyphicon-spin"></i>
+        </div>
+    </div>
     <h1 id="general"> General </h1>
     <div class="align-h">
         <section id="basics">
             <header> Basics </header>
             <div id="portrait" ng-controller="PortraitController">
                 Click to set portrait...
-                <div class="image" style="background-image:url('{{character.portrait}}')"
+                <div class="image clickable" style="background-image:url('{{ character.portrait }}')"
                      ng-click="selectPortrait(character)">
                 </div>
             </div>
@@ -180,8 +185,8 @@
         <section id="movement">
             <header> Movement </header>
         </section>
-        <section id="todo">
-            <header> TODO </header>
+        <section id="carrying-capacity">
+            <header> Carrying Capacity </header>
         </section>
     </div>
     <h1 id="combat"> Combat </h1>

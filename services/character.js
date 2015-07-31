@@ -118,35 +118,73 @@ app.service('CharacterService', [function() {
         return character;
     };
 
-    service.save = function(character) {
-        localStorage.setItem(character.guid, angular.toJson(character));
+    service.import = function(compressed) {
+        var data = LZString.decompressFromBase64(compressed);
+        var character = angular.fromJson(data);
+        return character;
     };
 
-    service.load = function(guid) {
-        console.log('Loading character: ' + guid);
-        var data = localStorage.getItem(guid);
-        if (!data) {
-            console.log('Character not found, creating new!');
-            return service.create(guid);
-        }
-        return angular.fromJson(data);
+    service.export = function(character) {
+        var data = angular.toJson(character);
+        var compressed = LZString.compressToBase64(data);
+        return compressed;
     };
 
-    service.loadAll = function() {
-        var characters = [];
-        for (var i = 0; i < localStorage.length; i++){
-            var guid = localStorage.key(i);
-            characters.push(service.load(guid));
-        }
-        return characters;
+    service.save = function(storage, guid, character, callback) {
+        storage.set(guid, character, callback);
     };
 
-    service.deleteOne = function(guid) {
-        localStorage.removeItem(guid);
+    service.load = function(storage, guid, callback) {
+        console.log('Character: Loading ' + guid + '...');
+        storage.get(guid, function(character) {
+            if (!character) {
+                console.log('Character: Not found, creating new!');
+                character = service.create(guid);
+            }
+            callback(character);
+        });
     };
 
-    service.deleteAll = function() {
-        localStorage.clear();
+    service.loadAll = function(storage, callback) {
+        console.log('Character: Loading all...');
+        storage.list(function(guids) {
+            console.log('Character: Got list...');
+            var characters = [];
+            var number = 0;
+            for (var i = 0; i < guids.length; i++) {
+                service.load(storage, guids[i], function(character) {
+                    characters.push(character)
+                    number = number + 1;
+                    if (number == guids.length) {
+                        callback(characters);
+                    }
+                });
+            }
+            /* Special case */
+            if (guids.length == 0) {
+                callback([]);
+            }
+        });
+    };
+
+    service.delete = function(storage, guid, callback) {
+        storage.delete(guid, callback);
+    };
+
+    service.deleteAll = function(storage, callback) {
+        storage.list(function(guids) {
+            var successAll = true;
+            var number = 0;
+            for (var i = 0; i < guids.length; i++) {
+                service.delete(storage, guids[i], function(success) {
+                    successAll = successAll && success;
+                    number = number + 1;
+                    if (number == guids.length) {
+                        callback(successAll);
+                    }
+                });
+            }
+        });
     };
 
 }]);

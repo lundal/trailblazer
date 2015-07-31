@@ -1,0 +1,81 @@
+
+#list {
+    margin-bottom: 20px;
+}
+
+#list h2:last-of-type {
+    margin-top: 10px;
+}
+
+#list .portrait {
+    border-radius: 4px;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+    width: 62px;
+    height: 62px;
+    margin: 6px;
+    float: left;
+    text-align: center;
+    line-height: 198px;
+    font-size: 16px;
+    color: #AAA;
+    position: relative;
+}
+
+#list .portrait .image {
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+    width: 62px;
+    height: 62px;
+    margin: 0px;
+    position: absolute;
+    top: 0;
+}
+
+#list section {
+    max-width:500px;
+    margin: 0px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#list section div {
+    margin: 6px;
+}
+
+#list section .buttons {
+    float: right;
+}
+
+#list section .buttons button {
+    display: block;
+    margin-bottom: 6px;
+}
+
+#list section .buttons button:last-child {
+    margin-bottom: 0px;
+}
+
+#list section .title {
+    font-size: 18px;
+    margin-left: 74px;
+    padding: 3px;
+    padding-bottom: 0px;
+}
+
+#list section .subtitle {
+    font-size: 16px;
+    margin-left: 74px;
+    padding: 3px;
+    padding-top: 0px;
+}
+
+#list .centertext {
+    text-align: center;
+}
+
+#list .addbuttons button {
+    margin-left: 2px;
+    margin-right: 2px;
+}

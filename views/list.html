@@ -1,12 +1,73 @@
-<div ng-controller="ListController">
+<div id="list" ng-controller="ListController">
     <h1> Character List </h1>
-    <div ng-repeat="character in characters">
-        <a ng-href="#/character/{{ character.guid }}">{{ character.basic.name }} - {{ character.basic.race }} ({{ character.guid }})</a>
+    <h2> Stored locally </h2>
+    <div ng-hide="localError">
+        <div ng-repeat="character in localCharacters">
+            <section class="clickable" ng-click="localOpen(character)">
+                <div class="portrait" ng-controller="PortraitController">
+                    <div class="image" style="background-image:url('{{ character.portrait }}')">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="btn btn-default button-square" ng-click="export(character, $event)">
+                        <i class="glyphicon glyphicon-export icon-info"></i>
+                    </button>
+                    <button type="button" class="btn btn-default button-square {{ deleteStyle(character) }}" ng-click="localDelete(character, $event)">
+                        <i class="glyphicon glyphicon-remove icon-bad"></i>
+                    </button>
+                </div>
+                <div class="title"> {{ nameText(character) }} </div>
+                <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
+            </section>
+        </div>
+        <div class="addbuttons centertext">
+            <button type="button" class="btn btn-default button-square" ng-click="localImport()">
+                <i class="glyphicon glyphicon-import icon-info"></i>
+            </button>
+            <button type="button" class="btn btn-default button-square" ng-click="localCreate()">
+                <i class="glyphicon glyphicon-plus icon-good"></i>
+            </button>
+        </div>
     </div>
-    <button type="button" class="btn btn-success button" ng-click="create()">
-        <i class="glyphicon glyphicon-plus"></i> Create New
-    </button>
-    <button type="button" class="btn btn-danger button" ng-click="deleteAll()">
-        <i class="glyphicon glyphicon-remove"></i> Delete All
-    </button>
+    <div class="centertext" ng-show="localError">
+        <p> Error: Unable to store characters locally! </p>
+    </div>
+    <h2> Stored in Drive </h2>
+    <div id="loading" ng-show="driveLoading">
+        <i class="glyphicon glyphicon-refresh glyphicon-spin"></i>
+    </div>
+    <div ng-hide="driveLoading || driveError">
+        <div ng-repeat="character in driveCharacters">
+            <section class="clickable" ng-click="driveOpen(character)">
+                <div class="portrait" ng-controller="PortraitController">
+                    <div class="image" style="background-image:url('{{ character.portrait }}')">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="btn btn-default button-square" ng-click="export(character, $event)">
+                        <i class="glyphicon glyphicon-export icon-info"></i>
+                    </button>
+                    <button type="button" class="btn btn-default button-square {{ deleteStyle(character) }}" ng-click="driveDelete(character, $event)">
+                        <i class="glyphicon glyphicon-remove icon-bad"></i>
+                    </button>
+                </div>
+                <div class="title"> {{ nameText(character) }} </div>
+                <div class="subtitle"> {{ raceText(character) }}  –  {{ classesText(character) }} </div>
+            </section>
+        </div>
+        <div class="addbuttons centertext">
+            <button type="button" class="btn btn-default button-square" ng-click="driveImport()">
+                <i class="glyphicon glyphicon-import icon-info"></i>
+            </button>
+            <button type="button" class="btn btn-default button-square" ng-click="driveCreate()">
+                <i class="glyphicon glyphicon-plus icon-good"></i>
+            </button>
+        </div>
+    </div>
+    <div class="centertext" ng-show="driveError">
+        <p> Error: Unable to store characters in drive! </p>
+        <button type="button" class="btn btn-default button" ng-click="driveRetry()">
+            <i class="glyphicon glyphicon-repeat"></i> Retry
+        </button>
+    </div>
 </div>

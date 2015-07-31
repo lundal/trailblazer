@@ -22,54 +22,52 @@ app.controller('ArmorClassController', ['$scope', 'BreakdownService', function($
 
     /* Private */
 
-    var armorclass = $scope.character.armorclass;
-
     $scope.armorclassNatural = function() {
-        return breakdownService.max(armorclass.natural);
+        return breakdownService.max($scope.character.armorclass.natural);
     };
 
     $scope.armorclassNaturalTooltip = function() {
-        return breakdownService.tooltip(armorclass.natural);
+        return breakdownService.tooltip($scope.character.armorclass.natural);
     };
 
     $scope.armorclassNaturalEdit = function() {
-        breakdownService.open(armorclass.natural, 'Natural Armor');
+        breakdownService.open($scope.character.armorclass.natural, 'Natural Armor');
     };
 
     $scope.armorclassDeflection = function() {
-        return breakdownService.max(armorclass.deflection);
+        return breakdownService.max($scope.character.armorclass.deflection);
     };
 
     $scope.armorclassDeflectionTooltip = function() {
-        return breakdownService.tooltip(armorclass.deflection);
+        return breakdownService.tooltip($scope.character.armorclass.deflection);
     };
 
     $scope.armorclassDeflectionEdit = function() {
-        breakdownService.open(armorclass.deflection, 'Deflection');
+        breakdownService.open($scope.character.armorclass.deflection, 'Deflection');
     };
 
     $scope.armorclassDodge = function() {
-        return breakdownService.total(armorclass.dodge);
+        return breakdownService.total($scope.character.armorclass.dodge);
     };
 
     $scope.armorclassDodgeTooltip = function() {
-        return breakdownService.tooltip(armorclass.dodge);
+        return breakdownService.tooltip($scope.character.armorclass.dodge);
     };
 
     $scope.armorclassDodgeEdit = function() {
-        breakdownService.open(armorclass.dodge, 'Dodge');
+        breakdownService.open($scope.character.armorclass.dodge, 'Dodge');
     };
 
     $scope.armorclassMisc = function() {
-        return breakdownService.total(armorclass.misc);
+        return breakdownService.total($scope.character.armorclass.misc);
     };
 
     $scope.armorclassMiscTooltip = function() {
-        return breakdownService.tooltip(armorclass.misc);
+        return breakdownService.tooltip($scope.character.armorclass.misc);
     };
 
     $scope.armorclassMiscEdit = function() {
-        breakdownService.open(armorclass.misc, 'Misc');
+        breakdownService.open($scope.character.armorclass.misc, 'Misc');
     };
 
     $scope.armorclassNormal = function() {
