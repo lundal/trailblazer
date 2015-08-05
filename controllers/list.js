@@ -163,5 +163,6 @@ function($scope, $location,
 
     localInit();
     driveInit(true);
+    setAppTitle(null);
 
 }]);

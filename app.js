@@ -12,6 +12,11 @@ app.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
-if (typeof(Storage) === "undefined") {
-    alert("Your browser does not have support for LocalStorage. Characters can not be saved!");
+var setAppTitle = function(text) {
+    if (text && text != "") {
+        document.title = text + " – Trailblazer";
+    }
+    else {
+        document.title = "Trailblazer";
+    }
 }

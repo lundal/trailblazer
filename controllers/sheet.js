@@ -34,6 +34,8 @@ function($scope, $routeParams, $interval,
                 characterService.load(localStorageService, guid, function(character) {
                     $scope.character = character;
 
+                    setAppTitle(character.basic.name);
+
                     /* Force scope update */
                     if (!$scope.$$phase) $scope.$digest($scope);
 
@@ -68,6 +70,8 @@ function($scope, $routeParams, $interval,
                 characterService.load(driveStorageService, guid, function(character) {
                     $scope.character = character;
                     $scope.driveLoading = false;
+
+                    setAppTitle(character.basic.name);
 
                     /* Force scope update */
                     if (!$scope.$$phase) $scope.$digest($scope);
