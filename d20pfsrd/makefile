@@ -19,7 +19,7 @@ spells: spells.txt
 	python spells.py
 
 traits.txt:
-	wget -O $@ "https://spreadsheets.google.com/pub?key=0Ak-IxjmMq9NMdHFZTl9mZUhOWUVzT3JxRGJTWU9lMkE&output=txt"
+	wget -O $@ "https://docs.google.com/spreadsheets/d/1OQH-t50ZqZ-WSajGRbaALzbExij2mL-i13G_p054jig/export?format=tsv"
 
 traits: traits.txt
 	mkdir -p traits
