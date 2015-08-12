@@ -185,8 +185,111 @@
         <section id="movement">
             <header> Movement </header>
         </section>
-        <section id="carrying-capacity">
+        <section id="carrying-capacity" ng-controller="CarryingCapacityController">
             <header> Carrying Capacity </header>
+            <table>
+                <tr>
+                    <th class="expand"> Load </th>
+                    <th> Max<br>Weight </th>
+                    <th> Max<br>Dex </th>
+                    <th> Check<br>Penalty </th>
+                    <th> Max<br>Run </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Light" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide highlight" value="{{ lightLoad() }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="0" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="x4" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Medium" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide highlight" value="{{ mediumLoad() }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="3" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="3" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="x4" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Heavy" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide highlight" value="{{ heavyLoad() }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="1" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="6" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="x3" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Lift" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide highlight" value="{{ liftLoad() }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="0" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Push/Pull" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide highlight" value="{{ pushPullLoad() }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="–" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    </td>
+                    <td colspan="2" style="text-align:right;">
+                        Quadruped
+                    </td>
+                    <td colspan="1" style="text-align:left">
+                        <input type="checkbox" ng-model="character.basic.quadruped">
+                    </td>
+            </table>
         </section>
     </div>
     <h1 id="combat"> Combat </h1>

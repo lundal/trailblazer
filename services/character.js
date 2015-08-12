@@ -24,6 +24,7 @@ app.service('CharacterService', [function() {
             alignment:'N',
             player:'',
             campaign:'',
+            quadruped:false,
         };
 
         character.classes = [
