@@ -109,6 +109,10 @@ input:invalid:focus {
     text-align: center;
 }
 
+.numberbox.wide {
+    width: 64px;
+}
+
 .expand {
     width: 100%;
     text-align: left;
