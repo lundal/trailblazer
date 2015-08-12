@@ -45,4 +45,13 @@ app.controller('AbilitiesController', ['$scope', 'BreakdownService', function($s
         if (abilityName.toLowerCase() == 'cha') return $scope.abilityModifierTemp($scope.character.abilities[5]);
     };
 
+    $scope.shared.abilityScoreByName = function(abilityName) {
+        if (abilityName.toLowerCase() == 'str') return $scope.abilityScoreTemp($scope.character.abilities[0]);
+        if (abilityName.toLowerCase() == 'dex') return $scope.abilityScoreTemp($scope.character.abilities[1]);
+        if (abilityName.toLowerCase() == 'con') return $scope.abilityScoreTemp($scope.character.abilities[2]);
+        if (abilityName.toLowerCase() == 'int') return $scope.abilityScoreTemp($scope.character.abilities[3]);
+        if (abilityName.toLowerCase() == 'wis') return $scope.abilityScoreTemp($scope.character.abilities[4]);
+        if (abilityName.toLowerCase() == 'cha') return $scope.abilityScoreTemp($scope.character.abilities[5]);
+    };
+
 }]);
