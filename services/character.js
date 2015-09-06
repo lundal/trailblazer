@@ -2,6 +2,14 @@ app.service('CharacterService', [function() {
 
     var service = this;
 
+    var polyfill = function(character) {
+        if (!character.attacks) {
+            character.attacks = [
+                {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
+            ];
+        };
+    };
+
     service.generateGUID = function() {
         var d = Date.now();
         var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -61,6 +69,10 @@ app.service('CharacterService', [function() {
             dodge:[{bonus:0, desc:''}],
             misc:[{bonus:0, desc:''}],
         };
+
+        character.attacks = [
+            {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
+        ];
 
         character.skills = [
             {name:'Acrobatics',         clas:false, untrained:true,  ability:'Dex', ranks:0, misc:[{bonus:0, desc:''}]},
@@ -142,6 +154,7 @@ app.service('CharacterService', [function() {
                 console.log('Character: Not found, creating new!');
                 character = service.create(guid);
             }
+            polyfill(character);
             callback(character);
         });
     };

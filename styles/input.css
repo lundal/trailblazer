@@ -113,6 +113,14 @@ input:invalid:focus {
     width: 64px;
 }
 
+.numberbox.wider {
+    width: 128px;
+}
+
+.numberbox.widest {
+    width: 160px;
+}
+
 .expand {
     width: 100%;
     text-align: left;

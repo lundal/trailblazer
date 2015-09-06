@@ -399,8 +399,70 @@
         </section>
     </div>
     <div class="align-h">
-        <section id="attacks">
+        <section id="attacks" ng-controller="AttacksController">
             <header> Attacks </header>
+            <table>
+                <tr>
+                    <th class="expand"> Weapon </th>
+                    <th> Bonus </th>
+                    <th> Ability </th>
+                    <th> Attacks </th>
+                    <th> Damage </th>
+                    <th> Critical </th>
+                    <th> Type </th>
+                    <th> Range </th>
+                    <th> Notes </th>
+                    <th> Del </th>
+                </tr>
+                <tr ng-repeat="attack in character.attacks">
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="attack.weapon" ng-blur="sort()">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="attack.bonus" required
+                               min="-99" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <select class="input selectbox" ng-model="attack.ability">
+                            <option value="Str">Str</option>
+                            <option value="Dex">Dex</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wider highlight" value="{{ attacks(attack) }}" readonly
+                               tooltip="{{ attacksTooltip(attack) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wider highlight" ng-model="attack.damage">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox wide" ng-model="attack.critical" required
+                               pattern="[0-2][0-9]x[1-9]">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" ng-model="attack.type">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="attack.range" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox widest" ng-model="attack.notes">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(attack) }}" ng-click="remove(attack)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add()">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </section>
     </div>
     <h1 id="talents"> Talents </h1>
