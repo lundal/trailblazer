@@ -44,7 +44,7 @@ app.controller('AdvancementController', ['$scope', function($scope) {
         var bab = 0;
         for (var i = 0; i < classes.length; i++) {
             var quarts = parseInt(classes[i].baseattackbonus); // Parses only the first number
-            bab += classes[i].level * quarts / 4;
+            bab += Math.floor(classes[i].level * quarts / 4);
         }
         return bab;
     };
