@@ -439,27 +439,27 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" class="input numberbox highlight" value="{{ skillTotal(skill) }}" readonly
-                               tooltip="{{ skillTotalTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        <input type="text" class="input numberbox highlight" value="{{ total(skill) }}" readonly
+                               tooltip="{{ totalTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
                     </td>
                     <td>
                         <input type="number" class="input numberbox" ng-model="skill.ranks" required
                                min="0" max="999" pattern="-?[0-9]+">
                     </td>
                     <td>
-                        <input type="text" class="input numberbox editable" value="{{ skillMisc(skill) }}" readonly
-                               tooltip="{{ skillMiscTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true"
-                               ng-focus="skillMiscEdit(skill)">
+                        <input type="text" class="input numberbox editable" value="{{ misc(skill) }}" readonly
+                               tooltip="{{ miscTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true"
+                               ng-focus="miscEdit(skill)">
                     </td>
                     <td>
-                        <button type="button" class="btn btn-default button-square {{ skillRemoveStyle(skill) }}" ng-click="skillRemove(skill)">
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(skill) }}" ng-click="remove(skill)">
                             <i class="glyphicon glyphicon-remove icon-bad"></i>
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="42">
-                        <button type="button" class="btn btn-default button-square" ng-click="skillAdd()">
+                        <button type="button" class="btn btn-default button-square" ng-click="add()">
                             <i class="glyphicon glyphicon-plus icon-good"></i>
                         </button>
                     </td>

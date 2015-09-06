@@ -88,7 +88,7 @@ app.service('CharacterService', [function() {
             {name:'Stealth',            clas:false, untrained:true,  ability:'Dex', ranks:0, misc:[{bonus:0, desc:''}]},
             {name:'Survival',           clas:false, untrained:true,  ability:'Wis', ranks:0, misc:[{bonus:0, desc:''}]},
             {name:'Swim',               clas:false, untrained:true,  ability:'Str', ranks:0, misc:[{bonus:0, desc:''}]},
-            {name:'Use Magical Device', clas:false, untrained:false, ability:'Cha', ranks:0, misc:[{bonus:0, desc:''}]}
+            {name:'Use Magical Device', clas:false, untrained:false, ability:'Cha', ranks:0, misc:[{bonus:0, desc:''}]},
         ];
 
         character.feats = [{name:'~'}];

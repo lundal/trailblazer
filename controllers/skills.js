@@ -23,7 +23,7 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', 'Do
 
     /* Private */
 
-    $scope.skillTotal = function(skill) {
+    $scope.total = function(skill) {
         var total = 0;
 
         if (skill.ranks > 0 && skill.clas) {
@@ -41,7 +41,7 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', 'Do
         return total;
     };
 
-    $scope.skillTotalTooltip = function(skill) {
+    $scope.totalTooltip = function(skill) {
         var tooltip = '';
 
         if (skill.ranks > 0 && skill.clas) {
@@ -59,19 +59,19 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', 'Do
         return tooltip;
     };
 
-    $scope.skillMisc = function(skill) {
+    $scope.misc = function(skill) {
         return breakdownService.total(skill.misc);
     };
 
-    $scope.skillMiscTooltip = function(skill) {
+    $scope.miscTooltip = function(skill) {
         return breakdownService.tooltip(skill.misc);
     };
 
-    $scope.skillMiscEdit = function(skill) {
+    $scope.miscEdit = function(skill) {
         breakdownService.open(skill.misc, skill.name + ' Misc');
     };
 
-    $scope.skillAdd = function() {
+    $scope.add = function() {
         /* Tilde is used to make the new skill appear last after sorting */
         $scope.character.skills.push({name:'~', clas:false, ability:'Int', ranks:0, misc:[{bonus:0, desc:''}]});
     };
@@ -83,17 +83,17 @@ app.controller('SkillsController', ['$scope', '$filter', 'BreakdownService', 'Do
         }
     };
 
-    $scope.skillRemove = function(skill) {
+    $scope.remove = function(skill) {
         if (doubleClickService.click(skill) == doubleClickService.doubleClick) {
             removeItem($scope.character.skills, skill);
 
             if ($scope.character.skills.length == 0) {
-                $scope.skillAdd();
+                $scope.add();
             }
         }
     };
 
-    $scope.skillRemoveStyle = function(skill) {
+    $scope.removeStyle = function(skill) {
         if (doubleClickService.wasRecentlyClicked(skill)) {
             return 'button-recently-clicked';
         }
