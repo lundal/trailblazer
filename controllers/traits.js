@@ -1,4 +1,5 @@
-app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService', function($scope, $filter, $modal, traitService) {
+app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService', 'DoubleClickService',
+        function($scope, $filter, $modal, traitService, doubleClickService) {
 
     /* Private */
 
@@ -20,11 +21,29 @@ app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService
         $scope.character.traits.push({name:'~'});
     };
 
-    $scope.remove = function(index) {
-        $scope.character.traits.splice(index, 1);
+    var removeItem = function(list, item) {
+        var index = list.indexOf(item);
+        if (index != -1) {
+            list.splice(index, 1);
+        }
+    };
 
-        if ($scope.character.traits.length == 0) {
-            $scope.add();
+    $scope.remove = function(trait) {
+        if (doubleClickService.click(trait) == doubleClickService.doubleClick) {
+            removeItem($scope.character.traits, trait);
+
+            if ($scope.character.traits.length == 0) {
+                $scope.add();
+            }
+        }
+    };
+
+    $scope.removeStyle = function(trait) {
+        if (doubleClickService.wasRecentlyClicked(trait)) {
+            return 'button-recently-clicked';
+        }
+        else {
+            return '';
         }
     };
 

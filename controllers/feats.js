@@ -1,4 +1,5 @@
-app.controller('FeatsController', ['$scope', '$filter', '$modal', 'FeatService', function($scope, $filter, $modal, featService) {
+app.controller('FeatsController', ['$scope', '$filter', '$modal', 'FeatService', 'DoubleClickService',
+        function($scope, $filter, $modal, featService, doubleClickService) {
 
     /* Private */
 
@@ -20,11 +21,29 @@ app.controller('FeatsController', ['$scope', '$filter', '$modal', 'FeatService',
         $scope.character.feats.push({name:'~'});
     };
 
-    $scope.remove = function(index) {
-        $scope.character.feats.splice(index, 1);
+    var removeItem = function(list, item) {
+        var index = list.indexOf(item);
+        if (index != -1) {
+            list.splice(index, 1);
+        }
+    };
 
-        if ($scope.character.feats.length == 0) {
-            $scope.add();
+    $scope.remove = function(feat) {
+        if (doubleClickService.click(feat) == doubleClickService.doubleClick) {
+            removeItem($scope.character.feats, feat);
+
+            if ($scope.character.feats.length == 0) {
+                $scope.add();
+            }
+        }
+    };
+
+    $scope.removeStyle = function(feat) {
+        if (doubleClickService.wasRecentlyClicked(feat)) {
+            return 'button-recently-clicked';
+        }
+        else {
+            return '';
         }
     };
 
