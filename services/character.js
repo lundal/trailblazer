@@ -23,8 +23,6 @@ app.service('CharacterService', [function() {
     service.create = function(guid) {
         var character = {};
 
-        character.guid = guid || service.generateGUID();
-
         character.basic = {
             name:'',
             race:'',
@@ -155,6 +153,10 @@ app.service('CharacterService', [function() {
                 console.log('Character: Not found, creating new!');
                 character = service.create(guid);
             }
+
+            // Used in list
+            character.guid = guid;
+
             polyfill(character);
             callback(character);
         });
@@ -188,7 +190,7 @@ app.service('CharacterService', [function() {
     };
 
     service.deleteAll = function(storage, callback) {
-        console.log('Character: Deleting  all...');
+        console.log('Character: Deleting all...');
         storage.list(function(guids) {
             var successAll = true;
             var number = 0;
