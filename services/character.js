@@ -144,6 +144,7 @@ app.service('CharacterService', [function() {
     };
 
     service.save = function(storage, guid, character, callback) {
+        console.log('Character: Saving ' + guid + '...');
         storage.set(guid, character, callback);
     };
 
@@ -182,10 +183,12 @@ app.service('CharacterService', [function() {
     };
 
     service.delete = function(storage, guid, callback) {
+        console.log('Character: Deleting ' + guid + '...');
         storage.delete(guid, callback);
     };
 
     service.deleteAll = function(storage, callback) {
+        console.log('Character: Deleting  all...');
         storage.list(function(guids) {
             var successAll = true;
             var number = 0;

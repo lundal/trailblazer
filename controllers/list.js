@@ -1,6 +1,6 @@
-app.controller('ListController', ['$scope', '$location',
+app.controller('ListController', ['$scope', '$location', '$modal',
                'CharacterService', 'LocalStorageService','DriveStorageService', 'DoubleClickService',
-function($scope, $location,
+function($scope, $location, $modal,
         characterService, localStorageService, driveStorageService, doubleClickService) {
 
     $scope.localCreate = function() {
@@ -9,7 +9,15 @@ function($scope, $location,
     };
 
     $scope.localImport = function() {
-        alert('Todo: Import');
+        var modalInstance = $modal.open({
+            templateUrl: 'views/import.html',
+            controller: 'ImportController',
+            size: 'l',
+            resolve: {
+                storage: function() { return 'local' },
+                storageService: function() { return localStorageService }
+            }
+        });
     };
 
     $scope.localOpen = function(character) {
@@ -54,7 +62,15 @@ function($scope, $location,
     };
 
     $scope.driveImport = function() {
-        alert('Todo: Import');
+        var modalInstance = $modal.open({
+            templateUrl: 'views/import.html',
+            controller: 'ImportController',
+            size: 'l',
+            resolve: {
+                storage: function() { return 'drive' },
+                storageService: function() { return driveStorageService }
+            }
+        });
     };
 
     $scope.driveOpen = function(character) {
@@ -103,7 +119,16 @@ function($scope, $location,
     $scope.export = function(character, $event) {
         $event.stopPropagation();
 
-        alert(characterService.export(character));
+        var data = characterService.export(character);
+
+        var modalInstance = $modal.open({
+            templateUrl: 'views/export.html',
+            controller: 'ExportController',
+            size: 'l',
+            resolve: {
+                data: function() { return data }
+            }
+        });
     };
 
     /* Character formatting and actions */
