@@ -9,7 +9,15 @@ function($scope, $location, $modal,
     };
 
     $scope.localImport = function() {
-        alert('Todo: Import');
+        var modalInstance = $modal.open({
+            templateUrl: 'views/import.html',
+            controller: 'ImportController',
+            size: 'l',
+            resolve: {
+                storage: function() { return 'local' },
+                storageService: function() { return localStorageService }
+            }
+        });
     };
 
     $scope.localOpen = function(character) {
@@ -54,7 +62,15 @@ function($scope, $location, $modal,
     };
 
     $scope.driveImport = function() {
-        alert('Todo: Import');
+        var modalInstance = $modal.open({
+            templateUrl: 'views/import.html',
+            controller: 'ImportController',
+            size: 'l',
+            resolve: {
+                storage: function() { return 'drive' },
+                storageService: function() { return driveStorageService }
+            }
+        });
     };
 
     $scope.driveOpen = function(character) {
