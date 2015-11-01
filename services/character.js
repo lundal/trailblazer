@@ -3,6 +3,13 @@ app.service('CharacterService', [function() {
     var service = this;
 
     var polyfill = function(character) {
+        if (!character.movement) {
+            character.movement = {
+                base:30,
+                misc:[{bonus:0, desc:''}],
+                temp:[{bonus:0, desc:''}],
+            };
+        };
         if (!character.attacks) {
             character.attacks = [
                 {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
@@ -54,6 +61,12 @@ app.service('CharacterService', [function() {
             {name:'Wisdom',       base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
             {name:'Charisma',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
         ];
+
+        character.movement = {
+            base:30,
+            misc:[{bonus:0, desc:''}],
+            temp:[{bonus:0, desc:''}],
+        };
 
         character.saves = [
             {name:'Fortitude', ability:'Con', base:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]},
