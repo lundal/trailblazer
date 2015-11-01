@@ -66,9 +66,6 @@ app.controller('CarryingCapacityController', ['$scope', function($scope) {
         }
     }
 
-    var heavyLoad = function(str, size, quadruped) {
-    };
-
     $scope.pushPullLoad = function() {
         return 5 * $scope.heavyLoad();
     }
