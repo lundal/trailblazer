@@ -2,7 +2,7 @@ app.service('DriveService', [function() {
 
     var service = this;
 
-    var client_id = '<insert client id>';
+    var client_id = '@DRIVEID';
     var scope = 'https://www.googleapis.com/auth/drive.appfolder';
     var app_folder_id = null;
 
