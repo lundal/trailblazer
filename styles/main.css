@@ -1,4 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+@font-face {
+    font-family: 'Bree Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/bree-serif.eot');
+    src: url('../fonts/bree-serif.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bree-serif.woff2') format('woff2'),
+         url('../fonts/bree-serif.woff') format('woff');
+}
 
 /* Main layout */
 
