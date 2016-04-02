@@ -182,8 +182,63 @@
                 </tr>
             </table>
         </section>
-        <section id="movement">
+        <section id="movement" ng-controller="MovementController">
             <header> Movement </header>
+            <table>
+                <tr>
+                    <th class="expand"> </th>
+                    <th> <br>Total </th>
+                    <th> <br>Base </th>
+                    <th> <br>Misc. </th>
+                    <th> <br>Temp. </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Speed" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{ movementTotal(character.movement) }}" readonly
+                               tooltip="{{ movementTotalTooltip(character.movement) }}" tooltip-popup-delay="300">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="character.movement.base">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox editable" value="{{ movementMisc(character.movement) }}" readonly
+                               tooltip="{{ movementMiscTooltip(character.movement) }}" tooltip-popup-delay="300"
+                               ng-focus="movementMiscEdit(character.movement)">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox editable" value="{{ movementTemp(character.movement) }}" readonly
+                               tooltip="{{ movementTempTooltip(character.movement) }}" tooltip-popup-delay="300"
+                               ng-focus="movementTempEdit(character.movement)">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="expand"> </th>
+                    <th> Round<br>(Feet) </th>
+                    <th> Minute<br>(Feet) </th>
+                    <th> Hour<br>(Miles) </th>
+                    <th> Day<br>(Miles) </th>
+                </tr>
+                <tr ng-repeat="movement in movement(movementTotal(character.movement))">
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="{{ movement.text }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{ movement.round }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{ movement.minute }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{ movement.hour }}" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox" value="{{ movement.day }}" readonly>
+                    </td>
+                </tr>
+            </table>
         </section>
         <section id="carrying-capacity" ng-controller="CarryingCapacityController">
             <header> Carrying Capacity </header>
