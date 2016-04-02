@@ -1,12 +1,34 @@
 app.controller('MovementController', ['$scope', 'BreakdownService',
 function($scope, breakdownService) {
 
+    /* Imported */
+
+    var equipmentLoad = function() {
+        if ($scope.shared.equipmentLoad) {
+            return $scope.shared.equipmentLoad();
+        }
+        else {
+            return 'Light';
+        }
+    };
+
+    /* Private */
+
     $scope.movementTotal = function(movement) {
         var total = 0;
 
         total += movement.base;
         total += breakdownService.total(movement.misc);
         total += breakdownService.total(movement.temp);
+
+        if (equipmentLoad() != 'Light') {
+            if (movement.base > 25) {
+                total -= 10;
+            }
+            else {
+                total -= 5;
+            }
+        }
 
         return total;
     };
@@ -17,6 +39,15 @@ function($scope, breakdownService) {
         tooltip += 'Base: ' + movement.base + ', ';
         tooltip += 'Misc: ' + breakdownService.total(movement.misc) + ', ';
         tooltip += 'Temp: ' + breakdownService.total(movement.temp);
+
+        if (equipmentLoad() != 'Light') {
+            if (movement.base > 25) {
+                tooltip += ', Armor: -10';
+            }
+            else {
+                tooltip += ', Armor: -5';
+            }
+        }
 
         return tooltip;
     };

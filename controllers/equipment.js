@@ -65,4 +65,11 @@ app.controller('EquipmentController', ['$scope', function($scope) {
         return spellfailure;
     };
 
+    $scope.shared.equipmentLoad = function() {
+        if (getArmor().equipped == 'Yes') {
+            return getArmor().type;
+        }
+        return 'Light';
+    };
+
 }]);
