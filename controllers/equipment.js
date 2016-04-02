@@ -11,7 +11,7 @@ app.controller('EquipmentController', ['$scope', function($scope) {
     };
 
     $scope.shieldMaxDex = function() {
-        if (shield().type == 'Tower') {
+        if (getShield().type == 'Tower') {
             return '2';
         }
         else {
@@ -26,8 +26,8 @@ app.controller('EquipmentController', ['$scope', function($scope) {
         if (getArmor().equipped == 'Yes') {
             armorclass += getArmor().armorclass;
         }
-        if (shield().equipped == 'Yes') {
-            armorclass += shield().armorclass;
+        if (getShield().equipped == 'Yes') {
+            armorclass += getShield().armorclass;
         }
         return armorclass;
     };
@@ -37,7 +37,7 @@ app.controller('EquipmentController', ['$scope', function($scope) {
         if (getArmor().equipped == 'Yes') {
             maxdex = getArmor().maxdex;
         }
-        if (shield().equipped == 'Yes' && shield().type == 'Tower') {
+        if (getShield().equipped == 'Yes' && getShield().type == 'Tower') {
             maxdex = Math.min(maxdex, 2);
         }
         return maxdex;
@@ -48,8 +48,8 @@ app.controller('EquipmentController', ['$scope', function($scope) {
         if (getArmor().equipped == 'Yes') {
             checkpenalty += getArmor().checkpenalty;
         }
-        if (shield().equipped == 'Yes') {
-            checkpenalty += shield().checkpenalty;
+        if (getShield().equipped == 'Yes') {
+            checkpenalty += getShield().checkpenalty;
         }
         return checkpenalty;
     };
@@ -59,8 +59,8 @@ app.controller('EquipmentController', ['$scope', function($scope) {
         if (getArmor().equipped == 'Yes') {
             spellfailure += getArmor().spellfailure;
         }
-        if (shield().equipped == 'Yes') {
-            spellfailure += shield().spellfailure;
+        if (getShield().equipped == 'Yes') {
+            spellfailure += getShield().spellfailure;
         }
         return spellfailure;
     };
