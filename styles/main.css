@@ -61,6 +61,12 @@ body {
     transform: translate(-50%, -50%);
 }
 
+/* Fix scrollbar disappearing */
+
+body.modal-open {
+    overflow: auto;
+}
+
 /* Mobile */
 
 @media all and (max-width: 1029px) {
