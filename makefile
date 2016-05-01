@@ -4,7 +4,7 @@ D20PFSRDFOLDER=d20pfsrd
 D20PFSRD=$(D20PFSRDFOLDER)/feats $(D20PFSRDFOLDER)/spells $(D20PFSRDFOLDER)/traits
 D20PFSRDBUILD=$(shell find $(D20PFSRDFOLDER) -name '*.py') $(D20PFSRDFOLDER)/makefile
 
-LIBJS=angular/angular.min.js angular/angular-route.min.js angular/angular-ui-bootstrap.min.js lz-string/lz-string.min.js
+LIBJS=angular/angular.min.js angular/angular-route.min.js angular/angular-ui-bootstrap.min.js lz-string/lz-string.min.js mqgenie/mq.genie.min.js
 LIBCSS=bootstrap/css/bootstrap.min.css bootstrap/css/bootstrap-theme.min.css
 
 APPVIEWS=$(shell find views -name '*.html')
