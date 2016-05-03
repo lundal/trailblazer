@@ -15,6 +15,16 @@ app.service('CharacterService', [function() {
                 {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
             ];
         };
+        if (!character.hp.max) {
+            character.hp = {
+                auto:true,
+                max:[{bonus:0, desc:''}],
+                current:0,
+                temp:0,
+                nonlethal:0,
+                damagereduction:'',
+            };
+        }
     };
 
     service.generateGUID = function() {
@@ -79,6 +89,15 @@ app.service('CharacterService', [function() {
             deflection:[{bonus:0, desc:''}],
             dodge:[{bonus:0, desc:''}],
             misc:[{bonus:0, desc:''}],
+        };
+
+        character.hp = {
+            auto:true,
+            max:[{bonus:0, desc:''}],
+            current:0,
+            temp:0,
+            nonlethal:0,
+            damagereduction:'',
         };
 
         character.attacks = [

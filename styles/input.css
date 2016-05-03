@@ -126,6 +126,10 @@ input:invalid:focus {
     text-align: left;
 }
 
+.numberbox.expand {
+    text-align: center;
+}
+
 .highlight {
     border-width: 2px;
     padding: 1px 5px;

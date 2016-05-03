@@ -37,7 +37,9 @@ app.controller('AdvancementController', ['$scope', function($scope) {
 
     /* Shared */
 
-    $scope.shared.characterLevel = $scope.characterLevel;
+    $scope.shared.characterLevel = function() {
+        return $scope.characterLevel();
+    };
 
     $scope.shared.baseAttackBonus = function() {
         var classes = $scope.character.classes;

@@ -201,7 +201,8 @@
                                tooltip="{{ movementTotalTooltip(character.movement) }}" tooltip-popup-delay="300">
                     </td>
                     <td>
-                        <input type="number" class="input numberbox" ng-model="character.movement.base">
+                        <input type="number" class="input numberbox" ng-model="character.movement.base"
+                               min="0" max="999" pattern="-?[0-9]+">
                     </td>
                     <td>
                         <input type="text" class="input numberbox editable" value="{{ movementMisc(character.movement) }}" readonly
@@ -450,8 +451,55 @@
                 </tr>
             </table>
         </section>
-        <section id="hit-points">
+        <section id="hit-points" ng-controller="HitPointsController">
             <header> Hit Points </header>
+            <table>
+                <tr>
+                    <th colspan="2"> Current </th>
+                    <th> Max </th>
+                    <th> Auto </th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="number" class="input numberbox expand highlight" ng-model="character.hp.current"
+                               pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox expand" value="{{ hpMax() }}" readonly
+                               tooltip="{{ hpMaxTooltip() }}" tooltip-popup-delay="300"
+                               ng-focus="hpMaxEdit()">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="character.hp.auto">
+                    </td>
+                </tr>
+                <tr>
+                    <th> Temp </th>
+                    <th> Non-Lethal </th>
+                    <th colspan="2"> Damage Reduction </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number" class="input numberbox expand" ng-model="character.hp.temp"
+                               min="0" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox expand" ng-model="character.hp.nonlethal"
+                               min="0" pattern="-?[0-9]+">
+                    </td>
+                    <td colspan="2">
+                        <input type="text" class="input numberbox expand" ng-model="character.hp.damagereduction">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div style="width:100%; height: 8px; background: #FF6666; border: 1px solid #666; border-radius:4px; overflow: hidden;">
+                            <div style="float:left; width:{{ hpAboveZeroPercent() }}%; height:100%; background: #99EE99;"></div>
+                            <div style="float:right; width:{{ hpBelowZeroPercent() }}%; height:100%; background: #666666;"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </section>
     </div>
     <div class="align-h">
@@ -519,6 +567,14 @@
                     </td>
                 </tr>
             </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="ammo">
+            <header> Ammunition </header>
+        </section>
+        <section id="combatmaneuvers">
+            <header> Combat Maneuvers </header>
         </section>
     </div>
     <h1 id="talents"> Talents </h1>

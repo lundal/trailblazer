@@ -35,6 +35,9 @@ app.service('BreakdownService', ['$modal', function($modal) {
     service.tooltip = function(breakdown) {
         var tooltip = '';
         for (var i = 0; i < breakdown.length; i++) {
+            if (breakdown[i].bonus == 0) {
+                continue;
+            }
             tooltip += breakdown[i].desc + ": " + breakdown[i].bonus;
             if (i + 1 != breakdown.length) {
                 tooltip += ", ";
