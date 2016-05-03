@@ -60,7 +60,7 @@ app.controller('AdvancementController', ['$scope', function($scope) {
         // Full hit die for first level
         if (classes[0].level > 0) {
             var die = parseInt(classes[0].hitdie.substring(1)); // Parses the number
-            hp += classes[i].level * (die / 2 - 1);
+            hp += (die / 2 - 1);
         }
         return hp;
     };
