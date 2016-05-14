@@ -15,7 +15,7 @@ app.service('CharacterService', [function() {
                 {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
             ];
         };
-        if (!character.hp.max) {
+        if (!character.hp || !character.hp.max) {
             character.hp = {
                 auto:true,
                 max:[{bonus:0, desc:''}],
