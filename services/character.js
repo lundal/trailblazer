@@ -25,6 +25,9 @@ app.service('CharacterService', [function() {
                 damagereduction:'',
             };
         }
+        if (!character.languages) {
+            character.languages = [{name:'~'}];
+        }
         if (!character.proficiencies) {
             character.proficiencies = [{name:'~'}];
         }
@@ -139,6 +142,7 @@ app.service('CharacterService', [function() {
         character.feats = [{name:'~'}];
         character.traits = [{name:'~'}];
         character.features = [{name:'~'}];
+        character.languages = [{name:'~'}];
         character.proficiencies = [{name:'~'}];
 
         character.equipment = {
