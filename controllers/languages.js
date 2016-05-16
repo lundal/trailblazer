@@ -13,7 +13,7 @@ app.controller('LanguagesController', ['$scope', '$filter', '$modal', 'LanguageS
     };
 
     $scope.tooltip = function(language) {
-        return 'Spoken by: ' + language.description;
+        return 'Spoken by: ' + language.spokenby;
     };
 
     $scope.add = function() {
