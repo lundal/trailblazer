@@ -30,7 +30,7 @@ app.service('LanguageService', ['$http', function($http) {
                 language[key] = data[key];
             }
             console.log('Language loaded: ' + number);
-            console.log(trait);
+            console.log(language);
         }).error(function(data) {
             console.log('Language not found: ' + number);
         });

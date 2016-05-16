@@ -17,7 +17,7 @@ app.controller('LanguagesController', ['$scope', '$filter', '$modal', 'LanguageS
     };
 
     $scope.add = function() {
-        /* Tilde is used to make the new trait appear last after sorting */
+        /* Tilde is used to make the new language appear last after sorting */
         $scope.character.languages.push({name:'~'});
     };
 
