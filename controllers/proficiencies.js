@@ -4,7 +4,7 @@ app.controller('ProficienciesController', ['$scope', '$filter',  'DoubleClickSer
     /* Private */
 
     $scope.tooltip = function(proficiency) {
-        return proficiency.name;
+        return '';
     };
 
     $scope.add = function() {
