@@ -1,6 +1,6 @@
-.PHONY: all feats spells traits clean
+.PHONY: all feats spells traits languages clean
 
-all: feats spells traits
+all: feats spells traits languages
 
 feats.txt:
 	wget -O $@ "https://docs.google.com/spreadsheet/pub?key=0Ak-IxjmMq9NMdHhobmxRSzBJQ2JjVXJaYkFwZjM0MlE&output=txt" # OGL
@@ -25,7 +25,17 @@ traits: traits.txt
 	mkdir -p traits
 	python traits.py
 
+linguistics.txt:
+	wget -O $@ "http://www.d20pfsrd.com/skills/linguistics"
+
+languages.txt: linguistics.txt
+	python linguistics.py
+
+languages: languages.txt
+	mkdir -p languages
+	python languages.py
+
 clean:
 	rm -f *.txt
 	rm -rf __pycache__
-	rm -rf feats spells traits
+	rm -rf feats spells traits languages
