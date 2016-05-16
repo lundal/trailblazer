@@ -9,12 +9,12 @@ app.service('CharacterService', [function() {
                 misc:[{bonus:0, desc:''}],
                 temp:[{bonus:0, desc:''}],
             };
-        };
+        }
         if (!character.attacks) {
             character.attacks = [
                 {weapon:'~', bonus:0, ability:'Str', damage:'', critical:'20x2', type:'', range:0, notes:''},
             ];
-        };
+        }
         if (!character.hp || !character.hp.max) {
             character.hp = {
                 auto:true,
@@ -24,6 +24,9 @@ app.service('CharacterService', [function() {
                 nonlethal:0,
                 damagereduction:'',
             };
+        }
+        if (!character.proficiencies) {
+            character.proficiencies = [{name:'~'}];
         }
     };
 
@@ -136,6 +139,7 @@ app.service('CharacterService', [function() {
         character.feats = [{name:'~'}];
         character.traits = [{name:'~'}];
         character.features = [{name:'~'}];
+        character.proficiencies = [{name:'~'}];
 
         character.equipment = {
             armor: {

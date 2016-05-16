@@ -744,6 +744,33 @@
                     </tr>
                 </table>
             </section>
+            <section id="proficiencies" ng-controller="ProficienciesController">
+                <header> Proficiencies </header>
+                <table>
+                    <tr>
+                        <th class="expand"> Proficiency </th>
+                        <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                    </tr>
+                    <tr ng-repeat="proficiency in character.proficiencies">
+                        <td>
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="proficiency.name" ng-blur="sort()"
+                                   tooltip="{{ tooltip(proficiency) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square {{ removeStyle(proficiency) }}" ng-click="remove(proficiency)">
+                                <i class="glyphicon glyphicon-remove icon-bad"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="42">
+                            <button type="button" class="btn btn-default button-square" ng-click="add()">
+                                <i class="glyphicon glyphicon-plus icon-good"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
         </div>
     </div>
     <h1 id="items"> Items </h1>
