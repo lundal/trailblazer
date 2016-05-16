@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ language.name }}</h3>
+</div>
+<div class="modal-body">
+
+    <h4> Spoken by </h4>
+    <textarea class="input textbox expand" ng-model="language.requirements" id="language-spokenby"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+    <h4> Description </h4>
+    <textarea class="input textbox expand" ng-model="language.description" id="language-description"
+              ng-keyup="resize($event)" ng-keydown="resize($event)">
+    </textarea>
+
+</div>

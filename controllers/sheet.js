@@ -1,8 +1,8 @@
 app.controller('SheetController', ['$scope', '$routeParams', '$interval',
-               'CharacterService', 'FeatService', 'SpellService', 'TraitService',
+               'CharacterService', 'FeatService', 'SpellService', 'TraitService', 'LanguageService',
                'LocalStorageService','DriveStorageService',
 function($scope, $routeParams, $interval,
-          characterService, featService, spellService, traitService,
+          characterService, featService, spellService, traitService, languageService,
           localStorageService, driveStorageService) {
 
     /* Parameters */
@@ -102,5 +102,6 @@ function($scope, $routeParams, $interval,
     featService.load();
     spellService.load();
     traitService.load();
+    languageService.load();
 
 }]);

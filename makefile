@@ -1,7 +1,7 @@
 FONTS=$(shell find bootstrap/fonts -name '*.*') $(shell find fonts -name '*.*')
 
 D20PFSRDFOLDER=d20pfsrd
-D20PFSRD=$(D20PFSRDFOLDER)/feats $(D20PFSRDFOLDER)/spells $(D20PFSRDFOLDER)/traits
+D20PFSRD=$(D20PFSRDFOLDER)/feats $(D20PFSRDFOLDER)/spells $(D20PFSRDFOLDER)/traits $(D20PFSRDFOLDER)/languages
 D20PFSRDBUILD=$(shell find $(D20PFSRDFOLDER) -name '*.py') $(D20PFSRDFOLDER)/makefile
 
 LIBJS=angular/angular.min.js angular/angular-route.min.js angular/angular-ui-bootstrap.min.js lz-string/lz-string.min.js mqgenie/mq.genie.min.js

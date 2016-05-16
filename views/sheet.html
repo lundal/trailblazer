@@ -744,6 +744,41 @@
                     </tr>
                 </table>
             </section>
+            <section id="languages" ng-controller="LanguagesController">
+                <header> Languages </header>
+                <table>
+                    <tr>
+                        <th class="expand"> Language </th>
+                        <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                        <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                    </tr>
+                    <tr ng-repeat="language in character.languages">
+                        <td>
+                            <input type="text" class="input textbox expand bottom-border-only" ng-model="language.name" ng-blur="sort()"
+                                   typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                                   typeahead-on-select="onSelected($item, $index)"
+                                   tooltip="{{ tooltip(language) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square" ng-click="openDetails(language)">
+                                <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default button-square {{ removeStyle(language) }}" ng-click="remove(language)">
+                                <i class="glyphicon glyphicon-remove icon-bad"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="42">
+                            <button type="button" class="btn btn-default button-square" ng-click="add()">
+                                <i class="glyphicon glyphicon-plus icon-good"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
             <section id="proficiencies" ng-controller="ProficienciesController">
                 <header> Proficiencies </header>
                 <table>
