@@ -64,6 +64,7 @@ input[type='number']::-webkit-outer-spin-button {
     width: 28px;
     height: 28px;
     font-size: 14px;
+    border: 1px solid #aaa;
 }
 
 .button-recently-clicked,
@@ -86,6 +87,10 @@ input[type='number']::-webkit-outer-spin-button {
 
 .icon-info {
     color: #49E;
+}
+
+.icon-util {
+    color: #666;
 }
 
 input:invalid,
@@ -141,6 +146,18 @@ input:invalid:focus {
     border-left: none;
     border-right: none;
     box-shadow: none;
+}
+
+/* Input groups */
+
+.input-group .input:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .input:last-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 /* Tables */

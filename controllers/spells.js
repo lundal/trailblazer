@@ -67,4 +67,8 @@ app.controller('SpellsController', ['$scope', '$filter', '$modal', 'SpellService
         });
     };
 
+    $scope.addCast = function(spell) {
+        spell.cast += 1;
+    };
+
 }]);
