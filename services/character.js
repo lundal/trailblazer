@@ -31,6 +31,21 @@ app.service('CharacterService', [function() {
         if (!character.proficiencies) {
             character.proficiencies = [{name:'~'}];
         }
+        if (!character.spells) {
+            character.spells = {
+                spellike: [{prepared:0,cast:0,name:'~'}],
+                level0: [{prepared:0,cast:0,name:'~'}],
+                level1: [{prepared:0,cast:0,name:'~'}],
+                level2: [{prepared:0,cast:0,name:'~'}],
+                level3: [{prepared:0,cast:0,name:'~'}],
+                level4: [{prepared:0,cast:0,name:'~'}],
+                level5: [{prepared:0,cast:0,name:'~'}],
+                level6: [{prepared:0,cast:0,name:'~'}],
+                level7: [{prepared:0,cast:0,name:'~'}],
+                level8: [{prepared:0,cast:0,name:'~'}],
+                level9: [{prepared:0,cast:0,name:'~'}],
+            };
+        }
     };
 
     service.generateGUID = function() {
@@ -174,6 +189,19 @@ app.service('CharacterService', [function() {
             },
         };
 
+        character.spells = {
+            spellike: [{prepared:0,cast:0,name:'~'}],
+            level0: [{prepared:0,cast:0,name:'~'}],
+            level1: [{prepared:0,cast:0,name:'~'}],
+            level2: [{prepared:0,cast:0,name:'~'}],
+            level3: [{prepared:0,cast:0,name:'~'}],
+            level4: [{prepared:0,cast:0,name:'~'}],
+            level5: [{prepared:0,cast:0,name:'~'}],
+            level6: [{prepared:0,cast:0,name:'~'}],
+            level7: [{prepared:0,cast:0,name:'~'}],
+            level8: [{prepared:0,cast:0,name:'~'}],
+            level9: [{prepared:0,cast:0,name:'~'}],
+        };
 
         return character;
     };
