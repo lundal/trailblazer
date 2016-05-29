@@ -31,6 +31,41 @@ app.service('CharacterService', [function() {
         if (!character.proficiencies) {
             character.proficiencies = [{name:'~'}];
         }
+        if (!character.spells) {
+            character.spells = {
+                spellike: [{prepared:0,cast:0,name:'~'}],
+                level0: [{prepared:0,cast:0,name:'~'}],
+                level1: [{prepared:0,cast:0,name:'~'}],
+                level2: [{prepared:0,cast:0,name:'~'}],
+                level3: [{prepared:0,cast:0,name:'~'}],
+                level4: [{prepared:0,cast:0,name:'~'}],
+                level5: [{prepared:0,cast:0,name:'~'}],
+                level6: [{prepared:0,cast:0,name:'~'}],
+                level7: [{prepared:0,cast:0,name:'~'}],
+                level8: [{prepared:0,cast:0,name:'~'}],
+                level9: [{prepared:0,cast:0,name:'~'}],
+            };
+        }
+        if (!character.spelcasting) {
+            character.spellcasting = [
+                {desc:'Level 0', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 1', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 2', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 3', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 4', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 5', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 6', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 7', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 8', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+                {desc:'Level 9', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            ];
+        }
+        if (!character.spelldc) {
+            character.spelldc = {
+                ability: 'Int',
+                misc: [{bonus:0, desc:''}]
+            };
+        }
     };
 
     service.generateGUID = function() {
@@ -174,6 +209,37 @@ app.service('CharacterService', [function() {
             },
         };
 
+        character.spells = {
+            spellike: [{prepared:0,cast:0,name:'~'}],
+            level0: [{prepared:0,cast:0,name:'~'}],
+            level1: [{prepared:0,cast:0,name:'~'}],
+            level2: [{prepared:0,cast:0,name:'~'}],
+            level3: [{prepared:0,cast:0,name:'~'}],
+            level4: [{prepared:0,cast:0,name:'~'}],
+            level5: [{prepared:0,cast:0,name:'~'}],
+            level6: [{prepared:0,cast:0,name:'~'}],
+            level7: [{prepared:0,cast:0,name:'~'}],
+            level8: [{prepared:0,cast:0,name:'~'}],
+            level9: [{prepared:0,cast:0,name:'~'}],
+        };
+
+        character.spellcasting = [
+            {desc:'Level 0', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 1', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 2', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 3', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 4', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 5', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 6', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 7', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 8', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+            {desc:'Level 9', clas:0, domain:0, misc:[{bonus:0, desc:''}], known:0},
+        ];
+
+        character.spelldc = {
+            ability: 'Int',
+            misc: [{bonus:0, desc:''}]
+        };
 
         return character;
     };

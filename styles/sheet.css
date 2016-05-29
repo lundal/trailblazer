@@ -195,6 +195,25 @@ h2 {
     border: 0;
 }
 
+#spells0 th.name,
+#spells1 th.name,
+#spells2 th.name,
+#spells3 th.name,
+#spells4 th.name,
+#spells5 th.name,
+#spells6 th.name,
+#spells7 th.name,
+#spells8 th.name,
+#spells9 th.name {
+    text-align: left;
+    padding-left: 9px;
+}
+
+#spellnotes textarea {
+    height: 437px;
+    border: 0;
+}
+
 #appearance textarea,
 #personality textarea,
 #background textarea,

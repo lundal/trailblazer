@@ -981,8 +981,673 @@
     </div>
     <h1 id="magic"> Magic </h1>
     <div class="align-h">
-        <section id="spells">
-            <header> Spells </header>
+        <section id="spellcasting" ng-controller="SpellcastingController">
+            <header> Spellcasting </header>
+            <table>
+                <tr>
+                    <th class="expand"> Spell Level </th>
+                    <th> Spell DC </th>
+                    <th> Total Pr. Day </th>
+                    <th> Class Pr. Day </th>
+                    <th> Domain Pr. Day </th>
+                    <th> Misc Pr. Day </th>
+                    <th> Spells Known </th>
+                </tr>
+                <tr ng-repeat="entry in character.spellcasting">
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="entry.desc" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{ spellDC(entry, $index) }}" readonly
+                               tooltip="{{ spellDCTooltip(entry, $index) }}" tooltip-popup-delay="300">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{ perDayTotal(entry, $index) }}" readonly
+                               tooltip="{{ perDayTotalTooltip(entry, $index) }}" tooltip-popup-delay="300">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="entry.clas" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox" ng-model="entry.domain" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox editable" value="{{ perDayMisc(entry) }}" readonly
+                               tooltip="{{ perDayMiscTooltip(entry) }}" tooltip-popup-delay="300"
+                               ng-focus="perDayMiscEdit(entry)">
+                    </td>
+                    <td>
+                        <input type="number" class="input numberbox highlight" ng-model="entry.known" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th class="expand"> </th>
+                    <th> Key Ability </th>
+                    <th> Misc </th>
+                    <th> Total </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" value="Base Spell DC" readonly>
+                    </td>
+                    <td>
+                        <select class="input selectbox" ng-model="character.spelldc.ability">
+                            <option value="Int">Intelligence</option>
+                            <option value="Wis">Wisdom</option>
+                            <option value="Cha">Charisma</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox editable" value="{{ spellDCMisc(entry) }}" readonly
+                               tooltip="{{ spellDCMiscTooltip(entry) }}" tooltip-popup-delay="300"
+                               ng-focus="spellDCMiscEdit(entry)">
+                    </td>
+                    <td>
+                        <input type="text" class="input numberbox highlight" value="{{ spellDCTotal(entry) }}" readonly
+                               tooltip="{{ spellDCTotalTooltip(entry, $index) }}" tooltip-popup-delay="300">
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section id="spellnotes" ng-controller="SavesController">
+            <header> Spell Notes </header>
+            <textarea class="input textbox expand" placeholder="Schools/domains..." ng-model="character.spellnotes">
+            </textarea>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells0" ng-controller="SpellsController">
+            <header> Level 0 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level0">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level0)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level0, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level0, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level0)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells1" ng-controller="SpellsController">
+            <header> Level 1 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level1">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level1)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level1, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level1, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level1)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells2" ng-controller="SpellsController">
+            <header> Level 2 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level2">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level2)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level2, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level2, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level2)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells3" ng-controller="SpellsController">
+            <header> Level 3 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level3">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level3)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level3, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level3, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level3)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells4" ng-controller="SpellsController">
+            <header> Level 4 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level4">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level4)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level4, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level4, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level4)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells5" ng-controller="SpellsController">
+            <header> Level 5 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level5">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level5)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level5, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level5, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level5)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells6" ng-controller="SpellsController">
+            <header> Level 6 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level6">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level6)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level6, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level6, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level6)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells7" ng-controller="SpellsController">
+            <header> Level 7 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level7">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level7)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level7, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level7, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level7)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells8" ng-controller="SpellsController">
+            <header> Level 8 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level8">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level8)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level8, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level8, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level8)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <div class="align-h">
+        <section id="spells9" ng-controller="SpellsController">
+            <header> Level 9 Spells </header>
+            <table>
+                <tr>
+                    <th tooltip="Prepared" tooltip-popup-delay="300" tooltip-append-to-body="true"> Prep </th>
+                    <th > Cast </th>
+                    <th class="name"> Spell </th>
+                    <th class="expand"> Short Description </th>
+                    <th tooltip="Information" tooltip-popup-delay="300" tooltip-append-to-body="true"> Info </th>
+                    <th tooltip="Delete" tooltip-popup-delay="300" tooltip-append-to-body="true"> Del </th>
+                </tr>
+                <tr ng-repeat="spell in character.spells.level9">
+                    <td>
+                        <input type="number" class="input numberbox spinner" ng-model="spell.prepared" required
+                               min="0" max="999" pattern="-?[0-9]+">
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="input numberbox spinner" ng-model="spell.cast" required
+                                   min="0" max="999" pattern="-?[0-9]+">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default button-square" ng-click="addCast(spell)">
+                                    <i class="glyphicon glyphicon-plus icon-util"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox widest bottom-border-only" ng-model="spell.name" ng-blur="sort(character.spells.level9)"
+                               typeahead="name for name in names | filter:$viewValue | limitTo:10"
+                               typeahead-on-select="onSelected(character.spells.level9, $item, $index)"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <input type="text" class="input textbox expand bottom-border-only" ng-model="spell.descriptionshort"
+                               tooltip="{{ tooltip(spell) }}" tooltip-popup-delay="300" tooltip-append-to-body="true">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square" ng-click="openDetails(spell)">
+                            <i class="glyphicon glyphicon-menu-hamburger icon-info"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default button-square {{ removeStyle(spell) }}" ng-click="remove(character.spells.level9, spell)">
+                            <i class="glyphicon glyphicon-remove icon-bad"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="42">
+                        <button type="button" class="btn btn-default button-square" ng-click="add(character.spells.level9)">
+                            <i class="glyphicon glyphicon-plus icon-good"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </section>
     </div>
     <h1 id="fluff"> Fluff </h1>
