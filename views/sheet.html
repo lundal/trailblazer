@@ -391,12 +391,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" class="input numberbox" value="{{ armorclassNatural() }}" readonly
+                    <input type="text" class="input numberbox editable" value="{{ armorclassNatural() }}" readonly
                            tooltip="{{ armorclassNaturalTooltip() }}" tooltip-popup-delay="300"
                            ng-focus="armorclassNaturalEdit()">
                 </td>
                 <td>
-                    <input type="text" class="input numberbox" value="{{ armorclassDeflection() }}" readonly
+                    <input type="text" class="input numberbox editable" value="{{ armorclassDeflection() }}" readonly
                            tooltip="{{ armorclassDeflectionTooltip() }}" tooltip-popup-delay="300"
                            ng-focus="armorclassDeflectionEdit()">
                 </td>
@@ -407,12 +407,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" class="input numberbox" value="{{ armorclassDodge() }}" readonly
+                    <input type="text" class="input numberbox editable" value="{{ armorclassDodge() }}" readonly
                            tooltip="{{ armorclassDodgeTooltip() }}" tooltip-popup-delay="300"
                            ng-focus="armorclassDodgeEdit()">
                 </td>
                 <td>
-                    <input type="text" class="input numberbox" value="{{ armorclassMisc() }}" readonly
+                    <input type="text" class="input numberbox editable" value="{{ armorclassMisc() }}" readonly
                            tooltip="{{ armorclassMiscTooltip() }}" tooltip-popup-delay="300"
                            ng-focus="armorclassMiscEdit()">
                 </td>
@@ -466,12 +466,13 @@
                            pattern="-?[0-9]+">
                 </td>
                 <td>
-                    <input type="text" class="input numberbox expand" value="{{ hpMax() }}" readonly
+                    <input type="text" class="input numberbox expand editable" value="{{ hpMax() }}" readonly
                            tooltip="{{ hpMaxTooltip() }}" tooltip-popup-delay="300"
                            ng-focus="hpMaxEdit()">
                 </td>
                 <td>
-                    <input type="checkbox" ng-model="character.hp.auto">
+                    <input type="checkbox" ng-model="character.hp.auto"
+                           tooltip="Adds hit points from constitution and average hit points from class levels" tooltip-popup-delay="300">
                 </td>
             </tr>
             <tr>
