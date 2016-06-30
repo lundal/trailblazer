@@ -11,37 +11,91 @@
     background: rgba(255, 255, 255, 0.75);
 }
 
-/* Generic layout */
+/* Placement */
 
-.align-h {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
+#grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "..... ..... gener gener ..... ....."
+                         "basic basic basic advan advan advan"
+                         "abili abili movem movem carry carry"
+                         "..... ..... comba comba ..... ....."
+                         "saves saves armor armor hitpo hitpo"
+                         "attac attac attac attac attac attac"
+                         "ammun ammun ammun maneu maneu maneu"
+                         "..... ..... talen talen ..... ....."
+                         "skill skill skill feats feats feats"
+                         "skill skill skill trait trait trait"
+                         "skill skill skill featu featu featu"
+                         "skill skill skill langu langu langu"
+                         "skill skill skill profi profi profi"
+                         "..... ..... items items ..... ....."
+                         "equip equip equip inven inven inven"
+                         "..... ..... magic magic ..... ....."
+                         "scast scast scast snote snote snote"
+                         "spls0 spls0 spls0 spls0 spls0 spls0"
+                         "spls1 spls1 spls1 spls1 spls1 spls1"
+                         "spls2 spls2 spls2 spls2 spls2 spls2"
+                         "spls3 spls3 spls3 spls3 spls3 spls3"
+                         "spls4 spls4 spls4 spls4 spls4 spls4"
+                         "spls5 spls5 spls5 spls5 spls5 spls5"
+                         "spls6 spls6 spls6 spls6 spls6 spls6"
+                         "spls7 spls7 spls7 spls7 spls7 spls7"
+                         "spls8 spls8 spls8 spls8 spls8 spls8"
+                         "spls9 spls9 spls9 spls9 spls9 spls9"
+                         "..... ..... fluff fluff ..... ....."
+                         "appea appea appea perso perso perso"
+                         "backg backg backg notes notes notes"
 }
 
-.align-h > * {
-    flex: 1 100%;
-}
+#general { grid-area: gener; }
+#basics { grid-area: basic; }
+#advancement { grid-area: advan; }
+#abilities { grid-area: abili; }
+#movement { grid-area: movem; }
+#carrying-capacity { grid-area: carry; }
 
-.align-v {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-}
+#combat { grid-area: comba; }
+#saves { grid-area: saves; }
+#ac { grid-area: armor; }
+#hit-points { grid-area: hitpo; }
+#attacks { grid-area: attac; }
+#ammo { grid-area: ammun; }
+#combat-maneuvers { grid-area: maneu; }
 
-.align-v > * {
-    flex-grow: 1;
-}
+#talents { grid-area: talen; }
+#skills { grid-area: skill; }
+#feats { grid-area: feats; }
+#traits { grid-area: trait; }
+#features { grid-area: featu; }
+#languages { grid-area: langu; }
+#proficiencies { grid-area: profi; }
 
-/* Spacing tweaks */
+#items { grid-area: items; }
+#equipment { grid-area: equip; }
+#inventory { grid-area: inven; }
 
-.align-h {
-    margin: -5px;
-}
+#magic { grid-area: magic; }
+#spellcasting { grid-area: scast; }
+#spellnotes { grid-area: snote; }
+#spells0 { grid-area: spls0; }
+#spells1 { grid-area: spls1; }
+#spells2 { grid-area: spls2; }
+#spells3 { grid-area: spls3; }
+#spells4 { grid-area: spls4; }
+#spells5 { grid-area: spls5; }
+#spells6 { grid-area: spls6; }
+#spells7 { grid-area: spls7; }
+#spells8 { grid-area: spls8; }
+#spells9 { grid-area: spls9; }
 
-.align-h + .align-h {
-    margin-top: 5px;
-}
+#fluff { grid-area: fluff; }
+#appearance { grid-area: appea; }
+#personality { grid-area: perso; }
+#background { grid-area: backg; }
+#notes { grid-area: notes; }
 
 /* Styling */
 
@@ -52,7 +106,6 @@ section {
     box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
     margin-bottom: 10px;
     overflow: hidden;
-    margin: 5px;
 }
 
 section header {
@@ -249,8 +302,49 @@ h2 {
 
 @media all and (max-width: 1029px) {
 
-.align-h {
-    flex-flow: row wrap;
+#grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "gener"
+                         "basic"
+                         "advan"
+                         "abili"
+                         "movem"
+                         "carry"
+                         "comba"
+                         "saves"
+                         "armor"
+                         "hitpo"
+                         "attac"
+                         "ammun"
+                         "maneu"
+                         "talen"
+                         "skill"
+                         "feats"
+                         "trait"
+                         "featu"
+                         "langu"
+                         "profi"
+                         "items"
+                         "equip"
+                         "inven"
+                         "magic"
+                         "scast"
+                         "snote"
+                         "spls0"
+                         "spls1"
+                         "spls2"
+                         "spls3"
+                         "spls4"
+                         "spls5"
+                         "spls6"
+                         "spls7"
+                         "spls8"
+                         "spls9"
+                         "fluff"
+                         "appea"
+                         "perso"
+                         "backg"
+                         "notes"
 }
 
 #quicknav {
