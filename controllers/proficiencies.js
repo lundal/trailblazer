@@ -23,7 +23,7 @@ app.controller('ProficienciesController', ['$scope', '$filter',  'DoubleClickSer
         if (doubleClickService.click(proficiency) == doubleClickService.doubleClick) {
             removeItem($scope.character.proficiencies, proficiency);
 
-            if ($scope.character.feats.length == 0) {
+            if ($scope.character.proficiencies.length == 0) {
                 $scope.add();
             }
         }
