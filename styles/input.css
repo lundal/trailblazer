@@ -114,15 +114,15 @@ input:invalid:focus {
     text-align: center;
 }
 
-.numberbox.wide {
+.wide {
     width: 64px;
 }
 
-.numberbox.wider {
+.wider {
     width: 128px;
 }
 
-.numberbox.widest {
+.widest {
     width: 160px;
 }
 
