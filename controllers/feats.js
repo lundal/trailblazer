@@ -1,4 +1,4 @@
-app.controller('FeatsController', ['$scope', '$filter', '$modal', 'FeatService', 'DoubleClickService',
+app.controller('FeatsController', ['$scope', '$filter', '$uibModal', 'FeatService', 'DoubleClickService',
         function($scope, $filter, $modal, featService, doubleClickService) {
 
     /* Private */

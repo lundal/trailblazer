@@ -1,4 +1,4 @@
-app.controller('LanguagesController', ['$scope', '$filter', '$modal', 'LanguageService', 'DoubleClickService',
+app.controller('LanguagesController', ['$scope', '$filter', '$uibModal', 'LanguageService', 'DoubleClickService',
         function($scope, $filter, $modal, languageService, doubleClickService) {
 
     /* Private */

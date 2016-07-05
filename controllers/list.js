@@ -1,4 +1,4 @@
-app.controller('ListController', ['$scope', '$location', '$modal',
+app.controller('ListController', ['$scope', '$location', '$uibModal',
                'CharacterService', 'LocalStorageService','DriveStorageService', 'DoubleClickService',
 function($scope, $location, $modal,
         characterService, localStorageService, driveStorageService, doubleClickService) {

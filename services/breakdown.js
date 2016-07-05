@@ -1,4 +1,4 @@
-app.service('BreakdownService', ['$modal', function($modal) {
+app.service('BreakdownService', ['$uibModal', function($modal) {
 
     var service = this;
 

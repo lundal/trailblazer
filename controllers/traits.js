@@ -1,4 +1,4 @@
-app.controller('TraitsController', ['$scope', '$filter', '$modal', 'TraitService', 'DoubleClickService',
+app.controller('TraitsController', ['$scope', '$filter', '$uibModal', 'TraitService', 'DoubleClickService',
         function($scope, $filter, $modal, traitService, doubleClickService) {
 
     /* Private */

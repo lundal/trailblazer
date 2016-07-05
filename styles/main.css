@@ -65,6 +65,7 @@ body {
 
 body.modal-open {
     overflow: auto;
+    padding-right: 0 !important;
 }
 
 /* Mobile */

@@ -1,4 +1,4 @@
-app.controller('SpellsController', ['$scope', '$filter', '$modal', 'SpellService', 'DoubleClickService',
+app.controller('SpellsController', ['$scope', '$filter', '$uibModal', 'SpellService', 'DoubleClickService',
         function($scope, $filter, $modal, spellService, doubleClickService) {
 
     /* Private */

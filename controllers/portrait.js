@@ -1,4 +1,4 @@
-app.controller('PortraitController', ['$scope', '$modal', function($scope, $modal) {
+app.controller('PortraitController', ['$scope', '$uibModal', function($scope, $modal) {
 
     /* Private */
 

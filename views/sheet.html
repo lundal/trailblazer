@@ -167,7 +167,7 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ abilityScoreBase(ability) }}" readonly
                            tooltip="{{ abilityScoreBaseTooltip(ability) }}" tooltip-popup-delay="300"
-                           ng-focus="abilityScoreBaseEdit(ability)">
+                           ng-click="abilityScoreBaseEdit(ability)">
                 </td>
                 <td>
                     <input type="number" class="input numberbox highlight" value="{{ abilityModifierBase(ability) }}" readonly>
@@ -175,7 +175,7 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ abilityScoreTemp(ability) }}" readonly
                            tooltip="{{ abilityScoreTempTooltip(ability) }}" tooltip-popup-delay="300"
-                           ng-focus="abilityScoreTempEdit(ability)">
+                           ng-click="abilityScoreTempEdit(ability)">
                 </td>
                 <td>
                     <input type="number" class="input numberbox highlight" value="{{ abilityModifierTemp(ability) }}" readonly>
@@ -208,12 +208,12 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ movementMisc(character.movement) }}" readonly
                            tooltip="{{ movementMiscTooltip(character.movement) }}" tooltip-popup-delay="300"
-                           ng-focus="movementMiscEdit(character.movement)">
+                           ng-click="movementMiscEdit(character.movement)">
                 </td>
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ movementTemp(character.movement) }}" readonly
                            tooltip="{{ movementTempTooltip(character.movement) }}" tooltip-popup-delay="300"
-                           ng-focus="movementTempEdit(character.movement)">
+                           ng-click="movementTempEdit(character.movement)">
                 </td>
             </tr>
             <tr>
@@ -372,12 +372,12 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ saveBase(save) }}" readonly
                            tooltip="{{ saveBaseTooltip(save) }}" tooltip-popup-delay="300"
-                           ng-focus="saveBaseEdit(save)">
+                           ng-click="saveBaseEdit(save)">
                 </td>
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ saveMisc(save) }}" readonly
                            tooltip="{{ saveMiscTooltip(save) }}" tooltip-popup-delay="300"
-                           ng-focus="saveMiscEdit(save)">
+                           ng-click="saveMiscEdit(save)">
                 </td>
             </tr>
         </table>
@@ -393,12 +393,12 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ armorclassNatural() }}" readonly
                            tooltip="{{ armorclassNaturalTooltip() }}" tooltip-popup-delay="300"
-                           ng-focus="armorclassNaturalEdit()">
+                           ng-click="armorclassNaturalEdit()">
                 </td>
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ armorclassDeflection() }}" readonly
                            tooltip="{{ armorclassDeflectionTooltip() }}" tooltip-popup-delay="300"
-                           ng-focus="armorclassDeflectionEdit()">
+                           ng-click="armorclassDeflectionEdit()">
                 </td>
             </tr>
             <tr>
@@ -409,12 +409,12 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ armorclassDodge() }}" readonly
                            tooltip="{{ armorclassDodgeTooltip() }}" tooltip-popup-delay="300"
-                           ng-focus="armorclassDodgeEdit()">
+                           ng-click="armorclassDodgeEdit()">
                 </td>
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ armorclassMisc() }}" readonly
                            tooltip="{{ armorclassMiscTooltip() }}" tooltip-popup-delay="300"
-                           ng-focus="armorclassMiscEdit()">
+                           ng-click="armorclassMiscEdit()">
                 </td>
             </tr>
         </table>
@@ -468,7 +468,7 @@
                 <td>
                     <input type="text" class="input numberbox expand editable" value="{{ hpMax() }}" readonly
                            tooltip="{{ hpMaxTooltip() }}" tooltip-popup-delay="300"
-                           ng-focus="hpMaxEdit()">
+                           ng-click="hpMaxEdit()">
                 </td>
                 <td>
                     <input type="checkbox" ng-model="character.hp.auto"
@@ -621,7 +621,7 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ misc(skill) }}" readonly
                            tooltip="{{ miscTooltip(skill) }}" tooltip-popup-delay="300" tooltip-append-to-body="true"
-                           ng-focus="miscEdit(skill)">
+                           ng-click="miscEdit(skill)">
                 </td>
                 <td>
                     <button type="button" class="btn btn-default button-square {{ removeStyle(skill) }}" ng-click="remove(skill)">
@@ -1012,7 +1012,7 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ perDayMisc(entry) }}" readonly
                            tooltip="{{ perDayMiscTooltip(entry) }}" tooltip-popup-delay="300"
-                           ng-focus="perDayMiscEdit(entry)">
+                           ng-click="perDayMiscEdit(entry)">
                 </td>
                 <td>
                     <input type="number" class="input numberbox highlight" ng-model="entry.known" required
@@ -1041,7 +1041,7 @@
                 <td>
                     <input type="text" class="input numberbox editable" value="{{ spellDCMisc(entry) }}" readonly
                            tooltip="{{ spellDCMiscTooltip(entry) }}" tooltip-popup-delay="300"
-                           ng-focus="spellDCMiscEdit(entry)">
+                           ng-click="spellDCMiscEdit(entry)">
                 </td>
                 <td>
                     <input type="text" class="input numberbox highlight" value="{{ spellDCTotal(entry) }}" readonly
