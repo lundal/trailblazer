@@ -82,7 +82,7 @@ app.service('DriveService', [function() {
           'parents': [{'id': app_folder_id}]
         };
 
-        var base64Data = btoa(data);
+        var base64Data = LZString.compressToBase64(data);
 
         var multipartRequestBody =
             delimiter +
@@ -90,7 +90,6 @@ app.service('DriveService', [function() {
             JSON.stringify(metadata) +
             delimiter +
             'Content-Type: ' + content_type + '\r\n' +
-            'Content-Transfer-Encoding: base64\r\n' +
             '\r\n' +
             base64Data +
             close_delim;
@@ -120,7 +119,7 @@ app.service('DriveService', [function() {
           'parents': [{'id': app_folder_id}]
         };
 
-        var base64Data = btoa(data);
+        var base64Data = LZString.compressToBase64(data);
 
         var multipartRequestBody =
             delimiter +
@@ -128,7 +127,6 @@ app.service('DriveService', [function() {
             JSON.stringify(metadata) +
             delimiter +
             'Content-Type: ' + content_type + '\r\n' +
-            'Content-Transfer-Encoding: base64\r\n' +
             '\r\n' +
             base64Data +
             close_delim;
@@ -152,7 +150,14 @@ app.service('DriveService', [function() {
             xhr.open('GET', file.downloadUrl);
             xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
             xhr.onload = function() {
-                callback(xhr.responseText);
+                var base64data = xhr.responseText;
+
+                if (base64data.indexOf('{') === -1) {
+                    callback(LZString.decompressFromBase64(base64data));
+                } else {
+                    // For compatibility with pre-compression data
+                    callback(base64data);
+                }
             };
             xhr.onerror = function() {
                 callback(null);
