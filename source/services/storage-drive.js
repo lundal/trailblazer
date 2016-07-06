@@ -1,6 +1,5 @@
-app.service('DriveStorageService', ['DriveService', function(driveService) {
-
-    var service = this;
+var svcStorageDrive = function() {
+    var service = {};
 
     var saveCache = null;
     var fileCache = [];
@@ -16,14 +15,14 @@ app.service('DriveStorageService', ['DriveService', function(driveService) {
     };
 
     var refreshFileCache = function(callback) {
-        driveService.listFiles(function(files) {
+        svcDrive.listFiles(function(files) {
             fileCache = files;
             callback(true);
         });
     };
 
     service.init = function(immediate, callback) {
-        driveService.connect(immediate, function(success) {
+        svcDrive.connect(immediate, function(success) {
             if (!success) {
                 callback(false);
             }
@@ -34,8 +33,8 @@ app.service('DriveStorageService', ['DriveService', function(driveService) {
     };
 
     service.set = function(guid, character, callback) {
-        var data = angular.toJson(character);
-        if (data == saveCache) { // TODO: GUID?
+        var data = JSON.stringify(character);
+        if (data == saveCache) {
             callback(true);
         }
         else {
@@ -43,14 +42,14 @@ app.service('DriveStorageService', ['DriveService', function(driveService) {
 
             var file = lookupFileCache(guid);
             if (file == null) {
-                driveService.createFile(guid, data, function(file) {
+                svcDrive.createFile(guid, data, function(file) {
                     console.log('DriveStorage: Created ' + guid);
                     fileCache.push(file);
                     callback(true);
                 });
             }
             else {
-                driveService.updateFile(file, data, function(file) {
+                svcDrive.updateFile(file, data, function(file) {
                     console.log('DriveStorage: Updated ' + guid);
                     callback(true);
                 });
@@ -64,9 +63,9 @@ app.service('DriveStorageService', ['DriveService', function(driveService) {
             callback(null);
         }
         else {
-            driveService.getFile(file, function(data) {
+            svcDrive.getFile(file, function(data) {
                 console.log('DriveStorage: Got ' + guid);
-                var character = angular.fromJson(data);
+                var character = JSON.parse(data);
                 callback(character);
             });
         }
@@ -85,9 +84,10 @@ app.service('DriveStorageService', ['DriveService', function(driveService) {
 
     service.delete = function(guid, callback) {
         var file = lookupFileCache(guid);
-        driveService.deleteFile(file, function(response) {
+        svcDrive.deleteFile(file, function(response) {
             callback(true);
         });
     };
 
-}]);
+    return service;
+}();

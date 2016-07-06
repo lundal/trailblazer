@@ -1,6 +1,5 @@
-app.service('LocalStorageService', [function() {
-
-    var service = this;
+var svcStorageLocal = function() {
+    var service = {};
 
     service.init = function(callback) {
         var success = typeof(Storage) !== "undefined";
@@ -8,7 +7,7 @@ app.service('LocalStorageService', [function() {
     };
 
     service.set = function(guid, character, callback) {
-        localStorage.setItem(guid, angular.toJson(character));
+        localStorage.setItem(guid, JSON.stringify(character));
         var success = true;
         callback(success);
     };
@@ -19,7 +18,7 @@ app.service('LocalStorageService', [function() {
             callback(null);
         }
         else {
-            var character = angular.fromJson(data);
+            var character = JSON.parse(data);
             callback(character);
         }
     };
@@ -39,4 +38,5 @@ app.service('LocalStorageService', [function() {
         callback(success);
     };
 
-}]);
+    return service;
+}();

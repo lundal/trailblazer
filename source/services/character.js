@@ -1,6 +1,5 @@
-app.service('CharacterService', [function() {
-
-    var service = this;
+var svcCharacter = function() {
+    var service = {};
 
     var polyfill = function(character) {
         if (!character.movement) {
@@ -246,12 +245,12 @@ app.service('CharacterService', [function() {
 
     service.import = function(compressed) {
         var data = LZString.decompressFromBase64(compressed);
-        var character = angular.fromJson(data);
+        var character = JSON.parse(data);
         return character;
     };
 
     service.export = function(character) {
-        var data = angular.toJson(character);
+        var data = JSON.stringify(character);
         var compressed = LZString.compressToBase64(data);
         return compressed;
     };
@@ -321,4 +320,5 @@ app.service('CharacterService', [function() {
         });
     };
 
-}]);
+    return service;
+}();

@@ -1,6 +1,5 @@
-app.service('DoubleClickService', ['$rootScope', function($rootScope) {
-
-    var service = this;
+var svcDoubleClick = function() {
+    var service = {};
 
     var recentlyClicked = [];
 
@@ -19,18 +18,18 @@ app.service('DoubleClickService', ['$rootScope', function($rootScope) {
         return (recentlyClicked.indexOf(id) > -1);
     };
 
-    service.click = function(id) {
+    service.click = function(id, timeoutCallback) {
         if (!service.wasRecentlyClicked(id)) {
             recentlyClicked.push(id);
             setTimeout(function() {
                 removeItem(recentlyClicked, id);
-
-                /* Force scope update */
-                if (!$rootScope.$$phase) $rootScope.$digest($rootScope);
+                timeoutCallback(id);
             }, 1000);
             return service.singleClick;
         }
 
         return service.doubleClick;
     };
-}]);
+
+    return service;
+}();

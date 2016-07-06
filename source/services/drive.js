@@ -1,6 +1,5 @@
-app.service('DriveService', [function() {
-
-    var service = this;
+var svcDrive = function() {
+    var service = {};
 
     var client_id = '@DRIVEID';
     var scope = 'https://www.googleapis.com/auth/drive.appfolder';
@@ -174,4 +173,5 @@ app.service('DriveService', [function() {
         request.execute(callback);
     };
 
-}]);
+    return service;
+}();

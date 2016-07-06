@@ -1,8 +1,11 @@
-app.service('BreakdownService', ['$modal', function($modal) {
+var svcBreakdown = function() {
+    var service = {};
 
     var service = this;
 
     service.open = function(items, title) {
+        /*
+        TODO
         var modalInstance = $modal.open({
             templateUrl: 'views/breakdown.html',
             controller: 'BreakdownController',
@@ -12,6 +15,7 @@ app.service('BreakdownService', ['$modal', function($modal) {
                 title: function() { return title }
             }
         });
+        */
     };
 
     service.total = function(breakdown) {
@@ -38,12 +42,14 @@ app.service('BreakdownService', ['$modal', function($modal) {
             if (breakdown[i].bonus == 0) {
                 continue;
             }
-            tooltip += breakdown[i].desc + ": " + breakdown[i].bonus;
-            if (i + 1 != breakdown.length) {
-                tooltip += ", ";
-            }
+            tooltip += breakdown[i].desc + ": " + breakdown[i].bonus + ", ";
+        }
+        // Trim last ,
+        if (tooltip.length > 1) {
+            tooltip = tooltip.slice(0, -2);
         }
         return tooltip;
     };
 
-}]);
+    return service;
+}();
