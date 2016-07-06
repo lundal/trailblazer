@@ -29,6 +29,19 @@ input[type='number']::-webkit-outer-spin-button {
     margin: 0;
 }
 
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* Remove ugly dropdown-arrow in firefox */
+
+@-moz-document url-prefix() {
+    select {
+        -moz-appearance: none;
+        padding-right: 16px !important;
+    }
+}
+
 /* Input boxes */
 
 .input {
