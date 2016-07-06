@@ -127,14 +127,17 @@ input:invalid:focus {
     text-align: center;
 }
 
+.textbox.wide,
 .numberbox.wide {
     width: 64px;
 }
 
+.textbox.wider,
 .numberbox.wider {
     width: 128px;
 }
 
+.textbox.widest,
 .numberbox.widest {
     width: 160px;
 }
