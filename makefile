@@ -1,28 +1,31 @@
-FONTS=$(shell find bootstrap/fonts -name '*.*') $(shell find fonts -name '*.*')
-
 D20PFSRDFOLDER=d20pfsrd
 D20PFSRD=$(D20PFSRDFOLDER)/feats $(D20PFSRDFOLDER)/spells $(D20PFSRDFOLDER)/traits $(D20PFSRDFOLDER)/languages
 D20PFSRDBUILD=$(shell find $(D20PFSRDFOLDER) -name '*.py') $(D20PFSRDFOLDER)/makefile
 
-LIBJS=angular/angular.min.js angular/angular-route.min.js angular/angular-ui-bootstrap.min.js lz-string/lz-string.min.js mqgenie/mq.genie.min.js
-LIBCSS=bootstrap/css/bootstrap.min.css bootstrap/css/bootstrap-theme.min.css
+EXTFOLDER=external
+EXTFONTS=$(shell find $(EXTFOLDER)/fonts -name '*.*')
+EXTJS=$(shell find $(EXTFOLDER)/js -name '*.js')
+EXTCSS=$(shell find $(EXTFOLDER)/css -name '*.css')
 
-APPVIEWS=$(shell find views -name '*.html')
-APPCSS=$(shell find styles -name '*.css')
-APPCSSALL=appcssall.temp
-APPCSSMIN=appcssmin.temp
-APPJS=$(shell find js services controllers -name '*.js')
-APPJSALL=appjs.temp
-APPJSMIN=appjsmin.temp
+SRCFOLDER=source
+SRCVIEWS=$(shell find $(SRCFOLDER)/views -name '*.html')
+SRCCSS=$(shell find $(SRCFOLDER)/css -name '*.css')
+SRCJS=$(shell find $(SRCFOLDER)/js $(SRCFOLDER)/services $(SRCFOLDER)/controllers -name '*.js')
 
-VIEWS=views.temp
-CSS=css.temp
-JS=js.temp
+TMPFOLDER=temp
+TMPSRCCSSALL=$(TMPFOLDER)/source.css
+TMPSRCCSSMIN=$(TMPFOLDER)/source.min.css
+TMPSRCJSALL=$(TMPFOLDER)/source.js
+TMPSRCJSMIN=$(TMPFOLDER)/source.min.js
 
-TEMPLATE=template.html
+VIEWS=$(TMPFOLDER)/views.html
+CSS=$(TMPFOLDER)/app.css
+JS=$(TMPFOLDER)/app.js
+
+TEMPLATE=$(SRCFOLDER)/template.html
 DRIVEID=driveid.txt
 
-OUTFOLDER=out
+OUTFOLDER=build
 OUT=$(OUTFOLDER)/index.html
 
 .PHONY: clean
@@ -30,40 +33,47 @@ OUT=$(OUTFOLDER)/index.html
 build: $(OUT)
 
 clean:
-	rm -f $(shell find . -name '*.temp')
+	rm -rf $(TMPFOLDER)
 	rm -rf $(OUTFOLDER)
 	cd $(D20PFSRDFOLDER) && make clean
 
-$(VIEWS): $(APPVIEWS)
+$(VIEWS): $(SRCVIEWS)
+	mkdir -p $(TMPFOLDER)
 	rm -f $@
-	for view in $(APPVIEWS); do \
+	for view in $(SRCVIEWS); do \
 		echo "<script type=\"text/ng-template\" id=\"$$view\">" >> $@; \
 		cat $$view >> $@; \
 		echo "</script>" >> $@; \
 	done
 
-$(APPCSSALL): $(APPCSS)
+$(TMPSRCCSSALL): $(SRCCSS)
+	mkdir -p $(TMPFOLDER)
 	cat $^ > $@
 
-$(APPCSSMIN): $(APPCSSALL)
+$(TMPSRCCSSMIN): $(TMPSRCCSSALL)
+	mkdir -p $(TMPFOLDER)
 	curl -X POST -s --data-urlencode 'input@$<' https://cssminifier.com/raw > $@
 
-$(CSS): $(LIBCSS) $(APPCSSMIN)
+$(CSS): $(EXTCSS) $(TMPSRCCSSMIN)
+	mkdir -p $(TMPFOLDER)
 	cat $^ > $@
 
-$(APPJSALL): $(APPJS)
+$(TMPSRCJSALL): $(SRCJS)
+	mkdir -p $(TMPFOLDER)
 	cat $^ > $@
 
-$(APPJSMIN): $(APPJSALL)
+$(TMPSRCJSMIN): $(TMPSRCJSALL)
+	mkdir -p $(TMPFOLDER)
 	curl -X POST -s --data-urlencode 'input@$<' https://javascript-minifier.com/raw > $@
 
-$(JS): $(LIBJS) $(APPJSMIN)
+$(JS): $(EXTJS) $(TMPSRCJSMIN)
+	mkdir -p $(TMPFOLDER)
 	cat $^ > $@
 
 $(D20PFSRD): $(D20PFSRDBUILD)
 	cd $(D20PFSRDFOLDER) && make all
 
-$(OUT): $(VIEWS) $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(FONTS) $(D20PFSRD)
+$(OUT): $(VIEWS) $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
 	mkdir -p $(OUTFOLDER)
 	cat $(TEMPLATE) \
 	| sed \
@@ -75,7 +85,7 @@ $(OUT): $(VIEWS) $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(FONTS) $(D20PFSRD)
 	-e 's/^  *//g' -e 's/  *$$//g' > $@
 	# Add fonts
 	mkdir -p $(OUTFOLDER)/fonts/
-	cp -f $(FONTS) $(OUTFOLDER)/fonts/
+	cp -f $(EXTFONTS) $(OUTFOLDER)/fonts/
 	sed -i -e 's/..\/fonts/fonts/g' $@
 	# Add d20pfsrd
 	cp -rf $(D20PFSRD) $(OUTFOLDER)/
