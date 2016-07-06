@@ -71,6 +71,10 @@ body.modal-open {
 
 @media all and (max-width: 1029px) {
 
+body {
+    min-width: 520px;
+}
+
 #container {
     width: 520px;
 }
