@@ -1,0 +1,14 @@
+#classes .grid {
+    grid-template-columns: auto 1fr auto auto auto auto auto auto;
+    grid-template-rows: auto;
+}
+
+#classes [tooltip^="Will"]::before {
+    transform: translateX(-70%);
+}
+
+#classes #class-fort,
+#classes #class-ref,
+#classes #class-will {
+    width: 38px;
+}

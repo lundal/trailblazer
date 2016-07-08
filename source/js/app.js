@@ -1,22 +1,20 @@
-var app = angular.module('CharacterSheet', ['ngRoute', 'ui.bootstrap']);
+$(document).ready(function() {
+    console.log('Ready!');
 
-app.config(['$routeProvider', function($routeProvider) {
+    character = svcCharacter.create();
 
-    $routeProvider
-    .when('/character/:storage/:guid', {
-        templateUrl: 'views/sheet.html'
-    })
-    .otherwise({
-        templateUrl: 'views/list.html'
-    });
+    // Init services
+    svcFeat.init();
+    svcSpell.init();
+    svcTrait.init();
+    svcLanguage.init();
+    svcModal.init();
 
-}]);
+    // Init sections
+    secBasics.init();
+    secClasses.init();
 
-var setAppTitle = function(text) {
-    if (text && text != "") {
-        document.title = text + " – Trailblazer";
-    }
-    else {
-        document.title = "Trailblazer";
-    }
-}
+    setTitle();
+});
+
+var character;

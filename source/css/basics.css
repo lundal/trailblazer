@@ -1,0 +1,19 @@
+#basics .grid {
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "portrait namelabel name"
+                         "portrait racelabel race"
+                         "portrait sizelabel size"
+                         "portrait aliglabel alig"
+                         "portrait camplabel camp"
+                         "portrait playlabel play"
+}
+
+#basics #portrait { grid-area: portrait; }
+
+/* Firefox fix */
+@-moz-document url-prefix() {
+    #basics .grid {
+        grid-template-rows: repeat(6, 28px);
+    }
+}

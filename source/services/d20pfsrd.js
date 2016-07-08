@@ -3,16 +3,16 @@ var svcD20PFSRD = function(type) {
 
     var names = [];
 
-    service.load = function() {
+    service.init = function() {
         $.get('d20pfsrd/' + type + '/index.json')
         .done(function(data) {
             /* Copy to names */
             var i = data[type].length;
             while (i--) { names[i] = data[type][i]; }
-            console.log("D20PFSRD: Loaded list of " + type);
+            console.log('D20PFSRD: Loaded list of ' + type);
         })
         .fail(function(data) {
-            console.log("D20PFSRD: Failed to load list of " + type);
+            console.log('D20PFSRD: Failed to load list of ' + type);
         });
     };
 
@@ -54,9 +54,3 @@ var svcFeat = svcD20PFSRD('feats');
 var svcSpell = svcD20PFSRD('spells');
 var svcTrait = svcD20PFSRD('traits');
 var svcLanguage = svcD20PFSRD('languages');
-
-// Initialize
-svcFeat.load();
-svcSpell.load();
-svcTrait.load();
-svcLanguage.load();

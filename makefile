@@ -10,7 +10,7 @@ EXTCSS=$(shell find $(EXTFOLDER)/css -name '*.css')
 SRCFOLDER=source
 SRCVIEWS=$(shell find $(SRCFOLDER)/views -name '*.html')
 SRCCSS=$(shell find $(SRCFOLDER)/css -name '*.css')
-SRCJS=$(shell find $(SRCFOLDER)/js $(SRCFOLDER)/services $(SRCFOLDER)/controllers -name '*.js')
+SRCJS=$(shell find $(SRCFOLDER)/js $(SRCFOLDER)/services $(SRCFOLDER)/sections -name '*.js')
 
 TMPFOLDER=temp
 TMPSRCCSSALL=$(TMPFOLDER)/source.css
@@ -22,7 +22,7 @@ VIEWS=$(TMPFOLDER)/views.html
 CSS=$(TMPFOLDER)/app.css
 JS=$(TMPFOLDER)/app.js
 
-TEMPLATE=$(SRCFOLDER)/template.html
+TEMPLATE=$(SRCFOLDER)/app.html
 DRIVEID=driveid.txt
 
 OUTFOLDER=build
@@ -64,7 +64,8 @@ $(TMPSRCJSALL): $(SRCJS)
 
 $(TMPSRCJSMIN): $(TMPSRCJSALL)
 	mkdir -p $(TMPFOLDER)
-	curl -X POST -s --data-urlencode 'input@$<' https://javascript-minifier.com/raw > $@
+	cat $< > $@
+	#curl -X POST -s --data-urlencode 'input@$<' https://javascript-minifier.com/raw > $@
 
 $(JS): $(EXTJS) $(TMPSRCJSMIN)
 	mkdir -p $(TMPFOLDER)

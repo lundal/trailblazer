@@ -1,4 +1,4 @@
-var setAppTitle = function(text) {
+var setTitle = function(text) {
     if (text && text != "") {
         document.title = text + " – Trailblazer";
     }

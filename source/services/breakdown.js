@@ -1,8 +1,6 @@
 var svcBreakdown = function() {
     var service = {};
 
-    var service = this;
-
     service.open = function(items, title) {
         /*
         TODO

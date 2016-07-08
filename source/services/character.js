@@ -65,6 +65,22 @@ var svcCharacter = function() {
                 misc: [{bonus:0, desc:''}]
             };
         }
+
+        if (!character.classes[0].fort) {
+            for (var i = 0; i < character.classes.length; i++) {
+                character.classes[i].fortitude = 'L';
+                character.classes[i].reflex = 'L';
+                character.classes[i].will = 'L';
+            }
+        }
+
+        while (character.classes.length > 4) {
+            character.classes.pop();
+        }
+
+        if (!character.basic.portrait) {
+            character.basic.portrait = character.portrait;
+        }
     };
 
     service.generateGUID = function() {
@@ -77,10 +93,11 @@ var svcCharacter = function() {
         return guid;
     };
 
-    service.create = function(guid) {
+    service.create = function() {
         var character = {};
 
         character.basic = {
+            portrait:'',
             name:'',
             race:'',
             size:'Medium',
@@ -91,11 +108,10 @@ var svcCharacter = function() {
         };
 
         character.classes = [
-            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
-            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
-            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
-            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
-            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0, fortitude:'L', reflex:'L', will:'L'},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0, fortitude:'L', reflex:'L', will:'L'},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0, fortitude:'L', reflex:'L', will:'L'},
+            {name:'', favored:false, baseattackbonus:'3/4', hitdie:'d8', level:0, fortitude:'L', reflex:'L', will:'L'},
         ];
 
         character.experience = {
@@ -104,12 +120,12 @@ var svcCharacter = function() {
         };
 
         character.abilities = [
-            {name:'Strength',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Dexterity',    base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Constitution', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Intelligence', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Wisdom',       base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
-            {name:'Charisma',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Strength',     temp:[{bonus:0, desc:''}]},
+            {name:'Dexterity',    temp:[{bonus:0, desc:''}]},
+            {name:'Constitution', temp:[{bonus:0, desc:''}]},
+            {name:'Intelligence', temp:[{bonus:0, desc:''}]},
+            {name:'Wisdom',       temp:[{bonus:0, desc:''}]},
+            {name:'Charisma',     temp:[{bonus:0, desc:''}]},
         ];
 
         character.movement = {

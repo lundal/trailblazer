@@ -1,0 +1,39 @@
+#modal {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: hsla(0, 0%, 0%, 0.25);
+    overflow-x: hidden;
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0s 0.3s; /* Fade out */
+}
+
+#modal.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s, visibility 0s 0s; /* Fade in */
+}
+
+#modal-content {
+    z-index: 2;
+    width: 500px;
+    margin: 20px auto;
+    background: #FFF;
+    border: 1px solid #666;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.25);
+}
+
+#modal-content h2 {
+    border-bottom: 1px solid #CCC;
+}
+
+#modal-content .grid {
+    margin: 10px;
+    margin-top: 5px;
+}
