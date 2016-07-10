@@ -8,6 +8,16 @@
          url('../fonts/bree-serif.woff') format('woff');
 }
 
+﻿@font-face {
+    font-family:"Breathe Fire";
+    font-style:normal;
+    font-weight:normal;
+    src: url('../fonts/breathe-fire.eot?') format('eot'),
+         url('../fonts/breathe-fire.woff') format('woff'),
+         url('../fonts/breathe-fire.ttf') format('truetype'),
+         url('../fonts/breathe-fire.svg#BreatheFire') format('svg');
+}
+
 /* Main layout */
 
 body {
@@ -54,7 +64,7 @@ body {
     bottom: 0;
 }
 
-.center {
+div.center {
     position: absolute;
     top: 50%;
     left: 50%;

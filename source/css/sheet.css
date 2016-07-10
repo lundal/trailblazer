@@ -11,6 +11,53 @@
     background: rgba(255, 255, 255, 0.75);
 }
 
+#general { grid-area: gener; }
+#basics { grid-area: basic; }
+#classes { grid-area: class; }
+#abilities { grid-area: abili; }
+#movement { grid-area: movem; }
+#carrying-capacity { grid-area: carry; }
+
+#combat { grid-area: comba; }
+#saves { grid-area: saves; }
+#armor-class { grid-area: armor; }
+#hit-points { grid-area: hitpo; }
+#attacks { grid-area: attac; }
+#ammunition { grid-area: ammun; }
+#combat-maneuvers { grid-area: maneu; }
+
+#talents { grid-area: talen; }
+#skills { grid-area: skill; }
+#feats { grid-area: feats; }
+#traits { grid-area: trait; }
+#features { grid-area: featu; }
+#languages { grid-area: langu; }
+#proficiencies { grid-area: profi; }
+
+#items { grid-area: items; }
+#equipment { grid-area: equip; }
+#inventory { grid-area: inven; }
+
+#magic { grid-area: magic; }
+#spellcasting { grid-area: scast; }
+#spellnotes { grid-area: snote; }
+#spells0 { grid-area: spls0; }
+#spells1 { grid-area: spls1; }
+#spells2 { grid-area: spls2; }
+#spells3 { grid-area: spls3; }
+#spells4 { grid-area: spls4; }
+#spells5 { grid-area: spls5; }
+#spells6 { grid-area: spls6; }
+#spells7 { grid-area: spls7; }
+#spells8 { grid-area: spls8; }
+#spells9 { grid-area: spls9; }
+
+#fluff { grid-area: fluff; }
+#appearance { grid-area: appea; }
+#personality { grid-area: perso; }
+#background { grid-area: backg; }
+#notes { grid-area: notes; }
+
 #sheet {
     display: grid;
     grid-gap: 10px;
@@ -52,52 +99,58 @@
     width: 100%;
 }
 
-#general { grid-area: gener; }
-#basics { grid-area: basic; }
-#classes { grid-area: class; }
-#abilities { grid-area: abili; }
-#movement { grid-area: movem; }
-#carrying-capacity { grid-area: carry; }
+#sheet {
+    margin-top: -20px;
+}
 
-#combat { grid-area: comba; }
-#saves { grid-area: saves; }
-#ac { grid-area: armor; }
-#hit-points { grid-area: hitpo; }
-#attacks { grid-area: attac; }
-#ammo { grid-area: ammun; }
-#combat-maneuvers { grid-area: maneu; }
+@media all and (max-width: 1029px) {
 
-#talents { grid-area: talen; }
-#skills { grid-area: skill; }
-#feats { grid-area: feats; }
-#traits { grid-area: trait; }
-#features { grid-area: featu; }
-#languages { grid-area: langu; }
-#proficiencies { grid-area: profi; }
+    #sheet {
+        grid-template-columns: 1fr;
+        grid-template-areas: "gener"
+                             "basic"
+                             "class"
+                             "abili"
+                             "movem"
+                             "carry"
+                             "comba"
+                             "saves"
+                             "armor"
+                             "hitpo"
+                             "attac"
+                             "ammun"
+                             "maneu"
+                             "talen"
+                             "skill"
+                             "feats"
+                             "trait"
+                             "featu"
+                             "langu"
+                             "profi"
+                             "items"
+                             "equip"
+                             "inven"
+                             "magic"
+                             "scast"
+                             "snote"
+                             "spls0"
+                             "spls1"
+                             "spls2"
+                             "spls3"
+                             "spls4"
+                             "spls5"
+                             "spls6"
+                             "spls7"
+                             "spls8"
+                             "spls9"
+                             "fluff"
+                             "appea"
+                             "perso"
+                             "backg"
+                             "notes"
+    }
 
-#items { grid-area: items; }
-#equipment { grid-area: equip; }
-#inventory { grid-area: inven; }
-
-#magic { grid-area: magic; }
-#spellcasting { grid-area: scast; }
-#spellnotes { grid-area: snote; }
-#spells0 { grid-area: spls0; }
-#spells1 { grid-area: spls1; }
-#spells2 { grid-area: spls2; }
-#spells3 { grid-area: spls3; }
-#spells4 { grid-area: spls4; }
-#spells5 { grid-area: spls5; }
-#spells6 { grid-area: spls6; }
-#spells7 { grid-area: spls7; }
-#spells8 { grid-area: spls8; }
-#spells9 { grid-area: spls9; }
-
-#fluff { grid-area: fluff; }
-#appearance { grid-area: appea; }
-#personality { grid-area: perso; }
-#background { grid-area: backg; }
-#notes { grid-area: notes; }
+}
 
 /* Spesific layout */
 
@@ -175,46 +228,4 @@
 #notes textarea {
     height: 358px; /* 22*lines + 6 */
     border: 0;
-}
-
-/* Nav tweaks */
-@media all and (max-width: 1190px) {
-
-#sheet {
-    padding-bottom: 64px;
-}
-
-#quicknav {
-    width: 100%;
-    height: inherit;
-}
-
-#quicknav nav {
-    margin: 0 auto;
-    border-radius: 8px 8px 0 0;
-}
-
-#quicknav a {
-    display: inline-block;
-}
-
-}
-
-/* Mobile */
-
-@media all and (max-width: 1029px) {
-
-.align-h {
-    flex-flow: row wrap;
-}
-
-#quicknav {
-    text-align: center;
-}
-
-#quicknav nav {
-    width: 100%;
-    border-radius: 0;
-}
-
 }

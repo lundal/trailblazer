@@ -7,4 +7,13 @@
 
 .grid > .left {
     justify-self: left;
+    margin-left: 3px;
+}
+
+.grid > h3 {
+    align-self: flex-end;
+}
+
+.grid > h3.center {
+    align-self: center;
 }

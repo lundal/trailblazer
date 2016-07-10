@@ -13,11 +13,11 @@ var secBasics = function() {
         '        Click to set portrait...' +
         '        <div class="image clickable"></div>' +
         '    </div>' +
-        '    <h3>Name</h3>' +
+        '    <h3 class="center">Name</h3>' +
         '    <input type="text" class="input textbox expand bottom-border-only" id="character-name">' +
-        '    <h3>Race</h3>' +
+        '    <h3 class="center">Race</h3>' +
         '    <input type="text" class="input textbox expand bottom-border-only" id="character-race">' +
-        '    <h3>Size</h3>' +
+        '    <h3 class="center">Size</h3>' +
         '    <select class="input selectbox expand bottom-border-only" id="character-size">' +
         '        <option value="Colossal">Colossal</option>' +
         '        <option value="Gargantuan">Gargantuan</option>' +
@@ -29,7 +29,7 @@ var secBasics = function() {
         '        <option value="Diminutive">Diminutive</option>' +
         '        <option value="Fine">Fine</option>' +
         '    </select>' +
-        '    <h3 tooltip="Alignment">Align.</h3>' +
+        '    <h3 class="center" tooltip="Alignment">Align.</h3>' +
         '    <select class="input selectbox expand bottom-border-only" id="character-alignment">' +
         '        <option value="LG">Lawful Good</option>' +
         '        <option value="NG">Neutral Good</option>' +
@@ -41,9 +41,9 @@ var secBasics = function() {
         '        <option value="NE">Neutral Evil</option>' +
         '        <option value="CE">Chaotic Evil</option>' +
         '    </select>' +
-        '    <h3 tooltip="Campaign">Camp.</h3>' +
+        '    <h3 class="center" tooltip="Campaign">Camp.</h3>' +
         '    <input type="text" class="input textbox expand bottom-border-only" id="character-campaign">' +
-        '    <h3>Player</h3>' +
+        '    <h3 class="center">Player</h3>' +
         '    <input type="text" class="input textbox expand bottom-border-only" id="character-player">' +
         '</div>' +
         '');

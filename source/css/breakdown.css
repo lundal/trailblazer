@@ -1,0 +1,8 @@
+#breakdown {
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto;
+}
+
+#breakdown-add {
+    grid-column: 1 / 4;
+}

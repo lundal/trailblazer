@@ -8,9 +8,9 @@ EXTJS=$(shell find $(EXTFOLDER)/js -name '*.js')
 EXTCSS=$(shell find $(EXTFOLDER)/css -name '*.css')
 
 SRCFOLDER=source
-SRCVIEWS=$(shell find $(SRCFOLDER)/views -name '*.html')
 SRCCSS=$(shell find $(SRCFOLDER)/css -name '*.css')
 SRCJS=$(shell find $(SRCFOLDER)/js $(SRCFOLDER)/services $(SRCFOLDER)/sections -name '*.js')
+SRCRES=$(shell find $(SRCFOLDER)/resources -name '*.*')
 
 TMPFOLDER=temp
 TMPSRCCSSALL=$(TMPFOLDER)/source.css
@@ -18,7 +18,6 @@ TMPSRCCSSMIN=$(TMPFOLDER)/source.min.css
 TMPSRCJSALL=$(TMPFOLDER)/source.js
 TMPSRCJSMIN=$(TMPFOLDER)/source.min.js
 
-VIEWS=$(TMPFOLDER)/views.html
 CSS=$(TMPFOLDER)/app.css
 JS=$(TMPFOLDER)/app.js
 
@@ -36,15 +35,6 @@ clean:
 	rm -rf $(TMPFOLDER)
 	rm -rf $(OUTFOLDER)
 	cd $(D20PFSRDFOLDER) && make clean
-
-$(VIEWS): $(SRCVIEWS)
-	mkdir -p $(TMPFOLDER)
-	rm -f $@
-	for view in $(SRCVIEWS); do \
-		echo "<script type=\"text/ng-template\" id=\"$$view\">" >> $@; \
-		cat $$view >> $@; \
-		echo "</script>" >> $@; \
-	done
 
 $(TMPSRCCSSALL): $(SRCCSS)
 	mkdir -p $(TMPFOLDER)
@@ -74,11 +64,10 @@ $(JS): $(EXTJS) $(TMPSRCJSMIN)
 $(D20PFSRD): $(D20PFSRDBUILD)
 	cd $(D20PFSRDFOLDER) && make all
 
-$(OUT): $(VIEWS) $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
+$(OUT): $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
 	mkdir -p $(OUTFOLDER)
 	cat $(TEMPLATE) \
 	| sed \
-	-e '/@VIEWS/{' -e 'r $(VIEWS)' -e 'd}' \
 	-e '/@CSS/{' -e 'r $(CSS)' -e 'd}' \
 	-e '/@JS/{' -e 'r $(JS)' -e 'a ;\n' -e 'd}' \
 	| sed \

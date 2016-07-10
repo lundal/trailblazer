@@ -1,4 +1,4 @@
-var svcDoubleClick = function() {
+var svcClick = function() {
     var service = {};
 
     var recentlyClicked = [];
@@ -24,7 +24,7 @@ var svcDoubleClick = function() {
             setTimeout(function() {
                 removeItem(recentlyClicked, id);
                 timeoutCallback(id);
-            }, 1000);
+            }, 500);
             return service.singleClick;
         }
 

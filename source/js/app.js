@@ -13,6 +13,8 @@ $(document).ready(function() {
     // Init sections
     secBasics.init();
     secClasses.init();
+    secAbilities.init();
+    secQuickNav.init();
 
     setTitle();
 });

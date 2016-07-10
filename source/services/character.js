@@ -120,12 +120,12 @@ var svcCharacter = function() {
         };
 
         character.abilities = [
-            {name:'Strength',     temp:[{bonus:0, desc:''}]},
-            {name:'Dexterity',    temp:[{bonus:0, desc:''}]},
-            {name:'Constitution', temp:[{bonus:0, desc:''}]},
-            {name:'Intelligence', temp:[{bonus:0, desc:''}]},
-            {name:'Wisdom',       temp:[{bonus:0, desc:''}]},
-            {name:'Charisma',     temp:[{bonus:0, desc:''}]},
+            {name:'Strength',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Dexterity',    base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Constitution', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Intelligence', base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Wisdom',       base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
+            {name:'Charisma',     base:[{bonus:10, desc:'Base'}], temp:[{bonus:0, desc:''}]},
         ];
 
         character.movement = {
@@ -135,9 +135,9 @@ var svcCharacter = function() {
         };
 
         character.saves = [
-            {name:'Fortitude', ability:'Con', base:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]},
-            {name:'Reflex',    ability:'Dex', base:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]},
-            {name:'Will',      ability:'Wis', base:[{bonus:0, desc:''}], misc:[{bonus:0, desc:''}]},
+            {name:'Fortitude', ability:'Con', misc:[{bonus:0, desc:''}]},
+            {name:'Reflex',    ability:'Dex', misc:[{bonus:0, desc:''}]},
+            {name:'Will',      ability:'Wis', misc:[{bonus:0, desc:''}]},
         ];
 
         character.armorclass = {

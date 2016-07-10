@@ -4,6 +4,7 @@
 
 [tooltip]::before {
     content: attr(tooltip);
+    white-space: pre;
     min-width: 50px;
     background-color: hsla(0, 0%, 0%, 0.8);
     color: #fff;

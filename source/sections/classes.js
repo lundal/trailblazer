@@ -12,11 +12,11 @@ var secClasses= function() {
             '    <h3 tooltip="Favored Class">FC</h3>' +
             '    <h3 class="left">Class</h3>' +
             '    <h3>Level</h3>' +
-            '    <h3 tooltip="Base Attack Bonus 2/4 = 10 at level 20 3/4 = 15 at level 20 4/4 = 20 at level 20">BAB</h3>' +
+            '    <h3 tooltip="Base Attack Bonus\n2/4 = 10 at level 20\n3/4 = 15 at level 20\n4/4 = 20 at level 20">BAB</h3>' +
             '    <h3 tooltip="Hit Die">HD</h3>' +
-            '    <h3 tooltip="Fortitude L = 6 at level 20 H = 12 at level 20">Fort.</h3>' +
-            '    <h3 tooltip="Reflex L = 6 at level 20 H = 12 at level 20">Ref.</h3>' +
-            '    <h3 tooltip="Will L = 6 at level 20 H = 12 at level 20">Will</h3>';
+            '    <h3 tooltip="Fortitude\nL = 6 at level 20\nH = 12 at level 20">Fort.</h3>' +
+            '    <h3 tooltip="Reflex\nL = 6 at level 20\nH = 12 at level 20">Ref.</h3>' +
+            '    <h3 tooltip="Will\nL = 6 at level 20\nH = 12 at level 20">Will</h3>';
         for (var i = 0; i < character.classes.length; i++) {
             html += '' +
             '    <input type="checkbox" class="class-fav">' +
@@ -144,7 +144,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + classes[i].level + " ";
+            tooltip += classes[i].name + ': ' + classes[i].level + '\n';
         }
         return tooltip;
     };
@@ -166,7 +166,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + classes[i].baseattackbonus + " ";
+            tooltip += classes[i].name + ': ' + classes[i].baseattackbonus + '\n';
         }
         return tooltip;
     };
@@ -201,7 +201,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + calcHitPoints(classes[i], i == 0) + " ";
+            tooltip += classes[i].name + ': ' + calcHitPoints(classes[i], i == 0) + '\n';
         }
         return tooltip;
     };
@@ -230,7 +230,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + calcSkill(classes[i], 'fortitude') + " ";
+            tooltip += classes[i].name + ': ' + calcSkill(classes[i], 'fortitude') + '\n';
         }
         return tooltip;
     };
@@ -251,7 +251,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + calcSkill(classes[i], 'reflex') + " ";
+            tooltip += classes[i].name + ': ' + calcSkill(classes[i], 'reflex') + '\n';
         }
         return tooltip;
     };
@@ -272,7 +272,7 @@ var secClasses= function() {
             if (classes[i].level == 0) {
                 continue;
             }
-            tooltip += classes[i].name + ": " + calcSkill(classes[i], 'will') + " ";
+            tooltip += classes[i].name + ': ' + calcSkill(classes[i], 'will') + '\n';
         }
         return tooltip;
     };

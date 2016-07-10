@@ -34,3 +34,38 @@
     background: #EEE;
     box-shadow: inset 0 0 2px rgba(0,0,0,0.25);
 }
+
+@media all and (max-width: 1190px) {
+
+    #sheet {
+        padding-bottom: 64px;
+    }
+
+    #quicknav {
+        width: 100%;
+        height: inherit;
+    }
+
+    #quicknav nav {
+        margin: 0 auto;
+        border-radius: 8px 8px 0 0;
+    }
+
+    #quicknav a {
+        display: inline-block;
+    }
+
+}
+
+@media all and (max-width: 1029px) {
+
+    #quicknav {
+        text-align: center;
+    }
+
+    #quicknav nav {
+        width: 100%;
+        border-radius: 0;
+    }
+
+}
