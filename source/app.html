@@ -16,7 +16,37 @@
     <body>
         <div id="container">
             <div id="logo">Trailblazer</div>
-            <div id="sheet">
+            <div id="gridtest" class="alert alert-warning hidden">
+                <p><strong>Attention!</strong></p>
+                <p>Trailblazer requires a new layout feature called <em>css3-grid-layout</em> which is experimental and disabled by default in most browsers.</p>
+                <p>If you see a rainbow below, all is well!</p>
+                <div class="grid">
+                    <span class="red"></span>
+                    <span class="blue"></span>
+                    <span class="yellow"></span>
+                    <span class="purple"></span>
+                    <span class="orange"></span>
+                    <span class="green"></span>
+                </div>
+                <p>If you don't see a rainbow, follow these steps:</p>
+                <p><strong>NB!</strong> The links must be copied or typed into your address bar!</p>
+                <p>
+                    <img src="img/chrome.svg" alt="Google Chrome">
+                    <ol>
+                        <li>Enter <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags</a> into your address bar</li>
+                        <li>Enable <em>Experimental Web Platform features</em></li>
+                        <li>Restart your browser</li>
+                    </ol>
+                    <img src="img/firefox.svg" alt="Mozilla Firefox">
+                    <ol>
+                        <li>Enter <a href="about:config">about:config</a> into your address bar</li>
+                        <li>Toggle <em>layout.css.grid.enabled</em></li>
+                        <li>Reload this page</li>
+                    </ol>
+                </p>
+                <button type="button" class="btn btn-success">I see a rainbow!</button>
+            </div>
+            <div id="sheet" class="hidden">
                 <h1 id="general">General</h1>
                 <section id="basics"></section>
                 <section id="classes"></section>
@@ -48,20 +78,11 @@
                 <section id="personality"></section>
                 <section id="background"></section>
                 <section id="notes"></section>
+                <div id="quicknav"></div>
             </div>
         </div>
         <div id="modal">
             <div id="modal-content"></div>
-        </div>
-        <div id="quicknav">
-            <nav>
-                <a href="#general"><i class="glyphicon glyphicon-th"></i><br>General</a>
-                <a href="#combat"><i class="glyphicon glyphicon-screenshot"></i><br>Combat</a>
-                <a href="#talents"><i class="glyphicon glyphicon-education"></i><br>Talents</a>
-                <a href="#items"><i class="glyphicon glyphicon-briefcase"></i><br>Items</a>
-                <a href="#magic"><i class="glyphicon glyphicon-fire"></i><br>Magic</a>
-                <a href="#fluff"><i class="glyphicon glyphicon-heart"></i><br>Fluff</a>
-            </nav>
         </div>
     </body>
 </html>

@@ -1,5 +1,20 @@
+// Active character
+var character;
+
 $(document).ready(function() {
-    console.log('Ready!');
+    console.log('Document ready');
+
+    // Gridtest
+    if (localStorage.getItem('grid-warning-dismissed') != 'true') {
+        $('#gridtest').removeClass('hidden');
+        $('#gridtest button').click(function() {
+            localStorage.setItem('grid-warning-dismissed', 'true');
+            location.reload();
+        });
+        return;
+    }
+
+    console.log('Grid test passed');
 
     character = svcCharacter.create();
 
@@ -16,7 +31,7 @@ $(document).ready(function() {
     secAbilities.init();
     secQuickNav.init();
 
-    setTitle();
-});
+    // Show stuff
+    $('#sheet').removeClass('hidden');
 
-var character;
+});

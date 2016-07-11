@@ -6,11 +6,11 @@ EXTFOLDER=external
 EXTFONTS=$(shell find $(EXTFOLDER)/fonts -name '*.*')
 EXTJS=$(shell find $(EXTFOLDER)/js -name '*.js')
 EXTCSS=$(shell find $(EXTFOLDER)/css -name '*.css')
+EXTIMG=$(shell find $(EXTFOLDER)/img -name '*.*')
 
 SRCFOLDER=source
 SRCCSS=$(shell find $(SRCFOLDER)/css -name '*.css')
 SRCJS=$(shell find $(SRCFOLDER)/js $(SRCFOLDER)/services $(SRCFOLDER)/sections -name '*.js')
-SRCRES=$(shell find $(SRCFOLDER)/resources -name '*.*')
 
 TMPFOLDER=temp
 TMPSRCCSSALL=$(TMPFOLDER)/source.css
@@ -64,7 +64,7 @@ $(JS): $(EXTJS) $(TMPSRCJSMIN)
 $(D20PFSRD): $(D20PFSRDBUILD)
 	cd $(D20PFSRDFOLDER) && make all
 
-$(OUT): $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
+$(OUT): $(EXTIMG) $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
 	mkdir -p $(OUTFOLDER)
 	cat $(TEMPLATE) \
 	| sed \
@@ -80,3 +80,6 @@ $(OUT): $(CSS) $(JS) $(TEMPLATE) $(DRIVEID) $(EXTFONTS) $(D20PFSRD)
 	# Add d20pfsrd
 	cp -rf $(D20PFSRD) $(OUTFOLDER)/
 	sed -i -e 's/d20pfsrd\///g' $@
+	# Add images
+	mkdir -p $(OUTFOLDER)/img/
+	cp -f $(EXTIMG) $(OUTFOLDER)/img/

@@ -1,0 +1,59 @@
+#gridtest {
+    text-align: center;
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#gridtest img {
+    float:left;
+    margin: 10px 0px 10px 50px;
+    width: 42px;
+    height: 42px;
+}
+
+#gridtest ol {
+    text-align: left;
+    margin-left: 100px;
+    padding-left: 20px;
+}
+
+#gridtest .grid {
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: "r o y g b p";
+    grid-gap: 0;
+    justify-items: stretch;
+    width: 122px;
+    height: 22px;
+    margin: 10px auto;
+    border: 1px solid #f5e79e;
+}
+
+#gridtest .red {
+    grid-area: r;
+    background-color: #F11;
+}
+#gridtest .orange {
+    grid-area: o;
+    background-color: #F90;
+}
+#gridtest .yellow {
+    grid-area: y;
+    background-color: #EE3;
+}
+
+#gridtest .green {
+    grid-area: g;
+    background-color: #3E3;
+}
+
+#gridtest .blue {
+    grid-area: b;
+    background-color: #39F;
+}
+
+#gridtest .purple {
+    grid-area: p;
+    background-color: #F3F;
+}
